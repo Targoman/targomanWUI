@@ -1,0 +1,187 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta content="text/html" http-equiv="Content-Type">
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description"
+        content="ترگمان سرویس ترجمه متن آنلاین و رایگان است. در ترگمان می‌توانید هر متنی را با کیفیتی بهتر از گوگل و دیگر مترجم‌ها ترجمه کنید.">
+    <meta name="keywords"
+        content="ترگمان, ترجمه, ترجمه آنلاین, مترجم, ترجمه نورونی, ترجمه با یادگیری عمیق, translator, machine translation, SMT, NMT, neural translation">
+    <meta name="author" content="Targoman Intelligent Processing Co. Pvt.">
+    <title>ترگمان مترجم آنلاین و رایگان</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+</head>
+
+<body class="nojs">
+    <noscript>
+        <div class="noscript">
+            <h1>
+                <img style="vertical-align:middle;" src="/img/logo/targoman-fa.png" alt="ترگمان-" />
+                <span style="vertical-align:middle;">برای استفاده از این وبسایت، جاوااسکریپت می‌بایست فعال باشد</span>
+            </h1>
+            <p>
+                برای فعال‌سازی جاوااسکریپت در مرورگر کروم، می‌توانید آدرس
+                `chrome://settings`
+                را در میله‌ی آدرس وارد کرده و تنظیمات مربوطه را در بخش
+                "content settings"
+                انجام دهید.
+            </p>
+        </div>
+    </noscript>
+    <div id="header">
+        <a href="/"><img src="/img/logo/targoman-fa.png" alt="ترگمان" /></a>
+        <hr />
+    </div>
+    <div id="content">
+        <div class="boxes">
+            <div class="src">
+                <div class="header">
+                    <div
+                        class="dropdown"
+                        data-bind-to="srcLang"
+                        data-options-collection="availableSrcLangs">
+                        <span class="selection">زبان مبدأ</span>
+                        <span>&nbsp;&nbsp;▾</span>
+                        <div class="options"></div>
+                    </div>
+                </div>
+                <div 
+                    class="content"
+                    contenteditable="true"
+                    placeholder="لطفا متن مورد نظر را وارد نمایید."
+                    data-bind-to="srcText"></div>
+                <div class="usage-report">۰/۵۰۰۰</div>
+                <div class="controls">
+                    <ul>
+                        <li><a data-action="clearSource" class="toolbar-button" href="#"><img src="/img/icon/clear.png" alt="clear"/></a></li>
+                    </ul>
+                </div>
+            </div><!--
+            --><div class="separator"></div><!--
+            --><div class="tgt">
+                <div class="header">
+                    <div
+                        class="dropdown"
+                        data-bind-to="tgtLang"
+                        data-options-collection="availableTgtLangs">
+                        <span class="selection">زبان مقصد</span>
+                        <span>&nbsp;&nbsp;▾</span>
+                        <div class="options"></div>
+                    </div>
+                    <div class="separator"></div>
+                    <div
+                        class="button disabled"
+                        data-enabled-if="srcText"
+                        data-action="translate">ترجمه‌کن!</div>
+                    <div class="translator-busy busy"><div class="box b0"></div><div class="box b1"></div><div class="box b2"></div></div>
+                </div>
+                <div class="content">
+                </div>
+                <div class="controls">
+                    <ul>
+                        <li><a data-action="copyTranslationResult" class="toolbar-button" href="#"><img src="/img/icon/copy.png" alt="copy"/></a></li>
+                        <li><a data-action="voteUpTranslation" data-visible-if-not="proposingNewTranslationMode" class="toolbar-button" href="#"><img src="/img/icon/thumb-up.png" alt="like"/></a></li>
+                        <li><a data-action="voteDownTranslation" data-visible-if-not="proposingNewTranslationMode" class="toolbar-button" href="#"><img src="/img/icon/thumb-down.png" alt="down"/></a></li>
+                        <li><a data-action="proposeNewTranslation" data-visible-if-not="proposingNewTranslationMode" class="toolbar-button" href="#"><img src="/img/icon/pencil.png" alt="edit"/></a></li>
+                        <li><a data-action="acceptNewTranslation" data-visible-if="proposingNewTranslationMode" class="toolbar-button" href="#"><img src="/img/icon/tick.png" alt="edit"/></a></li>
+                        <li><a data-action="cancelNewTranslation" data-visible-if="proposingNewTranslationMode"class="toolbar-button" href="#"><img src="/img/icon/clear.png" alt="edit"/></a></li>
+                    </ul>
+                </div>
+                <div class="metadata">
+                    ترجمه شده با موتور
+                    <span class="engine emphasized">محاوره</span>
+                    در
+                    <span class="translation-time emphasized">۰.۰۴۲۴</span>
+                    ثانیه
+                </div>
+            </div>
+        </div>
+        <div class="dic-result">
+            <h1>نتایج دیکشنری برای <span class="src">سلام</span></h1>
+            <hr/>
+            <div class="dic-part-1">
+                <h1>معنی‌های <span class="src">سلام</span></h1>
+                <p class="mean">
+                    aloha, bonjour, good afternoon, good morning, hail, hello, respects, salute, greeting, salutation, regards, [o.s.] peace, salaam                    
+                </p>
+                <h1>کلمات مرتبط با <span class="src">سلام</span></h1>
+                <ul class="relword">
+                    <li class="source">درود</li>
+                    <li class="translation">"salute"</li>
+                    <li class="separator"></li>
+                    <li class="source">خداحافظ</li>
+                    <li class="translation">"goodbye"</li>
+                </ul>
+            </div><!--
+            --><div class="separator"></div><!--
+            --><div class="dic-part-2">
+                <h1>مترادف‌های <span class="src">سلام</span></h1>
+                <table class="synonym">
+                    <tr><th>کلمه</th><th>نقش</th><th>معانی</th></tr>
+                    <tr><td>ave</td><td>اسم</td><td>برخورد ، سلام ، خوشامد ، درود ، خوش آمد ، تبریک ، تهنیت ، احترام ، تبریکات ، خوش باش ، سلام کننده</td></tr>
+                    <tr><td>salute</td><td>اسم</td><td>سلام ، درود ، سلام کردن ، احترام نظامی ، سلام نظامی</td></tr>
+                    <tr><td>salutation</td><td>اسم</td><td>سلام ، تعارف ، درود ، تهنیت ، سلام اول نامه</td></tr>
+                    <tr><td>salaam</td><td>اسم</td><td>سلام ، سلام کردن</td></tr>
+                    <tr><td>ave</td><td>اسم</td><td>برخورد ، سلام ، خوشامد ، درود ، خوش آمد ، تبریک ، تهنیت ، احترام ، تبریکات ، خوش باش ، سلام کننده</td></tr>
+                </table>
+                <h1>عبارت‌های مرتبط با <span class="src">سلام</span></h1>
+                <ul class="relexp">
+                        <li class="source">سلام دادن</li>
+                        <li class="translation">"to greet, to salute"</li>
+                        <li class="separator"></li>
+                        <li class="source">سلام عام</li>
+                        <li class="translation">"public levee"</li>
+                    </ul>
+                </div>
+        </div>
+        <div class="ads">
+            <div class="text">
+                <a href="#">
+                    <span class="ad-title">ترجمانو: خدمات ترجمه تخصصی با ۷ روز تضمین کیفیت</span>
+                    <p class="ad-desc">
+                        سفارشات ترجمه تخصصی خود را به ترجمانو بسپارید، تخفیف بگیرید و به بهبود ترگمان کمک کنید. کد تخفیف ویژه کاربران ترگمان: targoman
+                    </p>
+                    <p class="ad-link">http://www.tarjomano.com</p>
+                </a>
+            </div><!--
+            --><div class="separator"></div><!--
+            --><div class="graphical">
+                <div class="slider">
+                    <div class="item">
+                        <img src="/img/ads/tarjomano.png" alt="ترجمانو - ترجمه‌ی انسانی و با کیفیت" />
+                    </div><!--
+                    --><div class="item">
+                        <img src="/img/ads/tarjomyar.png" alt="ترجمیار - سریع، آسان، کم‌هزینه، خودت ترجمه کن!" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="footer">
+        <div>
+            <ul class="glinks">
+                <li><a href="#"><img src="/img/logo/github.png" alt="" /></a></li>
+                <li><a href="#"><img src="/img/logo/blog.png" alt="" /></a></li>
+                <li><a href="#"><img src="/img/logo/aparat.png" alt="" /></a></li>
+                <li><a href="#"><img src="/img/logo/telegram.png" alt="" /></a></li>
+            </ul>
+            <hr />
+        </div>
+        <ul class="links">
+            <li><a href="#">درباره‌ی ترگمان</a></li>
+            <li><a href="#">حقوق کاربر</a></li>
+            <li><a href="#">API</a></li>
+            <li><a href="#">گیت‌هاب</a></li>
+            <li><a href="#">ترجمه‌ی مقاله</a></li>
+            <li><a href="#">اندروید</a></li>
+        </ul>
+    </div>
+    <div class="notification"><span class="close-icon">X</span><h1></h1><p></p></div>
+    <script src="./bundle.js"></script>
+</body>
+
+</html>

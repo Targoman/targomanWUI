@@ -1,0 +1,25 @@
+{
+  "name": "targoman_com_ui",
+  "version": "1.0.0",
+  "description": "Targoman translation service Web UI",
+  "scripts": {
+    "devel": "NODE_ENV=development rollup -c --watch",
+    "build": "NODE_ENV=production rollup -c",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Behrooz Vedadian",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "7 || ^7.0.0-rc.2",
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015-rollup": "^3.0.0",
+    "rollup": "^1.0.0",
+    "rollup-plugin-babel": "^4.3.2",
+    "rollup-plugin-commonjs": "^9.3.4",
+    "rollup-plugin-copy": "^1.1.0",
+    "rollup-plugin-livereload": "^1.0.0",
+    "rollup-plugin-node-resolve": "^4.2.3",
+    "rollup-plugin-serve": "^1.0.1",
+    "rollup-plugin-uglify": "^6.0.2"
+  }
+}

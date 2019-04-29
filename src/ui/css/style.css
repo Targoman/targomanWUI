@@ -1,0 +1,516 @@
+@font-face {
+    font-family: Shabnam;
+    src: url('/font/shabnam.woff') format('woff');
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: Shabnam;
+    src: url('/font/shabnam-bold.woff') format('woff');
+    font-weight: bold;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+[contenteditable=true]:empty:before {
+    content: attr(placeholder);
+    display: block;
+    opacity: .4;
+}
+
+.ltr {
+    direction: ltr !important;
+}
+
+.rtl {
+    direction: ltr !important;
+}
+
+body,
+textarea,
+input {
+    font-family: Shabnam, sans-serif;
+    font-size: 14px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin-bottom: 0.5em;
+}
+
+html,
+body {
+    min-height: 100%;
+    direction: rtl;
+}
+
+div.noscript {
+    padding: 1em;
+    margin: auto;
+    width: 80em;
+}
+
+div.noscript img {
+    height: 1em;
+}
+
+.notification {
+    left: 50%;
+    transform: translateX(-50%) translateY(-100%);
+    position: fixed;
+    top: -7px;
+    opacity: 0;
+    border-radius: 7px;
+    background-color: yellow;
+    border: solid 1px;
+    padding: .5em;
+    transition: all .5s;
+    min-width: 20em;
+    z-index: 100000;
+}
+
+.notification.shown {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+}
+
+.notification h1 {
+    font-family: iran-rounded
+}
+
+.notification .close-icon {
+    font-weight: bolder;
+    position: absolute;
+    top: 1em;
+    left: 1em;
+    cursor: pointer;
+    font-family: arial
+}
+
+.notification.error {
+    background-color: #f2dede;
+    border-color: #ebccd1;
+    color: #a94442
+}
+
+.notification.error .close-icon {
+    color: black
+}
+
+.notification.warn {
+    color: #8a6d3b;
+    background-color: #fcf8e3;
+    border-color: #faebcc
+}
+
+.notification.warn .close-icon {
+    color: black
+}
+
+.notification.info {
+    color: #31708f;
+    background-color: #d9edf7;
+    border-color: #bce8f1
+}
+
+.notification.info .close-icon {
+    color: black
+}
+
+.notification.success {
+    color: #3c763d;
+    background-color: #dff0d8;
+    border-color: #d6e9c6
+}
+
+.notification.success .close-icon {
+    color: black
+}
+
+.busy {
+    position: absolute;
+    left: 0.5em;
+    top: 0;
+    box-sizing: border-box;
+    display: none;
+}
+
+@keyframes busy_bounce {
+    0{
+        transform:scale(1);
+        background-color: #000;
+    }
+    100%{
+        transform:scale(.3);
+        background-color: #fff;
+    }
+}
+
+.busy .box {
+    position: absolute;
+    top: 0;
+    background-color: #999;
+    height:2em;
+    width: 2em;
+    animation-name: busy_bounce;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+    transform:scale(.3);
+}
+
+.busy .box.b0 {
+    left:0;
+    animation-delay:.6s;
+}
+.busy .box.b1 {
+    left:1em;
+    animation-delay:.75s;
+}
+.busy .box.b2 {
+    left:2em;
+    animation-delay:.9s;
+}
+
+div#header {
+    padding: 1em;
+}
+
+div#header a {
+    display: block;
+    float: right;
+}
+
+div#header img {
+    height: 3em;
+}
+
+div#header hr {
+    display: block;
+    margin-right: 8.75em;
+    border: none;
+    border-bottom: 3px solid #2e1c59;
+    height: 2.35em;
+}
+
+div#footer {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    padding-bottom: 0.25em;
+}
+
+div#footer img {
+    height: 1.5em;
+    filter: grayscale(1);
+    transition: filter 0.5s;
+}
+
+div#footer img:hover {
+    filter: grayscale(0);
+}
+
+div#footer ul.glinks {
+    float: left;
+}
+
+div#footer li {
+    display: inline-block;
+}
+
+div#footer ul.links li {
+    margin-left: 1em;
+}
+
+div#footer ul.links {
+    background-color: #fff;
+}
+
+div#footer hr {
+    display: block;
+    border: none;
+    border-bottom: 3px solid #2e1c59;
+    height: 0.7em;
+}
+
+div#content {
+    padding: 1em;
+    padding-top: 0;
+    box-sizing: border-box;
+}
+
+#content > div {
+   margin-top: 2em !important;
+}
+
+div#content div.boxes, div#content div.dic-result, div#content div.ads {
+    width: 98%;
+    margin: auto;
+}
+
+div#content div.boxes > div.separator, div#content div.ads > div.separator, div#content div.dic-result > div.separator {
+    width: 0.9%;
+    display: inline-block;
+}
+
+div#content div.ads {
+    padding-top: 1em;
+}
+
+div#content div.ads div.text a {
+    text-decoration: none;
+    color: inherit;
+}
+
+div#content div.src, div#content div.tgt, div#content div.text, div#content div.graphical, div#content div.dic-part-1, div#content div.dic-part-2 {
+    width: 49.5%;
+    display: inline-block;
+    vertical-align: top;
+}
+
+div#content div.src div.content, div#content div.tgt div.content {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    padding: 0.5em;
+}
+
+div#content div.src, div#content div.tgt {
+    position: relative;
+}
+
+div#content div.src div.content {
+    direction: rtl;
+    outline: none;
+}
+
+div#content div.tgt div.controls, div#content div.tgt div.metadata, div#content div.src div.usage-report, div#content div.src div.controls {
+    position: absolute;
+    bottom: 0;
+    padding: 0 0.5em;
+}
+
+div#content div.src div.usage-report {
+    left: 0;
+    opacity: 0.4;
+}
+
+div#content div.tgt div.controls {
+    left: 0;
+    direction: ltr;
+}
+
+div#content div.src div.controls {
+    right: 0;
+    direction: ltr;
+}
+
+div#content div.tgt div.controls ul, div#content div.src div.controls ul {
+    list-style: none;
+}
+
+div#content div.tgt div.metadata {
+    color: #696969;
+    font-size: 80%;
+    padding: 0.25em 0.5em;
+    display: none;
+}
+
+div#content div.tgt div.metadata span.emphasized {
+    color: green;
+    cursor: pointer;
+}
+
+div#content div.tgt div.controls li, div#content div.src div.controls li {
+    display: inline-block;
+    opacity: 0.5;
+}
+
+div#content div.tgt div.controls li:hover, div#content div.src div.controls li:hover {
+    opacity: 0.75;
+    filter: drop-shadow(0 0 1px #000);
+}
+
+div#content div.tgt div.controls li img, div#content div.src div.controls li img {
+    width: 1.25em;
+}
+
+div#content div.src div.content:focus {
+    border: 1px solid #000;
+}
+
+div#content div.header {
+    position: relative;
+    height: 2em;
+    background-color: #eee;
+}
+div#content div.content {
+    min-height: 13em;
+    box-sizing: border-box;
+    border: 1px solid #eee;
+}
+
+div#content div.tgt div.content div {
+    min-height: 13em;
+    box-sizing: border-box;
+    border: 1px solid #eee;
+}
+
+div#content div.header div.separator {
+    display: inline-block;
+    width: 0.25em;
+}
+
+div#content div.header div.dropdown, div#content div.header div.button {
+    height: 100%;
+    line-height: 2em;
+    background-color: #ddd;
+    box-sizing: border-box;
+    display: inline-block;
+    padding: 0 1em;
+    text-align: center;
+    cursor: pointer;
+    border: 1px solid transparent;
+}
+
+div#content div.header div.dropdown:hover {
+    border-color: #000;
+}
+
+div#content div.header div.dropdown div.options {
+    background-color: #fff;
+    border: 1px solid #bbb;
+    display: none;
+    min-width: 9em;
+    opacity: 0;
+    position: fixed;
+    transition: opacity 0.5s;
+    text-align: right;
+    z-index: 1;
+}
+
+div#content div.header div.dropdown div.options ul {
+    list-style: none;
+}
+
+div#content div.header div.dropdown div.options ul li {
+    padding: 0.5em;
+}
+
+div#content div.header div.dropdown div.options ul li:hover {
+    background: #999;
+}
+
+div#content div.header div.dropdown div.options ul li.selected {
+    color: #555;
+    text-decoration: line-through;
+}
+
+div#content div.header div.button {
+    background-color: #43a919;
+    color: white;
+}
+
+div#content div.header div.button.disabled {
+    background-color: #999;
+    cursor: not-allowed;
+}
+
+div#content div.header div.button:hover:not(.disabled) {
+    background-color: #36940f;
+}
+
+div#content div.ads span.ad-title {
+    color: blue;
+    font-weight: bold;
+}
+
+div#content div.ads p.ad-desc {
+    font-size: 90%;
+}
+
+div#content div.ads p.ad-link {
+    color: green;
+    direction: ltr;
+}
+
+div#content div.ads div.slider {
+    overflow: hidden;
+    position: relative;
+}
+
+div#content div.ads div.slider div.item {
+    display: inline-block;
+    width: 100%;
+}
+
+div#content div.ads div.slider div.item > img {
+    width: 100%;
+}
+
+div#content div.content span.phrase-token {
+    background-color: transparent;
+}
+
+div#content div.content span.phrase-token.hi {
+    background-color: yellow;
+}
+
+div#content div.dic-result {
+    color: gray;
+}
+
+div#content div.dic-result span.src {
+    color: #000;
+}
+
+div#content div.dic-result h1 {
+    margin-bottom: 0;
+    font-size: 115%;
+}
+
+div#content div.dic-result div h1 {
+    margin-bottom: 1em;
+}
+
+div#content div.dic-result ul {
+    list-style: none;
+    margin-right: 2em;
+}
+
+div#content div.dic-result ul li.source {
+    color: #000;
+}
+
+div#content div.dic-result ul li.separator {
+    height: 1.5em;
+}
+
+p.mean, table.synonym {
+    margin-bottom: 1em;
+}
+
+table.synonym {
+    border-collapse: collapse;
+}
+
+table.synonym td, table.synonym th {
+    min-width: 5em;
+    border-right: 1px solid #ddd;
+    padding: 0 0.5em;
+    text-align: center;
+}
+
+table.synonym td:first-child, table.synonym th:first-child {
+    border-right: none;
+}
+
+table.synonym tr:first-child {
+    border-bottom: 1px solid #ddd;
+}
