@@ -9,11 +9,11 @@ class ToolButton {
         let visibleIfNot = e.dataset.visibleIfNot;
 
         visibleIf && BindHandler.registerChangeHandler(visibleIf, value => {
-            e.style.display = (value && !BindHandler[visibleIfNot]) ? '' : 'none';
+            e.style.display = (value && (!visibleIfNot || !BindHandler[visibleIfNot])) ? '' : 'none';
         });
 
         visibleIfNot && BindHandler.registerChangeHandler(visibleIfNot, value => {
-            e.style.display = (!value && BindHandler[visibleIf]) ? '' : 'none';
+            e.style.display = (!value && (!visibleIf || BindHandler[visibleIf])) ? '' : 'none';
         });
 
         if((!visibleIf || BindHandler[visibleIf]) && (!visibleIfNot || !BindHandler[visibleIfNot]))

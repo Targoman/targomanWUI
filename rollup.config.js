@@ -10,7 +10,7 @@ import commonjs from 'rollup-plugin-commonjs';
 import nodeResolve from 'rollup-plugin-node-resolve';
 
 // Rollup plugin to minify generated bundle.
-import uglify from 'rollup-plugin-uglify';
+import { uglify } from 'rollup-plugin-uglify';
 
 // Serve your rolled up bundle like webpack-dev-server
 // without hot reload
@@ -68,7 +68,7 @@ if (process.env.NODE_ENV !== 'production') {
             output: {
                 comments: false
             },
-            sourceMap: false
+            sourcemap: false
         })
     );
 }

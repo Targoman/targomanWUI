@@ -45,7 +45,10 @@ h6 {
     margin-bottom: 0.5em;
 }
 
-html,
+html {
+    height: 100%;
+}
+
 body {
     min-height: 100%;
     direction: rtl;
@@ -200,8 +203,14 @@ div#header hr {
     height: 2.35em;
 }
 
+body {
+    position: relative;
+    box-sizing: border-box;
+    padding-bottom: 3em;
+}
+
 div#footer {
-    position: fixed;
+    position: absolute;
     width: 100%;
     bottom: 0;
     padding-bottom: 0.25em;
@@ -219,6 +228,7 @@ div#footer img:hover {
 
 div#footer ul.glinks {
     float: left;
+    padding-left: 1em;
 }
 
 div#footer li {
@@ -231,6 +241,7 @@ div#footer ul.links li {
 
 div#footer ul.links {
     background-color: #fff;
+    padding-right: 1em;
 }
 
 div#footer hr {
@@ -356,11 +367,19 @@ div#content div.content {
     border: 1px solid #eee;
 }
 
-div#content div.tgt div.content div {
-    min-height: 13em;
-    box-sizing: border-box;
-    border: 1px solid #eee;
+div#content div.tgt div.content {
+    background-color: #f5f5f5;
 }
+
+div#content div.tgt div.content[contenteditable="true"] {
+    background-color: #fff;
+}
+
+div#content div.src div.content[contenteditable="true"]:focus {
+    border: 1px solid #050;
+    outline: none;
+}
+
 
 div#content div.header div.separator {
     display: inline-block;
@@ -464,6 +483,53 @@ div#content div.content span.phrase-token.hi {
 
 div#content div.dic-result {
     color: gray;
+    display: none;
+    max-height: 15em;
+    overflow: hidden;
+    position: relative;
+}
+
+div#content div.dic-result.full {
+    max-height: 1500em;
+}
+
+div#content div.dic-result div.show-more {
+    display: block;
+    height: 3em;
+    width: 100%;
+    margin: auto;
+    background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
+    position: absolute;
+    bottom: 0;
+}
+
+div.arrow {
+    width: 3vmin;
+    height: 3vmin;
+    box-sizing: border-box;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    border-top: 0.25em solid;
+    border-right: 0.25em solid;
+    transform: translateY(.5em) rotate(-45deg);
+}
+
+div.arrow.down {
+    border-top: none;
+    border-right: none;
+    border-left: 0.25em solid;
+    border-bottom: 0.25em solid;
+    transform: translateY(-1em) rotate(-45deg);
+}
+
+div#content div.dic-result div.abadis {
+    float: left;
+}
+
+div#content div.dic-result div.abadis img {
+    height: 1.5em;
+    vertical-align: bottom;
 }
 
 div#content div.dic-result span.src {
@@ -484,11 +550,11 @@ div#content div.dic-result ul {
     margin-right: 2em;
 }
 
-div#content div.dic-result ul li.source {
+div#content div.dic-result ul li:nth-child(3n + 1) {
     color: #000;
 }
 
-div#content div.dic-result ul li.separator {
+div#content div.dic-result ul li:nth-child(3n) {
     height: 1.5em;
 }
 
@@ -498,6 +564,7 @@ p.mean, table.synonym {
 
 table.synonym {
     border-collapse: collapse;
+    width: 100%;
 }
 
 table.synonym td, table.synonym th {
@@ -513,4 +580,47 @@ table.synonym td:first-child, table.synonym th:first-child {
 
 table.synonym tr:first-child {
     border-bottom: 1px solid #ddd;
+}
+
+@media only screen and (max-width: 560px) {
+    div#header img {
+        height: 2em;
+    }
+    div#header hr {
+        margin-right: 5.95em;
+        height: 1.5em;
+    }
+    div#footer {
+        font-size: 10px;
+    }
+    div#footer ul.glinks {
+        display: none;
+    }
+    div#content {
+        padding: 0;
+    }
+    #content > div {
+        margin-top: 0 !important;
+    }
+    div#content div.boxes > div.separator, div#content div.ads > div.separator, div#content div.dic-result > div.separator {
+        display: none;
+    }
+    div#content div.src, div#content div.tgt, div#content div.text, div#content div.graphical, div#content div.dic-part-1, div#content div.dic-part-2 {
+        width: 100%;
+        display: block;
+    }
+    div#content div.content {
+        min-height: 8em;
+    }
+    div#content div.ads div.text {
+        margin-top: 2em;
+        font-size: 85%;
+    }
+    div#content div.ads div.graphical {
+        display: none;
+    }
+    div#content div.dic-result div.abadis {
+        transform: scale(0.75);
+        transform-origin: left bottom;        
+    }
 }

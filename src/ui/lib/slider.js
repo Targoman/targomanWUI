@@ -8,7 +8,7 @@ class SliderHandler {
         let items = e.querySelectorAll('div.item');
         this.wrapper = document.createElement('DIV');
         this.wrapper.style.width = `${items.length*100}%`;
-        this.wrapper.style.height = `300px`;
+        this.wrapper.style.height = `${window.innerWidth < 560 ? 0.38 * window.innerWidth : 0.19 * window.innerWidth}px`;
         this.wrapper.style.position = 'relative';
         this.wrapper.style.transition = 'right 1s';
         this.wrapper.style.right = '0px';

@@ -30,7 +30,7 @@ class LangAuto {
         let prevEmpty = this.empty, prevDetected = this.detected;
         this.empty = /^\s*$/.test(value);
         this.detected = winner;
-        if(this.triggerChangesItem && prevEmpty !== this.empty || prevDetected !== this.detected)
+        if(this.triggerChangesItem && (prevEmpty !== this.empty || prevDetected !== this.detected))
             BindHandler.triggerChangeHandlers(this.triggerChangesItem);
     }
 
@@ -249,7 +249,7 @@ class Translation {
                     syns: parts[2].trim()
                 };
             return false;            
-        }).filter(Boolean) : [];
+        }).filter(Boolean) : null;
         data.relexp = data.relexp ? data.relexp.split('^^').filter(Boolean).map(e => {
             let parts = e.split('::');
             if(parts.length == 2)
@@ -258,7 +258,7 @@ class Translation {
                     mean: parts[1],
                 };
             return false;            
-        }).filter(Boolean) : [];
+        }).filter(Boolean) : null;
         data.relword = data.relword ? data.relword.split('^^').filter(Boolean).map(e => {
             let parts = e.split('::');
             if(parts.length == 2)
@@ -267,7 +267,7 @@ class Translation {
                     mean: parts[1],
                 };
             return false;            
-        }).filter(Boolean) : [];
+        }).filter(Boolean) : null;
         return data;
     }
 
