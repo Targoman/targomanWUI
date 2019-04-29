@@ -1,6 +1,3 @@
-// this is the rollup plugin that adds babel as a compilation stage.
-import babel from 'rollup-plugin-babel';
-
 //Convert CommonJS modules to ES6,
 // so they can be included in a Rollup bundle
 import commonjs from 'rollup-plugin-commonjs';
@@ -8,9 +5,6 @@ import commonjs from 'rollup-plugin-commonjs';
 // Locate modules using the Node resolution algorithm,
 // for using third party modules in node_modules
 import nodeResolve from 'rollup-plugin-node-resolve';
-
-// Rollup plugin to minify generated bundle.
-import { uglify } from 'rollup-plugin-uglify';
 
 // Serve your rolled up bundle like webpack-dev-server
 // without hot reload
@@ -21,6 +15,11 @@ import livereload from 'rollup-plugin-livereload';
 
 // Copy static assets and resources
 import copy from 'rollup-plugin-copy';
+
+//Use babel and uglify from source
+import { transform } from "@babel/core";
+import { minify } from "uglify-js";
+
 
 let config = {
     input: './src/ui/index.js',
@@ -37,15 +36,38 @@ let config = {
                 'src/ui/font': 'dist/font',
             }
         }),
-        babel({
-            exclude: 'node_modules/**'
-        }),
         nodeResolve(),
         commonjs({
             include: 'node_modules/**'
         })
     ]
 };
+
+function finalize() {
+    return {
+        name: 'finalize',
+        generateBundle: (options, bundle) => {
+            for (let key in bundle)
+                if (bundle[key].code) {
+                    let { code, map } = transform(bundle[key].code, {
+                        filename: key,
+                        ast: false,
+                        code: true,
+                        babelrc: false,
+                        presets: ['@babel/preset-env']
+                    });
+                    ({ code, map } = minify(code, {
+                        sourceMap: {
+                            content: map,
+                            url: `${key}.map`
+                        }
+                    }));
+                    bundle[key].code = code;
+                    bundle[key].map = map;
+                }
+        }
+    };
+}
 
 if (process.env.NODE_ENV !== 'production') {
     console.log('DEVELOPMENT MODE!');
@@ -59,18 +81,8 @@ if (process.env.NODE_ENV !== 'production') {
     );
 } else {
     console.log('PRODUCTION MODE!');
-    config.plugins.push(
-        uglify({
-            compress: {
-                screw_ie8: true,
-                warnings: false
-            },
-            output: {
-                comments: false
-            },
-            sourcemap: false
-        })
-    );
+    config.output.format = 'iife';
+    config.plugins.push(finalize());
 }
 
 export default config;
