@@ -64,10 +64,20 @@ div.noscript img {
     height: 1em;
 }
 
-.engine-desc {
+.engine-desc, .engine-info {
+    position: fixed;
+    top: 30%;
+    transform: translateX(-50%);
+    left: 50%;
+    border: 1px solid;
+    box-shadow: 2px 2px 2px black;
+    padding: 1em;
+    width: 50%;
+    background: lightyellow;
     display: none;
-    transition: all 1s;
+    transition: opacity 0.5s;
     opacity: 0;
+    z-index: 99999;
 }
 
 .notification {
@@ -303,6 +313,8 @@ div#content div.src div.content, div#content div.tgt div.content {
     word-wrap: break-word;
     padding: 0.5em;
     padding-bottom: 1.5em;
+    box-sizing: border-box;
+    overflow: hidden;
 }
 
 div#content div.src, div#content div.tgt {

@@ -103,9 +103,16 @@ function copy(options = {}) {
     return {
         name: 'copy',
         async buildStart() {
-            for (const { from, to } of processedTargets) {
-                this.addWatchFile(`${__dirname}/${from}`);
-            }
+            const addWatchFilesRecursive = (path) => {
+                if(fs.lstatSync(path).isDirectory()) {
+                    for(let subPath of fs.readdirSync(path))
+                        this.addWatchFile(`${path}/${subPath}`);
+                    return;
+                }
+                this.addWatchFile(path);
+            };
+            for (const { from } of processedTargets)
+                addWatchFilesRecursive(`${__dirname}/${from}`);
         },
         async buildEnd() {
             if (processedTargets.length) {
