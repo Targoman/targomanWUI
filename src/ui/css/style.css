@@ -64,6 +64,12 @@ div.noscript img {
     height: 1em;
 }
 
+.engine-desc {
+    display: none;
+    transition: all 1s;
+    opacity: 0;
+}
+
 .notification {
     left: 50%;
     transform: translateX(-50%) translateY(-100%);
@@ -192,15 +198,14 @@ div#header a {
 }
 
 div#header img {
-    height: 3em;
+    height: 2.25em;
 }
 
 div#header hr {
     display: block;
-    margin-right: 8.75em;
+    margin-right: 7em;
     border: none;
-    border-bottom: 3px solid #2e1c59;
-    height: 2.35em;
+    height: 1.8em;
 }
 
 body {
@@ -214,6 +219,10 @@ div#footer {
     width: 100%;
     bottom: 0;
     padding-bottom: 0.25em;
+}
+
+div#footer a {
+    color: blue;
 }
 
 div#footer img {
@@ -247,8 +256,11 @@ div#footer ul.links {
 div#footer hr {
     display: block;
     border: none;
-    border-bottom: 3px solid #2e1c59;
     height: 0.7em;
+}
+
+div#footer hr, div#header hr {
+    border-bottom: 3px solid #80accb;
 }
 
 div#content {
@@ -258,7 +270,7 @@ div#content {
 }
 
 #content > div {
-   margin-top: 2em !important;
+   margin-top: 0.5em !important;
 }
 
 div#content div.boxes, div#content div.dic-result, div#content div.ads {
@@ -290,6 +302,7 @@ div#content div.src div.content, div#content div.tgt div.content {
     white-space: pre-wrap;
     word-wrap: break-word;
     padding: 0.5em;
+    padding-bottom: 1.5em;
 }
 
 div#content div.src, div#content div.tgt {
@@ -359,16 +372,16 @@ div#content div.src div.content:focus {
 div#content div.header {
     position: relative;
     height: 2em;
-    background-color: #eee;
+    background-color: #d9eff7;
 }
 div#content div.content {
     min-height: 13em;
     box-sizing: border-box;
-    border: 1px solid #eee;
+    border: 1px solid #d9eff7;
 }
 
 div#content div.tgt div.content {
-    background-color: #f5f5f5;
+    background-color: #eaf2f5;
 }
 
 div#content div.tgt div.content[contenteditable="true"] {
@@ -389,7 +402,8 @@ div#content div.header div.separator {
 div#content div.header div.dropdown, div#content div.header div.button {
     height: 100%;
     line-height: 2em;
-    background-color: #ddd;
+    background-color: #337ab7;
+    color: #fff;
     box-sizing: border-box;
     display: inline-block;
     padding: 0 1em;
@@ -420,6 +434,7 @@ div#content div.header div.dropdown div.options ul {
 
 div#content div.header div.dropdown div.options ul li {
     padding: 0.5em;
+    color: #0b4b83;
 }
 
 div#content div.header div.dropdown div.options ul li:hover {
@@ -432,12 +447,12 @@ div#content div.header div.dropdown div.options ul li.selected {
 }
 
 div#content div.header div.button {
-    background-color: #43a919;
+    background-color: #24667d;
     color: white;
 }
 
 div#content div.header div.button.disabled {
-    background-color: #999;
+    background-color: #5d7b51;
     cursor: not-allowed;
 }
 
@@ -446,7 +461,7 @@ div#content div.header div.button:hover:not(.disabled) {
 }
 
 div#content div.ads span.ad-title {
-    color: blue;
+    color: #0b4b83;
     font-weight: bold;
 }
 
@@ -469,8 +484,9 @@ div#content div.ads div.slider div.item {
     width: 100%;
 }
 
-div#content div.ads div.slider div.item > img {
+div#content div.ads div.slider div.item img {
     width: 100%;
+    cursor: pointer;
 }
 
 div#content div.content span.phrase-token {
@@ -482,7 +498,7 @@ div#content div.content span.phrase-token.hi {
 }
 
 div#content div.dic-result {
-    color: gray;
+    color: #337ab7;
     display: none;
     max-height: 15em;
     overflow: hidden;
@@ -533,7 +549,7 @@ div#content div.dic-result div.abadis img {
 }
 
 div#content div.dic-result span.src {
-    color: #000;
+    color: #062b4b;
 }
 
 div#content div.dic-result h1 {
@@ -551,7 +567,7 @@ div#content div.dic-result ul {
 }
 
 div#content div.dic-result ul li:nth-child(3n + 1) {
-    color: #000;
+    color: #062b4b;
 }
 
 div#content div.dic-result ul li:nth-child(3n) {

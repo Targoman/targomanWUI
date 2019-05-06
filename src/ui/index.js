@@ -9,6 +9,10 @@ import TextAd from './lib/textads';
 import ToolButton from './lib/toolbutton';
 import Translation from './lib/translation';
 
+let ENGINE_CLASS_TITLE = {
+    'informal': 'محاوره'
+};
+
 // Global application values
 BindHandler.addItem('srcLang', BindHandler.availableSrcLangs[0]);
 BindHandler.addItem('tgtLang', BindHandler.availableTgtLangs[0]);
@@ -17,7 +21,6 @@ BindHandler.addItem('srcText', '');
 BindHandler.addItem('proposingNewTranslationMode', false);
 
 // Component setup
-
 const SELECTOR_TO_COMPONENT_MAP = {
     'div#content div.header div.dropdown': DropDown,
     'div#content div.header div.button': Button,
@@ -47,6 +50,8 @@ class TargomanWebUiApp {
 
         this.srcContentDiv = document.querySelector('div#content div.src div.content[contenteditable="true"]');
         this.tgtContentDiv = document.querySelector('div#content div.tgt div.content');
+
+        this.metadataDiv = document.querySelector('div#content div.metadata');
 
         this.dicResults = document.querySelector('div#content div.dic-result');
         this.dicResultsMeaning = this.dicResults.querySelector('p.mean');
@@ -332,10 +337,19 @@ class TargomanWebUiApp {
         return `${BindHandler.srcLang.code}2${BindHandler.tgtLang.code}`;
     }
 
+    updateEngineInfo(class_, time) {
+        this.metadataDiv.querySelector('span.engine').textContent = 
+            class_ in ENGINE_CLASS_TITLE ? ENGINE_CLASS_TITLE[class_] : 'رسمی';
+        this.metadataDiv.querySelector('span.translation-time').textContent =
+            farsiNumber(time);
+        this.metadataDiv.style.display = 'block';
+    }
+
     translate() {
         this.informBusyState(true);
         document.querySelector('div#content div.ads div.graphical').style.display = '';
         this.dicResults.style.display = '';
+        this.metadataDiv.style.display = '';
         let allPromises = [];
         let sourceText = BindHandler.srcText;
         if (!sourceText) {
@@ -349,6 +363,7 @@ class TargomanWebUiApp {
                 return;
             this.updateTargetContentWithTokenizedText(r.tr);
             this.updateSourceContentWithTokenizedText(r.tr);
+            this.updateEngineInfo(r.class, r.time);
         }).catch(e => {
             notify('خطا', e.message, 'error');
         }));
