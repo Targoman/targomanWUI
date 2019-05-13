@@ -63,6 +63,9 @@ class TargomanWebUiApp {
             "div#content div.tgt div.content"
         );
 
+        this.srcDropdownDiv = document.querySelector('div.dropdown[data-bind-to="srcLang"]');
+        this.tgtDropdownDiv = document.querySelector('div.dropdown[data-bind-to="tgtLang"]');
+
         this.metadataDiv = document.querySelector("div#content div.metadata");
         this.engineInfoDiv = document.querySelector(".engine-info.time");
 
@@ -312,25 +315,28 @@ class TargomanWebUiApp {
 
     handleSourceLangChange(value) {
         this.srcContentDiv.style.direction = value.direction;
-        let realSourceLang = value.detected || value;
-        if (BindHandler.tgtLang === realSourceLang) {
+        if (!value.translatesTo(BindHandler.tgtLang)) {
             for (var lang of BindHandler.availableTgtLangs)
-                if (lang !== realSourceLang) {
+                if (value.translatesTo(lang)) {
                     BindHandler.setItemValue("tgtLang", lang);
                     break;
                 }
         }
+        this.tgtDropdownDiv.handler.enableItems(lang => value.translatesTo(lang));
+        this.translate();
     }
 
     handleTargetLangChange(value) {
         this.tgtContentDiv.style.direction = value.direction;
-        if (BindHandler.srcLang === value) {
+        if (!value.translatesFrom(BindHandler.srcLang)) {
             for (var lang of BindHandler.availableTgtLangs)
-                if (!lang.detected && lang !== value) {
+                if (!lang.detected && value.translatesFrom(lang)) {
                     BindHandler.setItemValue("srcLang", lang);
                     break;
                 }
         }
+        this.srcDropdownDiv.handler.enableItems(lang => value.translatesFrom(lang));
+        this.translate();
     }
 
     makeSourceAndTargetSameHeight() {

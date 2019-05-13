@@ -76,6 +76,8 @@ class DropDownHandler {
     handleItemSelection(e) {
         if(this.selectionSpan.option === e.target.option)
             return;
+        if(e.target.classList.contains('disabled'))
+            return;
         let item = e.target;
         this.updateSelectionSpan(item.option);
         for(var node of item.parentElement.querySelectorAll(item.nodeName))
@@ -83,6 +85,14 @@ class DropDownHandler {
         item.classList.add('selected');
         this.triggerChangeHandlers(item.option);
         this.handleMouseLeave();
+    }
+
+    enableItems(filter) {
+        for(var node of this.optionsDiv.querySelectorAll('LI'))
+            if(filter(node.option))
+                node.classList.remove('disabled');
+            else
+                node.classList.add('disabled');
     }
 }
 

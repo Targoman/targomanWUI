@@ -1,32 +1,82 @@
 import BindHandler from './bindhandler';
 import { TargomanAPI } from './api';
+import CLD from './cld';
+
+class LangManual {
+    constructor(specs) {
+        for(let key in specs)
+            this[key] = specs[key];
+    }
+    get text() {
+        return this.title + (this.trial ? '(آزمایشی)' : '');
+    }
+    
+    translatesTo(lang) {
+        let code = lang.code || lang;
+        if(this.code === code)
+            return false;
+        if(this.tgt === true)
+            return true;
+        return this.tgt.indexOf(code) !== -1;
+    }
+
+    translatesFrom(lang) {
+        let code = lang.code || lang;
+        if(this.code === code)
+            return false;
+        if(this.src === true)
+            return true;
+        return this.src.indexOf(code) !== -1;
+    }
+}
 
 const LANGUAGE_SPECS = [
-    { text: 'فارسی', code: 'fa', direction: 'rtl', src: true, tgt: true, codePointRegex: /[\u0600-\u06fe\u0750-\u077e\u08a0-\u08fe\ufb50-\ufdfe\ufe70-\ufefe]/g },
-    { text: 'انگلیسی', code: 'en', direction: 'ltr', src: true, tgt: true, codePointRegex: /[A-Za-z\u0080-\u00fe\u0100-\u017e\u0180-\u024e\u1e00-\u1efe\u2c60-\u2c7e\ua720-\ua7fe]/g },
-    { text: 'روسی', code: 'ru', direction: 'ltr', src: true, tgt: true, codePointRegex: /[\u0430-\u044f\u0410-\u042f\u0401\u0451]/g },
-    { text: 'عربی', code: 'ar', direction: 'rtl', src: true, tgt: true }
-];
+    { title: 'فارسی', code: 'fa', direction: 'rtl', src: true, tgt: true, codePointRegex: /[\u0600-\u06fe\u0750-\u077e\u08a0-\u08fe\ufb50-\ufdfe\ufe70-\ufefe]/g },
+    { title: 'انگلیسی', code: 'en', direction: 'ltr', src: true, tgt: true, codePointRegex: /[A-Za-z\u0080-\u00fe\u0100-\u017e\u0180-\u024e\u1e00-\u1efe\u2c60-\u2c7e\ua720-\ua7fe]/g },
+    { title: 'روسی', code: 'ru', direction: 'ltr', src: true, tgt: true, codePointRegex: /[\u0430-\u044f\u0410-\u042f\u0401\u0451]/g },
+    { title: 'آلمانی', code: 'de', direction: 'ltr', trial: true, src: ['en', 'fa'], tgt: ['en', 'fa'] },
+    { title: 'فرانسه', code: 'fr', direction: 'ltr', trial: true, src: ['en', 'fa'], tgt: ['en', 'fa'] },
+    { title: 'اسپانیایی', code: 'es', direction: 'ltr', trial: true, src: ['en', 'fa'], tgt: ['en', 'fa'] },
+    { title: 'ترکی', code: 'tr', direction: 'ltr', trial: true, src: ['en', 'fa'], tgt: ['en', 'fa'] },
+    { title: 'ژاپنی', code: 'ja', direction: 'ltr', trial: true, src: ['en', 'fa'], tgt: ['en', 'fa'] },
+    { title: 'عربی فصیح', code: 'ar', direction: 'rtl', trial: true, src: ['en', 'fa'], tgt: ['en', 'fa'] }
+].map(e => new LangManual(e));
 
 class LangAuto {
     constructor(triggerChangesItem) {
+        this.cld = new CLD();
         this.triggerChangesItem = triggerChangesItem;
         this.text = 'تشخیص خودکار';
         this.empty = true;
         this.detected = LANGUAGE_SPECS[0];
+        this.code2lang = {};
+        this.src = this.tgt = true;
+        for(let lang of LANGUAGE_SPECS)
+            this.code2lang[lang.code] = lang;
     }
 
     updateDetectedLanguage(value) {
-        let countTextCodePoints = codePointRegex => value.length - value.replace(codePointRegex, '').length;
-        const SOURCE_LANGUAGES = LANGUAGE_SPECS.filter(e => e.src);
-        let winner = SOURCE_LANGUAGES[0], winnerTextCodePoints = countTextCodePoints(SOURCE_LANGUAGES[0].codePointRegex);
-        for(var index = 1; index < SOURCE_LANGUAGES.length; ++index) {
-            let textCodePoints = countTextCodePoints(SOURCE_LANGUAGES[index].codePointRegex);
-            if(textCodePoints > winnerTextCodePoints) {
-                winner = SOURCE_LANGUAGES[index];
-                winnerTextCodePoints = textCodePoints;
+        let cldCode = this.cld.getISO639(value);
+        let winner;
+        if(cldCode in this.code2lang === false) {
+            let countTextCodePoints = codePointRegex => {
+                if(!codePointRegex) return 0;
+                let match = value.match(codePointRegex);
+                if(!match) return 0;
+                return match.length;
+            };
+            const SOURCE_LANGUAGES = LANGUAGE_SPECS.filter(e => e.src);
+            winner = SOURCE_LANGUAGES[0];
+            let winnerTextCodePoints = countTextCodePoints(SOURCE_LANGUAGES[0].codePointRegex);
+            for(var index = 1; index < SOURCE_LANGUAGES.length; ++index) {
+                let textCodePoints = countTextCodePoints(SOURCE_LANGUAGES[index].codePointRegex);
+                if(textCodePoints > winnerTextCodePoints) {
+                    winner = SOURCE_LANGUAGES[index];
+                    winnerTextCodePoints = textCodePoints;
+                }
             }
-        }
+        } else
+            winner = this.code2lang[cldCode];
         let prevEmpty = this.empty, prevDetected = this.detected;
         this.empty = /^\s*$/.test(value);
         this.detected = winner;
@@ -37,6 +87,14 @@ class LangAuto {
     get code() { return this.detected.code; }
     get direction() { return this.detected.direction; }
     get extraText() { return this.empty ? '' : this.detected.text; }
+
+    translatesTo(code) {
+        return this.detected.translatesTo(code);
+    }
+
+    translatesFrom(code) {
+        return this.detected.translatesFrom(code);
+    }
 }
 
 BindHandler.addItem('availableSrcLangs', [new LangAuto('srcLang')].concat(LANGUAGE_SPECS.filter(e => e.src)));

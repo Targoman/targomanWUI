@@ -463,6 +463,10 @@ div#content div.header div.dropdown div.options ul li:hover {
 }
 
 div#content div.header div.dropdown div.options ul li.selected {
+    background: #555;
+    color: white;
+}
+div#content div.header div.dropdown div.options ul li.disabled {
     color: #555;
     text-decoration: line-through;
 }
@@ -619,6 +623,10 @@ table.synonym tr:first-child {
     border-bottom: 1px solid #ddd;
 }
 
+div#mobile_overlay {
+    display: none;
+}
+
 @media only screen and (max-width: 560px) {
     div#header img {
         height: 2em;
@@ -659,5 +667,36 @@ table.synonym tr:first-child {
     div#content div.dic-result div.abadis {
         transform: scale(0.75);
         transform-origin: left bottom;        
+    }
+
+    div#mobile_overlay {
+        display: block;
+        position: fixed;
+        font-size: 16px;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(139, 204, 131, 0.76);
+        text-align: center;
+        font-weight: bold;
+    }
+
+
+    div#mobile_overlay div.container {
+        position: absolute;
+        width: 75%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+    }
+
+    div#mobile_overlay div.container ul{
+        display: inline-block;
+        list-style: none;
+    }
+
+    div#mobile_overlay div.container img {
+        width: 75%;
     }
 }
