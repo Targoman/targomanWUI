@@ -1,41 +1,4 @@
-<!doctype html>
-<html>
-
-<head>
-    <meta content="text/html" http-equiv="Content-Type">
-    <meta charset="utf-8">
-    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description"
-        content="ترگمان سرویس ترجمه متن آنلاین و رایگان است. در ترگمان می‌توانید هر متنی را با کیفیتی بهتر از گوگل و دیگر مترجم‌ها ترجمه کنید.">
-    <meta name="keywords"
-        content="ترگمان, ترجمه, ترجمه آنلاین, مترجم, ترجمه نورونی, ترجمه با یادگیری عمیق, translator, machine translation, SMT, NMT, neural translation">
-    <meta name="author" content="Targoman Intelligent Processing Co. Pvt.">
-    <title>ترگمان مترجم آنلاین و رایگان</title>
-    <link rel="stylesheet" type="text/css" href="./css/style.css">
-</head>
-
-<body class="nojs">
-    <noscript>
-        <div class="noscript">
-            <h1>
-                <img style="vertical-align:middle;" src="./img/logo/targoman-fa.png" alt="ترگمان-" />
-                <span style="vertical-align:middle;">برای استفاده از این وبسایت، جاوااسکریپت می‌بایست فعال باشد</span>
-            </h1>
-            <p>
-                برای فعال‌سازی جاوااسکریپت در مرورگر کروم، می‌توانید آدرس
-                `chrome://settings`
-                را در میله‌ی آدرس وارد کرده و تنظیمات مربوطه را در بخش
-                "content settings"
-                انجام دهید.
-            </p>
-        </div>
-    </noscript>
-    <div id="header">
-        <a href="/"><img src="./img/logo/targoman-fa.png" alt="ترگمان" /></a>
-        <hr />
-    </div>
+<%- include('header') %>
     <div id="content">
         <div class="boxes">
             <div class="src">
@@ -102,14 +65,14 @@
         </div>
         <div class="dic-result">
             <div class="abadis">دیکشنری توسط <img src="./img/logo/abadis-w.svg" alt="abadis" /></div>
-            <h1><span class="src">سلام</span> در دیکشنری</h1>
+            <h2><span class="src">سلام</span> در دیکشنری</h2>
             <hr/>
             <div class="dic-part-1">
-                <h1>معنی‌های <span class="src">سلام</span></h1>
+                <h2>معنی‌های <span class="src">سلام</span></h2>
                 <p class="mean">
                     aloha, bonjour, good afternoon, good morning, hail, hello, respects, salute, greeting, salutation, regards, [o.s.] peace, salaam                    
                 </p>
-                <h1 class="relword">کلمات مرتبط با <span class="src">سلام</span></h1>
+                <h2 class="relword">کلمات مرتبط با <span class="src">سلام</span></h2>
                 <ul class="relword">
                     <li>درود</li>
                     <li>"salute"</li>
@@ -120,7 +83,7 @@
             </div><!--
             --><div class="separator"></div><!--
             --><div class="dic-part-2">
-                <h1 class="synonym">مترادف‌های <span class="src">سلام</span></h1>
+                <h2 class="synonym">مترادف‌های <span class="src">سلام</span></h2>
                 <table class="synonym">
                     <tr><th>کلمه</th><th>نقش</th><th>معانی</th></tr>
                     <tr><td>ave</td><td>اسم</td><td>برخورد ، سلام ، خوشامد ، درود ، خوش آمد ، تبریک ، تهنیت ، احترام ، تبریکات ، خوش باش ، سلام کننده</td></tr>
@@ -129,7 +92,7 @@
                     <tr><td>salaam</td><td>اسم</td><td>سلام ، سلام کردن</td></tr>
                     <tr><td>ave</td><td>اسم</td><td>برخورد ، سلام ، خوشامد ، درود ، خوش آمد ، تبریک ، تهنیت ، احترام ، تبریکات ، خوش باش ، سلام کننده</td></tr>
                 </table>
-                <h1 class="relexp">عبارت‌های مرتبط با <span class="src">سلام</span></h1>
+                <h2 class="relexp">عبارت‌های مرتبط با <span class="src">سلام</span></h2>
                 <ul class="relexp">
                     <li class="source">سلام دادن</li>
                     <li class="translation">"to greet, to salute"</li>
@@ -172,28 +135,9 @@
             </div>
         </div>
     </div>
-    <div id="footer">
-        <div>
-            <ul class="glinks">
-                <li><a href="#"><img src="./img/logo/github.png" alt="" /></a></li>
-                <li><a href="#"><img src="./img/logo/blog.png" alt="" /></a></li>
-                <li><a href="#"><img src="./img/logo/aparat.png" alt="" /></a></li>
-                <li><a href="#"><img src="./img/logo/telegram.png" alt="" /></a></li>
-            </ul>
-            <hr />
-        </div>
-        <ul class="links">
-            <li><a href="#">درباره‌ی ترگمان</a></li>
-            <li><a href="#">حقوق کاربر</a></li>
-            <li><a href="#">API</a></li>
-            <li><a href="#">گیت‌هاب</a></li>
-            <li><a href="#">ترجمه‌ی مقاله</a></li>
-            <li><a href="#">اندروید</a></li>
-        </ul>
-    </div>
-    <div class="notification"><span class="close-icon">X</span><h1></h1><p></p></div>
+    <div class="notification"><span class="close-icon">X</span><h2></h2><p></p></div>
     <div class="engine-desc informal">
-        <h1>موتور ترجمه‌ی محاوره</h1>
+        <h2>موتور ترجمه‌ی محاوره</h2>
         <p>موتور محاوره ترجمه  <b>ترگمان</b> یک موتور ترجمه‌ماشینی نورونی مبتنی بر الگوریتم‌های یادگیری ژرف است که با استفاده از پیکره متنی با بیش از ۳۰ میلیون کلمه متن انگلیسی ترجمه‌شده به فارسی آموزش دیده است. بخش عمده این پیکره شامل زیرنویس فیلم‌ها است و مجموعه‌ای از رمان‌ها، و داستان‌های ترجمه‌شده نیز در این پیکره گردآوری‌شده‌اند. <br> تا کنون علاوه بر موتور ترجمه، بیش از ۱۲ میلیون کلمه متن این پیکره نیز به صورت متن‌باز منتشر شده و از طریق سایت <a href="http://parsigan.ir" target="_blank">پارسیگان</a> در اختیار محققین قرار گرفته است. </p>
         <p>از آنجایی که زبان محاوره فارسی بسیار متفاوت از زبان رسمی است موتور ترجمه محاوره به صورت کاملا مستقل از موتور رسمی آموزش داده شده در ابتدای درخواست شما رسمی یا محاوره بودن متن به صورت خودکار توسط سیستم شناسایی شده و مناسب‌ترین موتور برای آن انتخاب می‌شود.</p>
         <p>از آن‌جایی که در موتور‌های ترجمه نورونی حجم پیکره آموزش‌داده‌شده به ماشین یکی از مهمترین شاخصه‌های افزایش کیفیت استاز همه علاقمندان و مترجمین درخواست‌ می‌کنیم تا ما را در افزایش کیفیت این موتور یاری کنند.</p>
@@ -202,7 +146,7 @@
         <br/>
     </div>
     <div class="engine-desc formal">
-        <h1>موتور ترجمه‌ی رسمی</h1>
+        <h2>موتور ترجمه‌ی رسمی</h2>
         <p>موتور رسمی ترجمه ترگمان یک موتور ترجمه‌ماشینی نورونی مبتنی بر الگوریتم‌های یادگیری ژرف است که با استفاده از پیکره متنی با بیش از ۶۵ میلیون کلمه متن انگلیسی ترجمه‌شده به فارسی آموزش دیده است. بخش عمده این پیکره شامل اخبار گردآوری و ترجمه‌شده از خبرگزاری‌های معتبر نظیر cnn، bbc، reuters و مجلات خارجی در طول سال‌های ۲۰۱۰ تا ۲۰۱۲ گردآوری شده است. بخش دیگری از این پیکره با انتخاب جملات ترجمه‌شده از سایت ویکی‌پدیا آماده شده و بخشی دیگر از آن به مقالات علمی و تخصصی اختصاص داده‌شده است.</p>
         <p>تا کنون علاوه بر موتور ترجمه، بیش از ۲۵ میلیون کلمه متن این پیکره نیز به صورت متن‌باز منتشر شده و از طریق سایت پارسیگان در اختیار محققین قرار گرفته است.</p>
         <p>از آن‌جایی که در موتور‌های ترجمه نورونی حجم پیکره آموزش‌داده‌شده به ماشین یکی از مهمترین شاخصه‌های افزایش کیفیت است از همه علاقمندان و مترجمین درخواست‌ می‌کنیم تا ما را در افزایش کیفیت این موتور یاری کنند.</p>
@@ -210,12 +154,10 @@
         <center><a href="mailto://oss@targoman.com" target="_blank">oss@targoman.com</a>
     </div>
     <div class="engine-info time">
-        <h1>زمان ترجمه</h1>
+        <h2>زمان ترجمه</h2>
         <p>ترجمه‌ی متنی که وارد کردید <span class="total-time"></span> ثانیه طول کشیده است. این یعنی بطور متوسط <span class="time-per-word"></span> ثانیه برای هر کلمه زمان سپری شده است.</p>
         <p>با این حساب، ترجمه‌ی یک پست از یک وبلاگ خارجی (که حدوداً ۵۰۰ کلمه دارد) مجموعاً <span class="time-per-500words"></span> ثانیه طول می‌کشد. این را با یک مترجم انسان مقایسه کنید!</p>
         <p>با کمک ماشین شما هم می‌توانید با سرعتی بیش از سرعت یک مترجم حرفه‌ای ترجمه‌های باکیفیت قابل‌قبول داشته باشید. کافیست از سرویس کمک مترجم <a href="http://tarjomyar.ir">«ترجمیار»</a> استفاده کنید و خودتان ترجمه کنید</p>
     </div>
     <script src="./bundle.js"></script>
-</body>
-
-</html>
+<%- include('footer') %>

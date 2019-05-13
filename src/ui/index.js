@@ -89,6 +89,8 @@ class TargomanWebUiApp {
         this.setCallbacks();
         this.registerActions();
         this.registerChangeHandlers();
+
+        document.body.classList.remove('nojs');
     }
 
     clearSource() {

@@ -1,3 +1,4 @@
+import { notify } from './common';
 import { AdvertAPI } from './api';
 
 
@@ -18,8 +19,24 @@ class TextAdHandler {
             this.adOrder = 1;
             this.getAdOrder = this.normalAdOrder;
         }
-        
+        this.handleClick = this.handleClick.bind(this);
+        this.link.addEventListener('click', this.handleClick);
         this.updateAdContents();
+    }
+
+    handleClick() {
+        AdvertAPI.retrieveURL('ssid', parseInt(this.link.dataset.advID)).then(
+            r => {
+                if(r.error) {
+                    notify('خطا', 'متأسفانه در دریافت لینک تبلیغات مشکلی پیش آمده است.', 'error');
+                    return;
+                }
+                window.location.href = r.result;
+            },
+            e => {
+                notify('خطا', 'متأسفانه در دریافت لینک تبلیغات مشکلی پیش آمده است.', 'error');
+            }
+        );
     }
 
     normalAdOrder() {
@@ -30,10 +47,6 @@ class TextAdHandler {
             result = 5;
         this.adOrder += 1;
         return result;
-    }
-
-    createShowAddUrl(id) {
-        return `/showAdd.html?id=${id}`
     }
 
     updateAdContents() {
@@ -47,7 +60,7 @@ class TextAdHandler {
         this.titleSpan.textContent = adInfo.adbTitle;
         this.descPar.textContent = adInfo.adbDesc;
         this.linkPar.textContent = adInfo.adbPrettyURL;
-        this.link.setAttribute('href', this.createShowAddUrl(adInfo.adbID));
+        this.link.dataset.advID = adInfo.adbID;
         setTimeout(() => this.updateAdContents(), UPDATE_TEXT_AD_INTERVAL);
     }
 }

@@ -36,6 +36,10 @@ input {
     font-size: 14px;
 }
 
+body.nojs > div {
+    display: none;
+}
+
 h1,
 h2,
 h3,
@@ -100,7 +104,7 @@ div.noscript img {
     opacity: 1;
 }
 
-.notification h1 {
+.notification h2 {
     font-family: iran-rounded
 }
 
@@ -200,6 +204,11 @@ div.noscript img {
 
 div#header {
     padding: 1em;
+}
+
+div#header > h1 {
+    display: inline;
+    font-size: 100%;
 }
 
 div#header a {
@@ -564,12 +573,12 @@ div#content div.dic-result span.src {
     color: #062b4b;
 }
 
-div#content div.dic-result h1 {
+div#content div.dic-result h2 {
     margin-bottom: 0;
     font-size: 115%;
 }
 
-div#content div.dic-result div h1 {
+div#content div.dic-result div h2 {
     margin-bottom: 1em;
 }
 

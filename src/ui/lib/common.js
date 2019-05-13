@@ -248,7 +248,7 @@ export const notify =(function() {
         dialog.classList = "notification";
         dialog.classList.add(type);
         dialog.querySelector('p').textContent = message;
-        dialog.querySelector('h1').textContent = title;
+        dialog.querySelector('h2').textContent = title;
         dialog.classList.add('shown');
         clearTimeout(hideDialogTimeout);
         hideDialogTimeout = setTimeout(

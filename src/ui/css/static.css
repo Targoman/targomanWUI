@@ -1,0 +1,183 @@
+@font-face {
+    font-family: Shabnam;
+    src: url('/font/shabnam.woff') format('woff');
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: Shabnam;
+    src: url('/font/shabnam-bold.woff') format('woff');
+    font-weight: bold;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body,
+textarea,
+input {
+    font-family: Shabnam, sans-serif;
+    font-size: 14px;
+}
+
+body a, span.email {
+    text-decoration: none;
+    color: blue;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    text-indent: 0;
+    margin-bottom: 0.5em;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    min-height: 100%;
+    direction: rtl;
+}
+
+div#header {
+    padding: 1em;
+}
+
+div#header > h1 {
+    display: inline;
+    font-size: 100%;
+}
+
+div#header a {
+    display: block;
+    float: right;
+}
+
+div#header img {
+    height: 2.25em;
+}
+
+div#header hr {
+    display: block;
+    margin-right: 7em;
+    border: none;
+    height: 1.8em;
+}
+
+body {
+    position: relative;
+    box-sizing: border-box;
+    padding-bottom: 3em;
+}
+
+div#footer {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    padding-bottom: 0.25em;
+}
+
+div#footer a {
+    color: blue;
+}
+
+div#footer img {
+    height: 1.5em;
+    filter: grayscale(1);
+    transition: filter 0.5s;
+}
+
+div#footer img:hover {
+    filter: grayscale(0);
+}
+
+div#footer ul.glinks {
+    float: left;
+    padding-left: 1em;
+}
+
+div#footer li {
+    display: inline-block;
+}
+
+div#footer ul.links li {
+    margin-left: 1em;
+}
+
+div#footer ul.links {
+    background-color: #fff;
+    padding-right: 1em;
+}
+
+div#footer hr {
+    display: block;
+    border: none;
+    height: 0.7em;
+}
+
+div#footer hr, div#header hr {
+    border-bottom: 3px solid #80accb;
+}
+
+
+div.aparat-movie {
+    text-align: center;
+}
+
+div.aparat-movie iframe {
+    width: 50%;
+    height: 50vh;
+    margin: auto;
+    border: none;
+    outline: none;
+}
+
+div.main-content {
+    font-size: 17px;
+    padding: 1em 4em;
+}
+
+div.main-content ul {
+    list-style: inside;
+    margin-top: 1em;
+}
+
+div.main-content p, div.main-content div {
+    text-align: justify;
+    margin-bottom: 1em;
+}
+
+div.main-content  div.small-logos {
+    text-align: center;
+}
+
+div.main-content  div.small-logos img {
+    height: 6em;
+}
+
+@media only screen and (max-width: 560px) {
+    div#header img {
+        height: 2em;
+    }
+    div#header hr {
+        margin-right: 5.95em;
+        height: 1.5em;
+    }
+    div#footer {
+        font-size: 10px;
+    }
+    div#footer ul.glinks {
+        display: none;
+    }
+    div.main-content {
+        font-size: 12px;
+        padding: 0;
+    }
+}
