@@ -31,7 +31,7 @@ class TextAdHandler {
                     notify('خطا', 'متأسفانه در دریافت لینک تبلیغات مشکلی پیش آمده است.', 'error');
                     return;
                 }
-                window.location.href = r.result;
+                window.open(r.result, 'targoman-text-ad');
             },
             e => {
                 notify('خطا', 'متأسفانه در دریافت لینک تبلیغات مشکلی پیش آمده است.', 'error');
