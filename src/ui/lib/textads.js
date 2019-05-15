@@ -8,11 +8,11 @@ const RETRY_INTERVAL=1000;
 class TextAdHandler {
     constructor(e, forcedOrder) {
         this.link = e.querySelector('a');
-        this.titleSpan = e.querySelector('span.ad-title');
+        this.titleSpan = e.querySelector('h2.ad-title');
         this.descPar = e.querySelector('p.ad-desc');
         this.linkPar = e.querySelector('p.ad-link');
         if(!this.link || !this.titleSpan || !this.descPar || !this.linkPar)
-            throw Error('A text ad container must have an anchor(<a/>), `span.ad-title`, `p.ad-desc` and `p.ad-link`.');
+            throw Error('A text ad container must have an anchor(<a/>), `h2.ad-title`, `p.ad-desc` and `p.ad-link`.');
         if(forcedOrder !== null)
             this.getAdOrder = () => forcedOrder;
         else {
