@@ -29,9 +29,10 @@ let config = {
                 "src/ui/about.ejs": "dist/about.html",
                 "src/ui/api.ejs": "dist/api.html",
                 "src/ui/terms.ejs": "dist/terms.html",
-                "apple-touch-icon-120x120-precomposed.png": "dist/apple-touch-icon-120x120-precomposed.png",
-                "apple-touch-icon.png": "dist/apple-touch-icon.png",
-                "apple-touch-icon-precomposed.png": "dist/apple-touch-icon-precomposed.png",
+                "src/ui/apple-touch-icon-120x120-precomposed.png": "dist/apple-touch-icon-120x120-precomposed.png",
+                "src/ui/apple-touch-icon.png": "dist/apple-touch-icon.png",
+                "src/ui/apple-touch-icon-precomposed.png": "dist/apple-touch-icon-precomposed.png",
+                "src/ui/favicon.ico": "dist/favicon.ico",
                 "src/ui/img": "dist/img",
                 "src/ui/css": "dist/css",
                 "src/ui/font": "dist/font"
