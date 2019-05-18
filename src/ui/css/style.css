@@ -355,6 +355,14 @@ div#content div.ads {
     padding-top: 1em;
 }
 
+div#content div.ads div.text {
+    box-sizing: border-box;
+}
+
+div#content div.ads div.text:hover {
+    border: 1px dashed #337ab7;
+}
+
 div#content div.ads div.text a {
     text-decoration: none;
     color: inherit;
@@ -712,6 +720,7 @@ div#mobile_overlay {
         margin-top: 2em;
         font-size: 85%;
     }
+
     div#content div.ads div.graphical {
         display: none;
     }
