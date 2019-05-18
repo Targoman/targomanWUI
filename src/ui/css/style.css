@@ -721,7 +721,6 @@ div#mobile_overlay {
     }
 
     div#mobile_overlay {
-        display: block;
         position: fixed;
         font-size: 16px;
         left: 0;
@@ -733,6 +732,9 @@ div#mobile_overlay {
         font-weight: bold;
     }
 
+    div#mobile_overlay.visible {
+        display: block;
+    }
 
     div#mobile_overlay div.container {
         position: absolute;

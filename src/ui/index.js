@@ -63,8 +63,12 @@ class TargomanWebUiApp {
             "div#content div.tgt div.content"
         );
 
-        this.srcDropdownDiv = document.querySelector('div.dropdown[data-bind-to="srcLang"]');
-        this.tgtDropdownDiv = document.querySelector('div.dropdown[data-bind-to="tgtLang"]');
+        this.srcDropdownDiv = document.querySelector(
+            'div.dropdown[data-bind-to="srcLang"]'
+        );
+        this.tgtDropdownDiv = document.querySelector(
+            'div.dropdown[data-bind-to="tgtLang"]'
+        );
 
         this.metadataDiv = document.querySelector("div#content div.metadata");
         this.engineInfoDiv = document.querySelector(".engine-info.time");
@@ -93,7 +97,27 @@ class TargomanWebUiApp {
         this.registerActions();
         this.registerChangeHandlers();
 
-        document.body.classList.remove('nojs');
+        document.body.classList.remove("nojs");
+        if (
+            document.cookie.replace(
+                /(?:(?:^|.*;\s*)hideMobileOverlay\s*\=\s*([^;]*).*$)|^.*$/,
+                "$1"
+            ) !== "true"
+        )
+            document
+                .querySelector("div#mobile_overlay")
+                .classList.add("visible");
+
+        document
+            .querySelector("div#mobile_overlay a.hide-on-click")
+            .addEventListener("click", e => {
+                document
+                    .querySelector("div#mobile_overlay")
+                    .classList.remove("visible");
+                let now = new Date();
+                now.setTime(now.getTime() + 1000 * 60 * 60 * 24 * 3);
+                document.cookie = `hideMobileOverlay=true;expires=${now.toGMTString()}`;
+            });
     }
 
     clearSource() {
@@ -272,8 +296,9 @@ class TargomanWebUiApp {
                 });
             }
         );
-        this.srcContentDiv.addEventListener('input', () => soon(this.makeSourceAndTargetSameHeight.bind(this)));
-
+        this.srcContentDiv.addEventListener("input", () =>
+            soon(this.makeSourceAndTargetSameHeight.bind(this))
+        );
     }
 
     setUsedCharacters(value) {
@@ -322,7 +347,9 @@ class TargomanWebUiApp {
                     break;
                 }
         }
-        this.tgtDropdownDiv.handler.enableItems(lang => value.translatesTo(lang));
+        this.tgtDropdownDiv.handler.enableItems(lang =>
+            value.translatesTo(lang)
+        );
         this.translate();
     }
 
@@ -335,12 +362,17 @@ class TargomanWebUiApp {
                     break;
                 }
         }
-        this.srcDropdownDiv.handler.enableItems(lang => value.translatesFrom(lang));
+        this.srcDropdownDiv.handler.enableItems(lang =>
+            value.translatesFrom(lang)
+        );
         this.translate();
     }
 
     makeSourceAndTargetSameHeight() {
-        let height = `${Math.max(this.srcContentDiv.scrollHeight, this.tgtContentDiv.scrollHeight)}px`;
+        let height = `${Math.max(
+            this.srcContentDiv.scrollHeight,
+            this.tgtContentDiv.scrollHeight
+        )}px`;
         this.srcContentDiv.style.height = height;
         this.tgtContentDiv.style.height = height;
     }
