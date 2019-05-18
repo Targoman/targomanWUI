@@ -122,6 +122,7 @@ class TargomanWebUiApp {
 
     clearSource() {
         BindHandler.setItemValue("srcText", "");
+        soon(() => this.makeSourceAndTargetSameHeight());
     }
 
     copyTranslationResult() {
@@ -369,12 +370,30 @@ class TargomanWebUiApp {
     }
 
     makeSourceAndTargetSameHeight() {
-        let height = `${Math.max(
-            this.srcContentDiv.scrollHeight,
-            this.tgtContentDiv.scrollHeight
-        )}px`;
-        this.srcContentDiv.style.height = height;
-        this.tgtContentDiv.style.height = height;
+        function makeInvisibleClone(node) {
+            let clone = node.cloneNode(true);
+            clone.style.position = "fixed";
+            clone.style.left = "-9999px";
+            clone.style.width = `${node.getBoundingClientRect().width}px`;
+            clone.style.height = 0;
+            node.parentElement.appendChild(clone);
+            return clone;
+        }
+        clearTimeout(this.makeSourceAndTargetSameHeightTimeout);
+        this.makeSourceAndTargetSameHeightTimeout = setTimeout(() => {
+            let nodes = [this.srcContentDiv, this.tgtContentDiv];
+            let clones = nodes.map(e => makeInvisibleClone(e));
+            soon(() => {
+                let height = `${Math.max.apply(
+                    null,
+                    clones.map(e => e.scrollHeight)
+                )}px`;
+                for (let node of nodes) node.style.height = height;
+                for (let clone of clones)
+                    clone.parentElement.removeChild(clone);
+                clones = null;
+            });
+        }, 100);
     }
 
     registerChangeHandlers() {
@@ -469,7 +488,7 @@ class TargomanWebUiApp {
             return result;
         });
         setTokenizedText(this.tgtContentDiv, tokenizationResult);
-        soon(this.makeSourceAndTargetSameHeight.bind(this));
+        this.makeSourceAndTargetSameHeight();
     }
 
     updateAbadisResults(text, abadisResult) {
