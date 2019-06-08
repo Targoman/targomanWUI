@@ -357,6 +357,7 @@ div#content div.ads {
 
 div#content div.ads div.text {
     box-sizing: border-box;
+    border: 1px dashed transparent;
 }
 
 div#content div.ads div.text:hover {
