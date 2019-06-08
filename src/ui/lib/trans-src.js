@@ -11,6 +11,14 @@ class TransSrcHandler {
         this.updateBoundValue = this.updateBoundValue.bind(this);
         this.handleBoundValueChange = this.handleBoundValueChange.bind(this);
 
+        e.addEventListener('paste', e => {
+            e.preventDefault();
+            let text = ((e.originalEvent || e).clipboardData || window.clipboardData).getData('text/plain');
+            if(document.queryCommandSupported('insertText'))
+                document.execCommand('insertText', false, text);
+            else
+                document.execCommand('paste', false, text);
+        });
         e.addEventListener('input', this.updateBoundValue);
         e.addEventListener(
             'keypress',
