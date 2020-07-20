@@ -1,8 +1,9 @@
 {
-    "description": "ترگمان سرویس ترجمه متن آنلاین و رایگان است. در ترگمان می‌توانید هر متنی را با کیفیتی بهتر از گوگل و دیگر مترجم‌ها ترجمه کنید.",
-    "author": "Targoman Intelligent Processing Co. Pvt.",
+    "description": "تاریخچه و خواستگاه ترگمان به عنوان موتور ترجمه نورونی",
+    "author": "پردازش هوشمند ترگمان - سهامی خاص",
     "keywords": "ترگمان, ترجمه, ترجمه آنلاین, مترجم, ترجمه نورونی, ترجمه با یادگیری عمیق, translator, machine translation, SMT, NMT, neural translation",
-    "title": "ترگمان مترجم آنلاین و رایگان",
+    "title": "درباره ترگمان - مترجم آنلاین و رایگان | انگلیسی فارسی | فارسی انگلیسی",
     "stylesheets": ["./css/static.css"],
+    "image_alt": "",
     "needsScripting": false
 }

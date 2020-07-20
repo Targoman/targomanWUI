@@ -2,8 +2,8 @@ import { notify } from './common';
 import { AdvertAPI } from './api';
 
 
-const UPDATE_TEXT_AD_INTERVAL=5000;
-const RETRY_INTERVAL=1000;
+const UPDATE_TEXT_AD_INTERVAL=10000;
+const RETRY_INTERVAL=2000;
 
 class TextAdHandler {
     constructor(e, forcedOrder) {

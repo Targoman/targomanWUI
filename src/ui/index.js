@@ -428,6 +428,7 @@ class TargomanWebUiApp {
         this.automaticTranslationTimeout = setTimeout(() => {
             BindHandler.act("translate");
         }, 500);
+        this.minifyBoxes(false);
     }
 
     informBusyState(busy) {
@@ -600,6 +601,15 @@ class TargomanWebUiApp {
         this.metadataDiv.style.display = "block";
     }
 
+    minifyBoxes(state) {
+        [].forEach.call(document.querySelectorAll("div.content"), el => {
+            if(state)
+                el.classList.add('one-line')
+            else 
+                el.classList.remove('one-line')
+        }) 
+    }
+
     translate() {
         this.informBusyState(true);
         document.querySelector(
@@ -641,6 +651,7 @@ class TargomanWebUiApp {
                     document.querySelector(
                         "div#content div.ads div.graphical"
                     ).style.display = "none";
+                    this.minifyBoxes(true)
                 })
             );
         Promise.all(allPromises).finally(() => this.informBusyState(false));
