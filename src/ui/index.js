@@ -75,15 +75,11 @@ class TargomanWebUiApp {
 
         this.dicResults = document.querySelector("div#content div.dic-result");
         this.dicResultsMeaning = this.dicResults.querySelector("p.mean");
-        this.dicResultsRelWords = this.dicResults.querySelector("ul.relword");
-        this.dicResultsVC = this.dicResults.querySelector("div.vocabcoding");
-        this.dicResultsSynonyms = this.dicResults.querySelector(
-            "table.synonym"
-        );
-        this.dicResultsRelExps = this.dicResults.querySelector("ul.relexp");
-        this.dicResultsShowMore = this.dicResults.querySelector(
-            "div.show-more"
-        );
+        this.dicResultsRelWords = this.dicResults.querySelector(".relword ul");
+        this.dicResultsVC = this.dicResults.querySelector(".vocabcoding a");
+        this.dicResultsSynonyms = this.dicResults.querySelector(".synonym table");
+        this.dicResultsRelExps = this.dicResults.querySelector(".relexp ul");
+        this.dicResultsShowMore = this.dicResults.querySelector("div.show-more");
 
         this.usageReportDiv = document.querySelector(
             "div#content div.src div.usage-report"
@@ -498,8 +494,7 @@ class TargomanWebUiApp {
         let mainDirection = lang.direction,
             revDirection = mainDirection === "ltr" ? "rtl" : "ltr";
         const  fillVocabcoding = (e, image) => {
-            const img = e.querySelector('img')
-            img.src='https://targoman.ir/vc/' + image
+            e.querySelector('img').src='https://targoman.ir/vc/' + image
         }
         const fillUlItems = (e, items) => {
             e.innerHTML = "";
@@ -548,10 +543,7 @@ class TargomanWebUiApp {
             );
         };
         const fillPartItems = (e, items, filler) => {
-            [].forEach.call(
-                this.dicResults.querySelectorAll(`.${e.classList[0]}`),
-                e => (e.style.display = items ? "" : "none")
-            );
+            e.parentElement.style = items ? "" : "none"
             if (items) filler(e, items);
         };
         [].forEach.call(

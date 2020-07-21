@@ -671,30 +671,30 @@ div#content div.dic-result ul li:nth-child(3n) {
     height: 1.5em;
 }
 
-p.mean, table.synonym {
+p.mean, .synonym table {
     margin-bottom: 1em;
 }
 
-table.synonym {
+.synonym table {
     border-collapse: collapse;
     width: 100%;
 }
 
-table.synonym td, table.synonym th {
+.synonym table td, .synonym table th {
     min-width: 5em;
     border-right: 1px solid #ddd;
     padding: 0 0.5em;
     text-align: center;
 }
 
-table.synonym td:first-child, table.synonym th:first-child {
+.synonym table td:first-child, .synonym table th:first-child {
     border-right: none;
 }
 
-table.synonym tr:first-child {
+.synonym table tr:first-child {
     border-bottom: 1px solid #ddd;
 }
-table.synonym tr.odd{
+.synonym table tr.odd{
     background-color: #f0ffff;
 }
 

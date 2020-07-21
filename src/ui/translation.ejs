@@ -68,42 +68,48 @@
             <div class="part dic-part-1">
                 <h2>معنی‌های <span class="src"><%= dic.key %></span></h2>
                 <p class="mean"><%= dic.mean %></p>
-                <hr>
-                <h2 class="synonym">مترادف‌های <span class="src"><%= dic.key %></span></h2>
-                <table class="synonym">
-                    <tr><th>کلمه</th><th>نقش</th><th>معانی</th></tr>
-                    <% for(var i=0; i<dic.synonyms.length; i++) {%>
-                      <tr class="<%= i%2 ? 'even':'odd' %>">
-                        <td class="<%= dic.dir === 'rtl' ? 'ltr':'rtl' %>"><%= dic.synonyms[i].word %></td>
-                        <td><%= dic.synonyms[i].pos %></td>
-                        <td class="<%= dic.dir %>"><%= dic.synonyms[i].tgt.join(dic.dir === 'rtl' ? '، ':', ') %></td>
-                      </tr>
-                    <% } %>
-                </table>
+                <div class="synonym">
+                  <hr>
+                  <h2>مترادف‌های <span class="src"><%= dic.key %></span></h2>
+                  <table>
+                      <tr><th>کلمه</th><th>نقش</th><th>معانی</th></tr>
+                      <% for(var i=0; i<dic.synonyms.length; i++) {%>
+                        <tr class="<%= i%2 ? 'even':'odd' %>">
+                          <td class="<%= dic.dir === 'rtl' ? 'ltr':'rtl' %>"><%= dic.synonyms[i].word %></td>
+                          <td><%= dic.synonyms[i].pos %></td>
+                          <td class="<%= dic.dir %>"><%= dic.synonyms[i].tgt.join(dic.dir === 'rtl' ? '، ':', ') %></td>
+                        </tr>
+                      <% } %>
+                  </table>
+                </div>
             </div><!--
             --><div class="separator"></div><!--
             --><div class="part dic-part-2">
                 <div class="vocabcoding" style="<%= dic.vc ? '' : 'display:none' %>" >
                   <a href="http://vocabcoding.com/" target="_blank"><img src="<%= dic.vc && 'https://targoman.ir/vc/'+dic.vc %>"></a>
-                  <hr>
                 </div>
-                <h2 class="relword">کلمات مرتبط با <span class="src"><%= dic.key %></span></h2>
-                <ul class="relword">
-                    <% for(var i=0; i<dic.relwords.length; i++) { %>
-                      <li><%= dic.relwords[i].src %></li>
-                      <li><%= dic.relwords[i].tgt %></li>
-                      <li></li>
-                    <% } %>
-                </ul>
-                <hr>
-                <h2 class="relexp">عبارت‌های مرتبط با <span class="src"><%= dic.key %></span></h2>
-                <ul class="relexp">
-                    <% for(var i=0; i<dic.related.length; i++) {%>
-                        <li class="source"><%= dic.related[i].src %></li>
-                        <li class="translation"><%= dic.related[i].tgt %></li>
-                        <li class="separator"></li>
-                    <% } %>
-                </ul>
+                <div class="relword">
+                  <hr>
+                  <h2>کلمات مرتبط با <span class="src"><%= dic.key %></span></h2>
+                  <ul>
+                      <% for(var i=0; i<dic.relwords.length; i++) { %>
+                        <li><%= dic.relwords[i].src %></li>
+                        <li><%= dic.relwords[i].tgt %></li>
+                        <li></li>
+                      <% } %>
+                  </ul>
+                </div>
+                <div class="relexp">
+                  <hr>
+                  <h2>عبارت‌های مرتبط با <span class="src"><%= dic.key %></span></h2>
+                  <ul>
+                      <% for(var i=0; i<dic.related.length; i++) {%>
+                          <li class="source"><%= dic.related[i].src %></li>
+                          <li class="translation"><%= dic.related[i].tgt %></li>
+                          <li class="separator"></li>
+                      <% } %>
+                  </ul>
+                </div>
             </div>
             <br/>
             <br/>
