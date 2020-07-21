@@ -33,7 +33,7 @@
     <meta name="author" content="<%= author %>">
     <title><%= title %></title>
     <% stylesheets.forEach(path => { %>
-    <link rel="stylesheet" type="text/css" href="<%= path %>">
+    <link rel="stylesheet" type="text/css" href="<%= path+'?r='+Math.random() %>">
     <% }); %>
 
     <script type="application/ld+json">
