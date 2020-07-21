@@ -749,7 +749,6 @@ div#mobile_overlay {
     }
     div#content {
         padding: 0;
-        transition: all .5s ease 0s;
     }
     #content > div {
         margin-top: 0 !important;
@@ -763,6 +762,7 @@ div#mobile_overlay {
     }
     div#content div.content {
         min-height: 8em;
+        transition: all .5s ease 0s;
     }
     div#content div.content.one-line {
         min-height: 4em;
