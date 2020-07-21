@@ -424,7 +424,7 @@ class TargomanWebUiApp {
         clearTimeout(this.automaticTranslationTimeout);
         this.automaticTranslationTimeout = setTimeout(() => {
             BindHandler.act("translate");
-        }, 500);
+        }, 1000);
         this.minifyBoxes(false);
     }
 
