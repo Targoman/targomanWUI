@@ -462,6 +462,7 @@ div#content div.content {
     min-height: 13em;
     box-sizing: border-box;
     border: 1px solid #d9eff7;
+    transition: all .5s;
 }
 div#content div.content.one-line {
     min-height: 4em;
@@ -762,7 +763,7 @@ div#mobile_overlay {
     }
     div#content div.content {
         min-height: 8em;
-        transition: all .5s ease 0s;
+        transition: all .5s;
     }
     div#content div.content.one-line {
         min-height: 4em;
