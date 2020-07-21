@@ -76,6 +76,7 @@ class TargomanWebUiApp {
         this.dicResults = document.querySelector("div#content div.dic-result");
         this.dicResultsMeaning = this.dicResults.querySelector("p.mean");
         this.dicResultsRelWords = this.dicResults.querySelector("ul.relword");
+        this.dicResultsVC = this.dicResults.querySelector("div.vocabcoding");
         this.dicResultsSynonyms = this.dicResults.querySelector(
             "table.synonym"
         );
@@ -493,10 +494,14 @@ class TargomanWebUiApp {
     }
 
     updateAbadisResults(text, abadisResult) {
-        let lang = Translation.detectLanguage(text);
+        const lang = Translation.detectLanguage(text);
         let mainDirection = lang.direction,
             revDirection = mainDirection === "ltr" ? "rtl" : "ltr";
-        let fillUlItems = (e, items) => {
+        const  fillVocabcoding = (e, image) => {
+            const img = e.querySelector('img')
+            img.src='https://targoman.ir/vc/' + image
+        }
+        const fillUlItems = (e, items) => {
             e.innerHTML = "";
             for (let item of items) {
                 if (e.childElementCount) {
@@ -514,12 +519,14 @@ class TargomanWebUiApp {
                 }
             }
         };
-        let fillTableItems = (e, items) => {
+        const fillTableItems = (e, items) => {
             [].forEach.call(e.querySelectorAll("tr:not(:first-child)"), e =>
                 e.parentElement.removeChild(e)
             );
+            let i = 0;
             for (let item of items) {
                 let tr = document.createElement("TR");
+                tr.classList.add(i%2 ? 'even' : 'odd')  
                 e.appendChild(tr);
                 for (let key in item) {
                     let td = document.createElement("TD");
@@ -528,10 +535,10 @@ class TargomanWebUiApp {
                         : item[key];
                     tr.appendChild(td);
                 }
+                i++;
             }
-            let updateDirectionAndAlignment = (e, dir) => {
-                e.style.direction = dir;
-                e.style.textAlign = dir === "rtl" ? "right" : "left";
+            const updateDirectionAndAlignment = (e, dir) => {
+                e.classList.add(dir)
             };
             [].forEach.call(e.querySelectorAll("td:first-child"), e =>
                 updateDirectionAndAlignment(e, revDirection)
@@ -540,7 +547,7 @@ class TargomanWebUiApp {
                 updateDirectionAndAlignment(e, mainDirection)
             );
         };
-        let fillPartItems = (e, items, filler) => {
+        const fillPartItems = (e, items, filler) => {
             [].forEach.call(
                 this.dicResults.querySelectorAll(`.${e.classList[0]}`),
                 e => (e.style.display = items ? "" : "none")
@@ -552,7 +559,9 @@ class TargomanWebUiApp {
             e => (e.textContent = text)
         );
         this.dicResultsMeaning.textContent = abadisResult.mean;
-        this.dicResultsMeaning.style.direction = revDirection;
+        this.dicResultsMeaning.classList.remove(mainDirection);
+        this.dicResultsMeaning.classList.add(revDirection);
+        fillPartItems(this.dicResultsVC, abadisResult.vc, fillVocabcoding);
         fillPartItems(
             this.dicResultsRelWords,
             abadisResult.relword,

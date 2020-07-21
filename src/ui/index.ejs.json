@@ -1,9 +1,73 @@
 {
-    "description": "ترگمان سرویس ترجمه متن آنلاین و رایگان چندزبانه است. در ترگمان می‌توانید هر متنی را با کیفیتی بهتر از گوگل و دیگر مترجم‌ها ترجمه کنید.",
-    "author": "پردازش هوشمند ترگمان - سهامی خاص",
-    "keywords": "ترگمان, ترجمه رایگان, ترجمه, ترجمه آنلاین, مترجم, ترجمه نورونی, ترجمه با یادگیری عمیق, translator, machine translation, SMT, NMT, neural translation",
-    "title": "ترگمان - ترجمه آنلاین و رایگان فارسی به انگلیسی و انگلیسی به فارسی",
-    "stylesheets": ["./css/style.css"],
-    "image_alt":"ترگمان - ترجمه آنلاین و رایگان متن از انگلیسی و ۷ زبان دیگر به فارسی",
-    "needsScripting": true
+  "description": "ترگمان سرویس ترجمه متن آنلاین و رایگان چندزبانه است. در ترگمان می‌توانید هر متنی را با کیفیتی بهتر از گوگل و دیگر مترجم‌ها ترجمه کنید.",
+  "author": "پردازش هوشمند ترگمان - سهامی خاص",
+  "keywords": "ترگمان, ترجمه رایگان, ترجمه, ترجمه آنلاین, مترجم, ترجمه نورونی, ترجمه با یادگیری عمیق, translator, machine translation, SMT, NMT, neural translation",
+  "title": "ترگمان - ترجمه آنلاین و رایگان فارسی به انگلیسی و انگلیسی به فارسی",
+  "stylesheets": ["./css/style.css"],
+  "image_alt": "ترگمان - ترجمه آنلاین و رایگان متن از انگلیسی و ۷ زبان دیگر به فارسی",
+  "needsScripting": true,
+  "srcText": null,
+  "tgtText": null,
+  "dic": {
+    "show": false,
+    "dir": "ltr",
+    "key": "translation",
+    "mean": "ترجمه، ترجمان (ترگمان)، یچواک، یچوه، ویچار، حرکت انتقالی، برگردان",
+    "relwords": [{ "src": "mistranslation", "tgt": "ترجمه نادرست" }],
+    "synonyms": [
+      {
+        "word": "تفسیر",
+        "pos": "اسم",
+        "tgt": [
+          "explanation",
+          "exposition",
+          "gloss",
+          "comment",
+          "annotation",
+          "interpretation",
+          "commentary",
+          "exegesis",
+          "translation",
+          "paraphrase",
+          "version",
+          "rendition",
+          "rendering"
+        ]
+      },
+      {
+        "word": "برگردان",
+        "pos": "اسم",
+        "tgt": ["chorus", "translation", "lapel", "refrain", "repetend", "revers"]
+      },
+      {
+        "word": "انقال",
+        "pos": "اسم",
+        "tgt": ["translation", "conveyancing", "transduction"]
+      },
+      {
+        "word": "ترجمه",
+        "pos": "اسم",
+        "tgt": ["interpretation", "translation", "version", "rendition"]
+      },
+      {
+        "word": "پچواک",
+        "pos": "اسم",
+        "tgt": ["translation"]
+      },
+      {
+        "word": "حرکت انتقالی",
+        "pos": "اسم",
+        "tgt": ["translation"]
+      }
+    ],
+    "related": [
+        { "src": "algorithm translation", "tgt": "ترجمه الگوریتم" },
+        { "src": "an a translation", "tgt": "ترجمه درست" },
+        { "src": "code translation", "tgt": "رمزبرگرداندن" },
+        { "src": "loan translation", "tgt": "رجوع شود به: calque" },
+        { "src": "machine translation", "tgt": "ترجمه ماشینی" },
+        { "src": "mechanical translation", "tgt": "ترجمه ماشینی" }        
+    ],
+    "vc": null
+  }
 }
