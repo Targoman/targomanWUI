@@ -543,7 +543,7 @@ class TargomanWebUiApp {
             );
         };
         const fillPartItems = (e, items, filler) => {
-            e.parentElement.style = items ? "" : "none"
+            e.parentElement.style.display = items ? "" : "none"
             if (items) filler(e, items);
         };
         [].forEach.call(

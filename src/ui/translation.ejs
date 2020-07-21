@@ -87,9 +87,9 @@
             --><div class="part dic-part-2">
                 <div class="vocabcoding" style="<%= dic.vc ? '' : 'display:none' %>" >
                   <a href="http://vocabcoding.com/" target="_blank"><img src="<%= dic.vc && 'https://targoman.ir/vc/'+dic.vc %>"></a>
+                  <hr>
                 </div>
                 <div class="relword">
-                  <hr>
                   <h2>کلمات مرتبط با <span class="src"><%= dic.key %></span></h2>
                   <ul>
                       <% for(var i=0; i<dic.relwords.length; i++) { %>
@@ -98,9 +98,9 @@
                         <li></li>
                       <% } %>
                   </ul>
+                  <hr>
                 </div>
                 <div class="relexp">
-                  <hr>
                   <h2>عبارت‌های مرتبط با <span class="src"><%= dic.key %></span></h2>
                   <ul>
                       <% for(var i=0; i<dic.related.length; i++) {%>
