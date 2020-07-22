@@ -594,7 +594,7 @@ div#content div.content span.phrase-token.hi {
 div#content div.dic-result {
     color: #337ab7;
     display: none;
-    max-height: 15em;
+    max-height: 1500em;
     overflow: hidden;
     position: relative;
 }
@@ -604,7 +604,7 @@ div#content div.dic-result.full {
 }
 
 div#content div.dic-result div.show-more {
-    display: block;
+    display: none;
     height: 3em;
     width: 100%;
     margin: auto;

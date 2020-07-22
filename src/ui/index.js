@@ -6,7 +6,8 @@ import {
     getTextContent,
     setTokenizedText,
     soon,
-    getCursorLineAndPos
+    getCursorLineAndPos,
+    urlQueries2Json
 } from "./lib/common";
 import { CommunityAPI } from "./lib/api";
 import BindHandler from "./lib/bindhandler";
@@ -115,6 +116,10 @@ class TargomanWebUiApp {
                 now.setTime(now.getTime() + 1000 * 60 * 60 * 24 * 3);
                 document.cookie = `hideMobileOverlay=true;expires=${now.toGMTString()}`;
             });
+        if (urlQueries2Json().txt)
+            setTimeout(() => {
+                BindHandler.setItemValue('srcText', urlQueries2Json().txt);
+            }, 500)
     }
 
     clearSource() {
