@@ -62,6 +62,7 @@
             </div>
         </div>
         <div class="dic-result <%= dic.show && 'full' %>" style="<%= dic.show && 'display:block' %>">
+            <a style="display:none" href="/d/<%= dic.prevEntry %>" title="دیکشنری">
             <div class="abadis">دیکشنری با کمک <a href="https://dictionary.abadis.ir/" target="_blank"><img src="./img/logo/abadis-w.svg" alt="abadis" /></a></div>
             <h2><span class="src"><%= dic.key %></span> در دیکشنری</h2>
             <hr/>
@@ -205,16 +206,16 @@
     </div>
     <div id="mobile_overlay">
         <div class="container">
-        <h2>برنامک ترگمان!</h2>
-        <p>برای سهولت بیشتر در استفاده از ترگمان، می‌توانید از برنامک آن استفاده کنید.</p>
-        <br/>
-        <ul>
-            <li><a href="#" class="hide-on-click">نخیر! از وبسایت استفاده می‌کنم.</a></li>
-            <li><br/></li>
-            <li><a href="https://play.google.com/store/apps/details?id=com.anonycoders.targoman"><img src="./img/logo/play-store.png" alt="Google Play" /></a></li>
-            <li><a href="https://cafebazaar.ir/app/com.anonycoders.targoman/?l=fa"><img src="./img/logo/cafe-bazaar.png" alt="Cafe Bazaar" /></a></li>
-            <li><a href="https://myket.ir/app/com.anonycoders.targoman/download"><img src="./img/logo/myket.png" alt="Myket" /></a></li>
-        </ul>
+            <h2>برنامک ترگمان!</h2>
+            <p>برای سهولت بیشتر در استفاده از ترگمان، می‌توانید از برنامک آن استفاده کنید.</p>
+            <br/>
+            <ul>
+                <li><a href="#" class="hide-on-click">نخیر! از وبسایت استفاده می‌کنم.</a></li>
+                <li><br/></li>
+                <!--<li><a href="https://play.google.com/store/apps/details?id=com.anonycoders.targoman"><img src="./img/logo/play-store.png" alt="Google Play" /></a></li>-->
+                <li><a href="https://cafebazaar.ir/app/com.anonycoders.targoman/?l=fa"><img src="./img/logo/cafe-bazaar.png" alt="Cafe Bazaar" /></a></li>
+                <li><a href="https://myket.ir/app/com.anonycoders.targoman/download"><img src="./img/logo/myket.png" alt="Myket" /></a></li>
+            </ul>
         </div>
     </div>
     <script src="/bundle.js?r=<%= Math.random() %>"></script>

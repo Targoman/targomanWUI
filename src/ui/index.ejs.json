@@ -12,6 +12,7 @@
   "srcText": null,
   "tgtText": null,
   "dic": {
+    "prevEntry": "en/a/a.html",
     "show": false,
     "dir": "ltr",
     "key": "translation",

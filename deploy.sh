@@ -37,8 +37,8 @@ git tag "$TAG" -fm "Tag: $TAG"
 
 cd dist/
 ln -snf /srv/www/vhosts/targoman.ir/htdocs/vc 
-ln -snf /srv/www/vhosts/targoman.ir/htdocs/d d 
-ln -snf /srv/www/vhosts/targoman.ir/htdocs/p d 
+ln -snf /srv/www/vhosts/targoman.ir/htdocs/d  
+ln -snf /srv/www/vhosts/targoman.ir/htdocs/p  
 tar czf $TAG.tgz * && \
     scp $TAG.tgz deployer@targoman.ir:/tmp && \
     ssh deployer@targoman.ir deploy $TAG
