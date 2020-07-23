@@ -664,45 +664,51 @@ div#content div.dic-result ul {
     margin-right: 2em;
 }
 
-div#content div.dic-result ul li:nth-child(3n + 1) {
+.dic-result ul li.source {
     color: #062b4b;
 }
 
-div#content div.dic-result ul li:nth-child(3n) {
-    height: 1.5em;
+.dic-result ul li.separator {
+    height: 1em;
 }
 
-p.mean, .synonym table {
+.dic-result ul ul, .dic-result ul ul li{
+    list-style: circle;
+}
+
+p.mean, .dic-result table {
     margin-bottom: 1em;
 }
 
-.synonym table {
+.dic-result table {
     border-collapse: collapse;
     width: 100%;
 }
 
-.synonym table td, .synonym table th {
+.dic-result table td, .dic-result table th {
     min-width: 5em;
     border-right: 1px solid #ddd;
     padding: 0 0.5em;
     text-align: center;
 }
 
-.synonym table td:first-child, .synonym table th:first-child {
+.dic-result table td:first-child, .dic-result table th:first-child {
     border-right: none;
 }
 
-.synonym table tr:first-child {
+.dic-result table tr:first-child {
     border-bottom: 1px solid #ddd;
 }
-.synonym table tr.odd{
+.dic-result table tr.odd{
     background-color: #f0ffff;
 }
 
 div#mobile_overlay {
     display: none;
 }
-
+section{
+    margin-top: 2em;
+}
 .vocabcoding {
     text-align: center;
     padding: 1em 0;
@@ -735,6 +741,20 @@ div#mobile_overlay {
     border-bottom: 5px dotted #a0c4e4;
 }
 
+.means{
+    position: relative;
+}
+
+.pron{
+    position: absolute;
+    top:0;
+    left:0;
+    color:green;
+    direction: ltr;
+    font-size: 90%;
+}
+
+.pron img{ width: 1.5em; display: inline-block; vertical-align: middle; margin-right: .5em;}
 
 .ads .text h2 {
     font-size: 1em;

@@ -329,14 +329,15 @@ class Translation {
         return data;
     }
 
-    abadisLookup(text) {
+    dicLookup(text) {
         let callId = ++this.dictionaryCallId;
-        return TargomanAPI.lookupAbadis('ssid', text).then(data => {
+        return TargomanAPI.lookupDic('ssid', text).then(data => {
             if(callId !== this.dictionaryCallId)
                 return false;
             if(!data.result)
                 return false;
-            try {
+            data = data.result
+         /*   try {
             data = JSON.parse(
                 data.result.replace(
                     /&#\d+;/g,
@@ -349,10 +350,10 @@ class Translation {
             );
             } catch(e) {
                 // TODO: Show error?
-            }
+            }*/
             if(!data.mean)
                 return false;
-            return this.prepareAbadisResultObject(data);
+            return data//this.prepareAbadisResultObject(data);
         });
     }
 }

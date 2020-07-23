@@ -12,13 +12,10 @@
     "show": false,
     "dir": "ltr",
     "key": "translation",
-    "mean": "ترجمه، ترجمان (ترگمان)، یچواک، یچوه، ویچار، حرکت انتقالی، برگردان",
-    "relwords": [{ "src": "mistranslation", "tgt": "ترجمه نادرست" }],
-    "synonyms": [
-      {
-        "word": "تفسیر",
-        "pos": "اسم",
-        "tgt": [
+    "mean": ["ترجمه", "ترجمان (ترگمان)", "یچواک", "یچوه", "ویچار", "حرکت انتقالی", "برگردان"],
+    "synonyms": {
+      "تفسیر": {
+        "اسم": [
           "explanation",
           "exposition",
           "gloss",
@@ -34,40 +31,39 @@
           "rendering"
         ]
       },
-      {
-        "word": "برگردان",
-        "pos": "اسم",
-        "tgt": ["chorus", "translation", "lapel", "refrain", "repetend", "revers"]
+      "برگردان": { "اسم": ["chorus", "translation", "lapel", "refrain", "repetend", "revers"] },
+      "انقال": { "اسم": ["translation", "conveyancing", "transduction"] },
+      "ترجمه": { "اسم": ["interpretation", "translation", "version", "rendition"] },
+      "پچواک": { "اسم": ["translation"] },
+      "حرکت انتقالی": { "اسم": ["translation"] }
+    },
+    "antonyms": {
+      "اقتباس":{
+        "اسم":[
+          "derivation", "quotation" 
+        ]
       },
-      {
-        "word": "انقال",
-        "pos": "اسم",
-        "tgt": ["translation", "conveyancing", "transduction"]
-      },
-      {
-        "word": "ترجمه",
-        "pos": "اسم",
-        "tgt": ["interpretation", "translation", "version", "rendition"]
-      },
-      {
-        "word": "پچواک",
-        "pos": "اسم",
-        "tgt": ["translation"]
-      },
-      {
-        "word": "حرکت انتقالی",
-        "pos": "اسم",
-        "tgt": ["translation"]
+      "نقل‌قول کردن":{
+        "فعل":[
+          "quote"
+        ]
       }
+    },
+    "related": {
+      "algorithm translation": ["ترجمه الگوریتم"],
+      "an a translation": ["ترجمه درست"],
+      "code translation": ["رمزبرگرداندن"],
+      "loan translation": ["رجوع شود به: calque"],
+      "machine translation": ["ترجمه ماشینی"],
+      "mechanical translation": ["ترجمه ماشینی"]
+    },
+    "relwords": { "mistranslation": ["ترجمه نادرست"] },
+    "pronounce": { "uk": "/trænsˈleɪʃn̩/", "us": "/trænzˈleɪʃn̩/" },
+    "examples": [
+      ["the english translation of the boostan", "ترجمه‌ی انگلیسی بوستان (سعدی)"],
+      ["a verse translation of shahnameh", "ترجمه‌ی منظوم شاهنامه"]
     ],
-    "related": [
-        { "src": "algorithm translation", "tgt": "ترجمه الگوریتم" },
-        { "src": "an a translation", "tgt": "ترجمه درست" },
-        { "src": "code translation", "tgt": "رمزبرگرداندن" },
-        { "src": "loan translation", "tgt": "رجوع شود به: calque" },
-        { "src": "machine translation", "tgt": "ترجمه ماشینی" },
-        { "src": "mechanical translation", "tgt": "ترجمه ماشینی" }        
-    ],
-    "vc": null
+    "extra": null,
+    "vc": "10899317_1532856073643155_473679758_n.jpg"
   }
 }

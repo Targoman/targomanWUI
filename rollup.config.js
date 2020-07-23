@@ -42,7 +42,11 @@ let config = {
     ]
 };
 
-if (process.env.NODE_ENV !== "production") {
+if (process.env.NODE_ENV == "production") {
+    console.log("PRODUCTION MODE!");
+    config.output.format = "iife";
+    config.plugins.push(finalize());
+} else {
     console.log("DEVELOPMENT MODE!");
     config.watch = {
         clearScreen: false,
@@ -52,10 +56,6 @@ if (process.env.NODE_ENV !== "production") {
         serve({ contentBase: "dist", open: true }),
         livereload({ watch: "dist" })
     );
-} else {
-    console.log("PRODUCTION MODE!");
-    config.output.format = "iife";
-    config.plugins.push(finalize());
 }
 
 export default config;

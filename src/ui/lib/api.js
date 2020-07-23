@@ -21,7 +21,7 @@ const TargomanMethods = [
     "uploadFileAndConvert2HTML(ssid,clientIP,encoding,data)",
     "getConvertedFile(ssid,tuid)",
     "tts(ssid,base64Text,type='ogg')",
-    "lookupAbadis(ssid,word)",
+    "lookupDic(ssid,word)",
     "translateArray(ssid,clientIP,dir,array,url)",
     "arrayResponse(ssid,reqID,from)",
     "doSimpleTranslationBySSID(ssid,sourcePhrase,dir,clientIP,engine='NMT')",
