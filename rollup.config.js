@@ -25,7 +25,6 @@ let config = {
     plugins: [
         copy({
             targets: {
-                "src/public/": "dist/",
                 "src/ui/img": "dist/img",
                 "src/ui/css": "dist/css",
                 "src/ui/font": "dist/font",

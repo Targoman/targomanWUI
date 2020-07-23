@@ -66,15 +66,15 @@
             <h2><span class="src"><%= dic.key %></span> در دیکشنری</h2>
             <hr/>
             <div class="part dic-part-1">
-                <div class="means">
+                <div class="means" style="<%= dic.pronounce ? '' : 'display:none' %>">
                     <h2>معنی‌های <span class="src"><%= dic.key %></span></h2>
                     <p class="mean"><%= dic.mean.join(dic.dir === 'rtl' ? ', ':'، ') %></p>
                     <div class="pron">
-                        <div><img src="img/icon/UK.svg"><%= dic.pronounce.uk %></div>
-                        <div><img src="img/icon/USA.svg"><%= dic.pronounce.us %></div>
+                        <div><img src="img/icon/UK.svg"><%= dic.pronounce && dic.pronounce.uk %></div>
+                        <div><img src="img/icon/USA.svg"><%= dic.pronounce && dic.pronounce.us %></div>
                     </div>
                 </div>
-                <section class="synonym">
+                <section class="synonym" style="<%= dic.synonyms ? '' : 'display:none' %>">
                   <h2>مترادف‌های <span class="src"><%= dic.key %></span></h2>
                   <table>
                       <tr><th>معنی</th><th>نقش</th><th>کلمات</th></tr>
@@ -88,7 +88,7 @@
                       <% }} %>
                   </table>
                 </section>
-                <section class="antonym">
+                <section class="antonym" style="<%= dic.antonyms ? '' : 'display:none' %>">
                   <h2>متضادهای <span class="src"><%= dic.key %></span></h2>
                   <table>
                       <tr><th>معنی</th><th>نقش</th><th>کلمات</th></tr>
@@ -103,10 +103,10 @@
                   </table>
                   <hr>
                 </section>
-                <section class="examples">
+                <section class="examples" style="<%= dic.examples ? '' : 'display:none' %>">
                   <h2>مثال‌هایی از <span class="src"><%= dic.key %></span></h2>
                   <ul>
-                      <% for(var i=0; i<dic.examples.length;i++) {%>
+                      <% if(dic.examples) for(var i=0; i<dic.examples.length;i++) {%>
                         <li class="source"><%= dic.examples[i][0] %></li>
                         <li class="translation"><%= dic.examples[i][1] %></li>
                         <li class="separator"></li>
@@ -120,7 +120,7 @@
                   <a href="http://vocabcoding.com/" target="_blank"><img src="<%= dic.vc && 'https://targoman.ir/vc/'+dic.vc %>"></a>
                   <a class="copyright" href="https://www.instagram.com/vocab.coding/" target="_blank">تصویر برگرفته از: <img src="img/logo/vocab-coding.svg"></a>
                 </div>
-                <section class="relword">
+                <section class="relword" style="<%= dic.relwords ? '' : 'display:none' %>">
                   <h2>کلمات مرتبط با <span class="src"><%= dic.key %></span></h2>
                   <ul>
                       <% for(var word in dic.relwords) {%>
@@ -130,7 +130,7 @@
                       <% } %>
                   </ul>
                 </section>
-                <section class="relexp">
+                <section class="relexp" style="<%= dic.related ? '' : 'display:none' %>">
                   <h2>عبارت‌های مرتبط با <span class="src"><%= dic.key %></span></h2>
                   <ul>
                       <% for(var word in dic.related) {%>
@@ -138,9 +138,9 @@
                         <ul>
                         <% for(var i=0; i<dic.related[word].length; ++i) { %>
                             <li class="translation"><%= dic.related[word][i] %></li>
-                            <li class="separator"></li>
                         <% } %>
                         </ul>
+                        <li class="separator"></li>
                       <% } %>
                   </ul>
                 </section>
@@ -217,4 +217,4 @@
         </ul>
         </div>
     </div>
-    <script src="./bundle.js?r=<%= Math.random() %>"></script>
+    <script src="/bundle.js?r=<%= Math.random() %>"></script>
