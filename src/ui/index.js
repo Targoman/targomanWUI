@@ -517,7 +517,7 @@ class TargomanWebUiApp {
         const createLi = (klass, content) =>createEl('li', klass, content)
         const createTd = (klass, content) => createEl('td', klass, content)
         
-        const wordLink = (word) => `<a href="#${word}" class="inline">${word}</a>`
+        const wordLink = (word) => `<a href="#${word}">${word}</a>`
         const wordsLink = (words) => words.map(wordLink)
         const fillTableItems = (e, items, dir) => {
             [].forEach.call(e.querySelectorAll("tr:not(:first-child)"), e =>

@@ -13,7 +13,7 @@
   "tgtText": null,
   "dic": {
     "prevEntry": "fa/بذر/",
-    "show": false,
+    "show": 1,
     "dir": "ltr",
     "key": "translation",
     "mean": ["ترجمه", "ترجمان (ترگمان)", "یچواک", "یچوه", "ویچار", "حرکت انتقالی", "برگردان"],
