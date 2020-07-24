@@ -44,12 +44,12 @@
                 <div class="content <%= dic.show && 'one-line' %>  <%= dic.show && (dic.dir === "rtl" ? 'ltr' : 'rtl')%>"><%= tgtText %></div>
                 <div class="controls">
                     <ul>
-                        <li><a data-action="copyTranslationResult" class="toolbar-button" href="#"><img src="./img/icon/copy.png" alt="copy"/></a></li>
-                        <li><a data-action="voteUpTranslation" data-visible-if-not="proposingNewTranslationMode" class="toolbar-button" href="#"><img src="./img/icon/thumb-up.png" alt="like"/></a></li>
-                        <li><a data-action="voteDownTranslation" data-visible-if-not="proposingNewTranslationMode" class="toolbar-button" href="#"><img src="./img/icon/thumb-down.png" alt="down"/></a></li>
-                        <li><a data-action="proposeNewTranslation" data-visible-if-not="proposingNewTranslationMode" class="toolbar-button" href="#"><img src="./img/icon/pencil.png" alt="edit"/></a></li>
-                        <li><a data-action="acceptNewTranslation" data-visible-if="proposingNewTranslationMode" class="toolbar-button" href="#"><img src="./img/icon/tick.png" alt="edit"/></a></li>
-                        <li><a data-action="cancelNewTranslation" data-visible-if="proposingNewTranslationMode"class="toolbar-button" href="#"><img src="./img/icon/clear.png" alt="edit"/></a></li>
+                        <li><a data-action="copyTranslationResult" class="toolbar-button" href="#"><img src="./img/icon/copy.png" alt="کپی متن ترجمه‌شده"/></a></li>
+                        <li><a data-action="voteUpTranslation" data-visible-if-not="proposingNewTranslationMode" class="toolbar-button" href="#"><img src="./img/icon/thumb-up.png" alt="تایید ترجمه"/></a></li>
+                        <li><a data-action="voteDownTranslation" data-visible-if-not="proposingNewTranslationMode" class="toolbar-button" href="#"><img src="./img/icon/thumb-down.png" alt="رد ترجمه"/></a></li>
+                        <li><a data-action="proposeNewTranslation" data-visible-if-not="proposingNewTranslationMode" class="toolbar-button" href="#"><img src="./img/icon/pencil.png" alt="پیشنهاد ترجمه"/></a></li>
+                        <li><a data-action="acceptNewTranslation" data-visible-if="proposingNewTranslationMode" class="toolbar-button" href="#"><img src="./img/icon/tick.png" alt="قبول ترجمه پیشنهادی"/></a></li>
+                        <li><a data-action="cancelNewTranslation" data-visible-if="proposingNewTranslationMode"class="toolbar-button" href="#"><img src="./img/icon/clear.png" alt="رد ترجمه پیشنهادی"/></a></li>
                     </ul>
                 </div>
                 <div class="metadata">
@@ -63,7 +63,7 @@
         </div>
         <div class="dic-result <%= dic.show && 'full' %>" style="<%= dic.show && 'display:block' %>">
             <a style="display:none" href="/d/<%= dic.prevEntry %>" title="دیکشنری">
-            <div class="abadis">دیکشنری با کمک <a href="https://dictionary.abadis.ir/" target="_blank"><img src="./img/logo/abadis-w.svg" alt="abadis" /></a></div>
+            <div class="abadis">دیکشنری با کمک <a href="https://dictionary.abadis.ir/" target="_blank"><img src="./img/logo/abadis-w.svg" alt="دیکشنری آبادیس" /></a></div>
             <h2><span class="src"><%= dic.key %></span> در دیکشنری</h2>
             <hr/>
             <div class="part dic-part-1">
@@ -71,8 +71,8 @@
                     <h2>معنی‌های <span class="src"><%= dic.key %></span></h2>
                     <p class="mean"><%- dic.mean.map(w=>`<a href="#${w.replace(/"/g,'')}">${w}</a>`).join(dic.dir === 'rtl' ? ', ':'، ') %></p>
                     <div class="pron">
-                        <div class="uk"><img src="img/icon/UK.svg"><span><%= dic.pronounce && dic.pronounce.uk %></span></div>
-                        <div class="us"><img src="img/icon/USA.svg"><span><%= dic.pronounce && dic.pronounce.us %></span></div>
+                        <div class="uk"><img src="img/icon/UK.svg" alt="تلفظ انگلیسی"><span><%= dic.pronounce && dic.pronounce.uk %></span></div>
+                        <div class="us"><img src="img/icon/USA.svg" alt="تلفظ آمریکایی"><span><%= dic.pronounce && dic.pronounce.us %></span></div>
                     </div>
                 </div>
                 <section class="synonym" style="<%= dic.synonyms ? '' : 'display:none' %>">
@@ -118,7 +118,7 @@
             --><div class="separator"></div><!--
             --><div class="part dic-part-2">
                 <div class="vocabcoding" style="<%= dic.vc ? '' : 'display:none' %>" >
-                  <a href="http://vocabcoding.com/" target="_blank"><img src="<%= dic.vc && 'https://targoman.ir/vc/'+dic.vc %>"></a>
+                  <a href="http://vocabcoding.com/" target="_blank"><img alt="نکات تصویری ترجمه <%= dic.key %>" src="<%= dic.vc && 'https://targoman.ir/vc/'+dic.vc %>"></a>
                   <a class="copyright" href="https://www.instagram.com/vocab.coding/" target="_blank">تصویر برگرفته از: <img src="img/logo/vocab-coding.svg"></a>
                 </div>
                 <section class="relword" style="<%= dic.relwords ? '' : 'display:none' %>">
@@ -187,7 +187,7 @@
         <p>از آنجایی که زبان محاوره فارسی بسیار متفاوت از زبان رسمی است موتور ترجمه محاوره به صورت کاملا مستقل از موتور رسمی آموزش داده شده در ابتدای درخواست شما رسمی یا محاوره بودن متن به صورت خودکار توسط سیستم شناسایی شده و مناسب‌ترین موتور برای آن انتخاب می‌شود.</p>
         <p>از آن‌جایی که در موتور‌های ترجمه نورونی حجم پیکره آموزش‌داده‌شده به ماشین یکی از مهمترین شاخصه‌های افزایش کیفیت استاز همه علاقمندان و مترجمین درخواست‌ می‌کنیم تا ما را در افزایش کیفیت این موتور یاری کنند.</p>
         <br/>
-        <center><a href="mailto://oss@targoman.com" target="_blank">oss@targoman.com</a></center>
+        <div class="center"><a href="mailto://oss@targoman.com" target="_blank">oss@targoman.com</a></div>
         <br/>
     </div>
     <div class="engine-desc formal">
@@ -196,7 +196,7 @@
         <p>تا کنون علاوه بر موتور ترجمه، بیش از ۲۵ میلیون کلمه متن این پیکره نیز به صورت متن‌باز منتشر شده و از طریق سایت پارسیگان در اختیار محققین قرار گرفته است.</p>
         <p>از آن‌جایی که در موتور‌های ترجمه نورونی حجم پیکره آموزش‌داده‌شده به ماشین یکی از مهمترین شاخصه‌های افزایش کیفیت است از همه علاقمندان و مترجمین درخواست‌ می‌کنیم تا ما را در افزایش کیفیت این موتور یاری کنند.</p>
         <br/>
-        <center><a href="mailto://oss@targoman.com" target="_blank">oss@targoman.com</a>
+        <div class="center"><a href="mailto://oss@targoman.com" target="_blank">oss@targoman.com</a></div>
     </div>
     <div class="engine-info time">
         <h2>زمان ترجمه</h2>

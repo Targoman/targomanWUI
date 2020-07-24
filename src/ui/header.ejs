@@ -22,7 +22,7 @@
     <meta name="theme-color" content="#ffffff">
     <base href="/">
     <link rel="manifest" href="/manifest.json">
-    <link href="https://targoman.ir" rel="canonical">
+    <link href="<%= url %>" rel="canonical">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" />
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
     
@@ -43,8 +43,6 @@
     <% if (imageURL) { %>
         <meta property="og:image" content="<%= imageURL %>">
     <% } %>
-
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <meta name="description" content="<%= description %>">
     <meta name="keywords"    content="<%= keywords %>">

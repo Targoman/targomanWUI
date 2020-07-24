@@ -123,11 +123,18 @@ class TargomanWebUiApp {
             setTimeout(() => {
                 BindHandler.setItemValue('srcText', urlQueries2Json().txt);
             }, 500)
-        if (window.location.hash.length > 1)
-            if(window.location.hash.startsWith('#!/g/'))
-            BindHandler.setItemValue('srcText', decodeURIComponent(
-                window.location.hash.substr('#!/g/en/'.length))
-            )
+        if (window.location.hash.length > 1) {
+            if (window.location.hash.startsWith('#!/g/'))
+                BindHandler.setItemValue('srcText', decodeURIComponent(
+                    window.location.hash.substr('#!/g/en/'.length)
+                ))
+            else
+                BindHandler.setItemValue('srcText', decodeURIComponent(
+                    window.location.hash.substr(1)
+                ))
+        }
+                    
+        
         window.onhashchange =
             () => BindHandler.setItemValue('srcText', decodeURIComponent(window.location.hash.substr(1)))
     }
