@@ -71,8 +71,8 @@
                     <h2>معنی‌های <span class="src"><%= dic.key %></span></h2>
                     <p class="mean"><%= dic.mean.join(dic.dir === 'rtl' ? ', ':'، ') %></p>
                     <div class="pron">
-                        <div><img src="img/icon/UK.svg"><%= dic.pronounce && dic.pronounce.uk %></div>
-                        <div><img src="img/icon/USA.svg"><%= dic.pronounce && dic.pronounce.us %></div>
+                        <div class="uk"><img src="img/icon/UK.svg"><span><%= dic.pronounce && dic.pronounce.uk %></span></div>
+                        <div class="us"><img src="img/icon/USA.svg"><span><%= dic.pronounce && dic.pronounce.us %></span></div>
                     </div>
                 </div>
                 <section class="synonym" style="<%= dic.synonyms ? '' : 'display:none' %>">

@@ -83,6 +83,7 @@ class TargomanWebUiApp {
         this.dicResultsRelExps = this.dicResults.querySelector(".relexp ul");
         this.dicResultsExamples = this.dicResults.querySelector(".examples ul");
         this.dicResultsShowMore = this.dicResults.querySelector("div.show-more");
+        this.dicPronounce = this.dicResults.querySelector("div.pron")
 
         this.usageReportDiv = document.querySelector(
             "div#content div.src div.usage-report"
@@ -122,6 +123,8 @@ class TargomanWebUiApp {
             setTimeout(() => {
                 BindHandler.setItemValue('srcText', urlQueries2Json().txt);
             }, 500)
+        window.onhashchange =
+            () => BindHandler.setItemValue('srcText', decodeURIComponent(window.location.hash.substr(1)))
     }
 
     clearSource() {
@@ -509,6 +512,8 @@ class TargomanWebUiApp {
         const createLi = (klass, content) =>createEl('li', klass, content)
         const createTd = (klass, content) => createEl('td', klass, content)
         
+        const wordLink = (word) => `<a href="#${word}" class="inline">${word}</a>`
+        const wordsLink = (words) => words.map(wordLink)
         const fillTableItems = (e, items, dir) => {
             [].forEach.call(e.querySelectorAll("tr:not(:first-child)"), e =>
                 e.parentElement.removeChild(e)
@@ -519,9 +524,9 @@ class TargomanWebUiApp {
                     ++i
                     const tr = document.createElement("TR");
                     tr.classList.add(i % 2 ? 'even' : 'odd');
-                    tr.appendChild(createTd(dir === 'rtl' ? 'ltr' : 'rtl', word))
+                    tr.appendChild(createTd(dir === 'rtl' ? 'ltr' : 'rtl', wordLink(word)))
                     tr.appendChild(createTd('', pos))
-                    tr.appendChild(createTd(dir, items[word][pos].join(dir === 'rtl' ? '، ' : ', ')))
+                    tr.appendChild(createTd(dir, wordsLink(items[word][pos]).join(dir === 'rtl' ? '، ' : ', ')))
                     e.appendChild(tr)
                 }
             }
@@ -535,16 +540,29 @@ class TargomanWebUiApp {
             e => (e.textContent = text)
         );
         dicResult.dir = dicResult.lang == 'en' ? 'ltr' : 'rtl'
-        this.dicResultsMeaning.textContent = dicResult.mean;
-        this.dicResultsMeaning.classList.remove(mainDirection);
-        this.dicResultsMeaning.classList.add(revDirection);
+        const meanings = []
+        if (dicResult.mean) {
+            this.dicResultsMeaning.innerHTML = wordsLink(dicResult.mean).join(dicResult.dir === 'ltr' ? '، ' : ', ');
+            this.dicResultsMeaning.classList.remove(mainDirection);
+            this.dicResultsMeaning.classList.add(revDirection);
+            this.dicResultsMeaning.parentElement.style.display = "block"
+        } else {
+            this.dicResultsMeaning.parentElement.style.display = "none"
+        }
+
+        if (dicResult.phonetics) {
+            this.dicPronounce.querySelector('.uk span').innerHTML = dicResult.phonetics.uk
+            this.dicPronounce.querySelector('.us span').innerHTML = dicResult.phonetics.us
+            this.dicPronounce.style.display=""
+        } else this.dicPronounce.style.display = "none"
+        
         fillPartItems(this.dicResultsSynonyms,dicResult.syn,dicResult.dir, fillTableItems);
         fillPartItems(this.dicResultsAntonyms,dicResult.ant,dicResult.dir,fillTableItems);
         fillPartItems(this.dicResultsExamples, dicResult.examples,dicResult.dir, (e, items) => {
             e.innerHTML = "";
             for (var i = 0; i < dicResult.examples.length; i++){
-                e.appendChild(createLi('source', dicResult.examples[i][0]))
-                e.appendChild(createLi('translation', dicResult.examples[i][1]))
+                e.appendChild(createLi('source', wordLink(dicResult.examples[i][0])))
+                e.appendChild(createLi('translation', wordLink(dicResult.examples[i][1])))
                 e.appendChild(createLi('separator'))
             }
         });
@@ -554,9 +572,9 @@ class TargomanWebUiApp {
         fillPartItems(this.dicResultsRelWords,dicResult.relWord, dicResult.dir, (e, items) => {
             e.innerHTML = "";
             for(var word in dicResult.relWord) {
-                e.appendChild(createLi('source', word))
+                e.appendChild(createLi('source', wordLink(word)))
                 const ul = document.createElement('ul')
-                ul.appendChild(createLi('translation', dicResult.relWord[word].join(dicResult.dir === 'rtl' ? ', ' : '، ')))
+                ul.appendChild(createLi('translation', wordsLink(dicResult.relWord[word]).join(dicResult.dir === 'rtl' ? ', ' : '، ')))
                 e.appendChild(ul)
                 e.appendChild(createLi('separator'))
             }
@@ -564,10 +582,10 @@ class TargomanWebUiApp {
         fillPartItems(this.dicResultsRelExps, dicResult.relExp,dicResult.dir, (e, items) => {
             e.innerHTML = "";
             for(var word in dicResult.relExp) {
-                e.appendChild(createLi('source', word))
+                e.appendChild(createLi('source', wordLink(word)))
                 const ul = document.createElement('ul')
                 for (let i = 0; i < dicResult.relExp[word].length; ++i)
-                    ul.appendChild(createLi('translation', dicResult.relExp[word][i]))
+                    ul.appendChild(createLi('translation', wordLink(dicResult.relExp[word][i])))
                 e.appendChild(ul)
                 e.appendChild(createLi('separator'))
             }
@@ -620,9 +638,6 @@ class TargomanWebUiApp {
 
     translate() {
         this.informBusyState(true);
-        document.querySelector(
-            "div#content div.ads div.graphical"
-        ).style.display = "";
         this.dicResults.style.display = "";
         this.metadataDiv.style.display = "";
         let allPromises = [];
@@ -653,8 +668,13 @@ class TargomanWebUiApp {
         if (BindHandler.srcText.split(/\s+/).length <= 3)
             allPromises.push(
                 Translation.dicLookup(BindHandler.srcText).then(r => {
-                    if (r === false || BindHandler.srcText != sourceText)
+                    if (r === false || BindHandler.srcText != sourceText) {
+                        document.querySelector(
+                            "div#content div.ads div.graphical"
+                        ).style.display = "";
+ 
                         return;
+                    }
                     this.updateDicResults(BindHandler.srcText, r);
                     document.querySelector(
                         "div#content div.ads div.graphical"

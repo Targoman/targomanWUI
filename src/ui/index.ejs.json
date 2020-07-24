@@ -12,28 +12,14 @@
   "srcText": null,
   "tgtText": null,
   "dic": {
-    "prevEntry": "en/a/a.html",
+    "prevEntry": "fa/بذر/",
     "show": false,
     "dir": "ltr",
     "key": "translation",
     "mean": ["ترجمه", "ترجمان (ترگمان)", "یچواک", "یچوه", "ویچار", "حرکت انتقالی", "برگردان"],
     "synonyms": {
       "تفسیر": {
-        "اسم": [
-          "explanation",
-          "exposition",
-          "gloss",
-          "comment",
-          "annotation",
-          "interpretation",
-          "commentary",
-          "exegesis",
-          "translation",
-          "paraphrase",
-          "version",
-          "rendition",
-          "rendering"
-        ]
+        "اسم": ["explanation", "exposition", "gloss", "comment", "annotation", "interpretation", "commentary", "exegesis", "translation", "paraphrase", "version", "rendition", "rendering"]
       },
       "برگردان": { "اسم": ["chorus", "translation", "lapel", "refrain", "repetend", "revers"] },
       "انقال": { "اسم": ["translation", "conveyancing", "transduction"] },
@@ -42,15 +28,11 @@
       "حرکت انتقالی": { "اسم": ["translation"] }
     },
     "antonyms": {
-      "اقتباس":{
-        "اسم":[
-          "derivation", "quotation" 
-        ]
+      "اقتباس": {
+        "اسم": ["derivation", "quotation"]
       },
-      "نقل‌قول کردن":{
-        "فعل":[
-          "quote"
-        ]
+      "نقل‌قول کردن": {
+        "فعل": ["quote"]
       }
     },
     "related": {
