@@ -126,7 +126,7 @@ class TargomanWebUiApp {
         if (window.location.hash.length > 1)
             if(window.location.hash.startsWith('#!/g/'))
             BindHandler.setItemValue('srcText', decodeURIComponent(
-                window.location.hash.substr(window.location.hash.substr('#!/g/en'.length)))
+                window.location.hash.substr('#!/g/en'.length))
             )
         window.onhashchange =
             () => BindHandler.setItemValue('srcText', decodeURIComponent(window.location.hash.substr(1)))
