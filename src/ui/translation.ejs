@@ -69,7 +69,7 @@
             <div class="part dic-part-1">
                 <div class="means" style="<%= dic.pronounce ? '' : 'display:none' %>">
                     <h2>معنی‌های <span class="src"><%= dic.key %></span></h2>
-                    <p class="mean"><%- dic.mean.map((word)=>`<a href="#${word}">${word}</a>`).join(dic.dir === 'rtl' ? ', ':'، ') %></p>
+                    <p class="mean"><%- dic.mean.map(w=>`<a href="#${w.replace(/\(\)<>/,'')}">${w}</a>`).join(dic.dir === 'rtl' ? ', ':'، ') %></p>
                     <div class="pron">
                         <div class="uk"><img src="img/icon/UK.svg"><span><%= dic.pronounce && dic.pronounce.uk %></span></div>
                         <div class="us"><img src="img/icon/USA.svg"><span><%= dic.pronounce && dic.pronounce.us %></span></div>
@@ -84,7 +84,7 @@
                             <tr class="<%= i%2 ? 'even':'odd' %>">
                                 <td class="<%= dic.dir === 'rtl' ? 'ltr':'rtl' %>"><%- (w=>`<a href="#${w}">${w}</a>`)(word) %></td>
                                 <td><%= pos %></td>
-                                <td class="<%= dic.dir %>"><%- dic.synonyms[word][pos].map(w=>`<a href="#${w}">${w}</a>`).join(dic.dir === 'rtl' ? '، ':', ') %></td>
+                                <td class="<%= dic.dir %>"><%- dic.synonyms[word][pos].map(w=>`<a href="#${w.replace(/\(\)<>/,'')}">${w}</a>`).join(dic.dir === 'rtl' ? '، ':', ') %></td>
                             </tr>
                       <% }} %>
                   </table>
@@ -98,7 +98,7 @@
                             <tr class="<%= i%2 ? 'even':'odd' %>">
                                 <td class="<%= dic.dir === 'rtl' ? 'ltr':'rtl' %>"><%- (w=>`<a href="#${w}">${w}</a>`)(word) %></td>
                                 <td><%= pos %></td>
-                                <td class="<%= dic.dir %>"><%- dic.antonyms[word][pos].map(w=>`<a href="#${w}">${w}</a>`).join(dic.dir === 'rtl' ? '، ':', ') %></td>
+                                <td class="<%= dic.dir %>"><%- dic.antonyms[word][pos].map(w=>`<a href="#${w.replace(/\(\)<>/,'')}">${w}</a>`).join(dic.dir === 'rtl' ? '، ':', ') %></td>
                             </tr>
                       <% }} %>
                   </table>
@@ -108,8 +108,8 @@
                   <h2>مثال‌هایی از <span class="src"><%= dic.key %></span></h2>
                   <ul>
                       <% if(dic.examples) for(var i=0; i<dic.examples.length;i++) {%>
-                        <li class="source"><%- (w=>`<a href="#${w}">${w}</a>`)(dic.examples[i][0]) %></li>
-                        <li class="translation"><%- (w=>`<a href="#${w}">${w}</a>`)(dic.examples[i][1]) %></li>
+                        <li class="source"><%- (w=>`<a href="#${w.replace(/\(\)<>/,'')}">${w}</a>`)(dic.examples[i][0]) %></li>
+                        <li class="translation"><%- (w=>`<a href="#${w.replace(/\(\)<>/,'')}">${w}</a>`)(dic.examples[i][1]) %></li>
                         <li class="separator"></li>
                       <% } %>
                   </ul>
@@ -126,7 +126,7 @@
                   <ul>
                       <% for(var word in dic.relwords) {%>
                         <li class="source"><%- (w=>`<a href="#${w}">${w}</a>`)(word) %></li>
-                        <ul><li class="translation"><%- dic.relwords[word].map(w=>`<a href="#${w}">${w}</a>`).join(dic.dir === 'rtl' ? ', ':'، ') %></li></ul>
+                        <ul><li class="translation"><%- dic.relwords[word].map(w=>`<a href="#${w.replace(/\(\)<>/,'')}">${w}</a>`).join(dic.dir === 'rtl' ? ', ':'، ') %></li></ul>
                         <li class="separator"></li>
                       <% } %>
                   </ul>
@@ -135,10 +135,10 @@
                   <h2>عبارت‌های مرتبط با <span class="src"><%= dic.key %></span></h2>
                   <ul>
                       <% for(var word in dic.related) {%>
-                        <li class="source"><%- (w=>`<a href="#${w}">${w}</a>`)(word) %></li>
+                        <li class="source"><%- (w=>`<a href="#${w.replace(/\(\)<>/,'')}">${w}</a>`)(word) %></li>
                         <ul>
                         <% for(var i=0; i<dic.related[word].length; ++i) { %>
-                            <li class="translation"><%- (w=>`<a href="#${w}">${w}</a>`)(dic.related[word][i]) %></li>
+                            <li class="translation"><%- (w=>`<a href="#${w.replace(/\(\)<>/,'')}">${w}</a>`)(dic.related[word][i]) %></li>
                         <% } %>
                         </ul>
                         <li class="separator"></li>
