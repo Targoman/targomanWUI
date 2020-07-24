@@ -25,21 +25,13 @@ let config = {
     plugins: [
         copy({
             targets: {
+                "src/ui/img": "dist/img",
+                "src/ui/css": "dist/css",
+                "src/ui/font": "dist/font",
                 "src/ui/index.ejs": "dist/index.html",
                 "src/ui/about.ejs": "dist/about.html",
                 "src/ui/api.ejs": "dist/api.html",
                 "src/ui/terms.ejs": "dist/terms.html",
-                "src/ui/community.ejs": "dist/community.html",
-                "src/ui/translate.ejs": "dist/translate.html",
-                "src/ui/validate.ejs": "dist/validate.html",
-                "src/ui/compare.ejs": "dist/compare.html",
-                "src/ui/apple-touch-icon-120x120-precomposed.png": "dist/apple-touch-icon-120x120-precomposed.png",
-                "src/ui/apple-touch-icon.png": "dist/apple-touch-icon.png",
-                "src/ui/apple-touch-icon-precomposed.png": "dist/apple-touch-icon-precomposed.png",
-                "src/ui/favicon.ico": "dist/favicon.ico",
-                "src/ui/img": "dist/img",
-                "src/ui/css": "dist/css",
-                "src/ui/font": "dist/font"
             }
         }),
         nodeResolve(),
@@ -49,7 +41,11 @@ let config = {
     ]
 };
 
-if (process.env.NODE_ENV !== "production") {
+if (process.env.NODE_ENV == "production") {
+    console.log("PRODUCTION MODE!");
+    config.output.format = "iife";
+    config.plugins.push(finalize());
+} else {
     console.log("DEVELOPMENT MODE!");
     config.watch = {
         clearScreen: false,
@@ -59,10 +55,6 @@ if (process.env.NODE_ENV !== "production") {
         serve({ contentBase: "dist", open: true }),
         livereload({ watch: "dist" })
     );
-} else {
-    console.log("PRODUCTION MODE!");
-    config.output.format = "iife";
-    config.plugins.push(finalize());
 }
 
 export default config;

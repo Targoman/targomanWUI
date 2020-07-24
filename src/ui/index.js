@@ -6,7 +6,8 @@ import {
     getTextContent,
     setTokenizedText,
     soon,
-    getCursorLineAndPos
+    getCursorLineAndPos,
+    urlQueries2Json
 } from "./lib/common";
 import { CommunityAPI } from "./lib/api";
 import BindHandler from "./lib/bindhandler";
@@ -75,14 +76,13 @@ class TargomanWebUiApp {
 
         this.dicResults = document.querySelector("div#content div.dic-result");
         this.dicResultsMeaning = this.dicResults.querySelector("p.mean");
-        this.dicResultsRelWords = this.dicResults.querySelector("ul.relword");
-        this.dicResultsSynonyms = this.dicResults.querySelector(
-            "table.synonym"
-        );
-        this.dicResultsRelExps = this.dicResults.querySelector("ul.relexp");
-        this.dicResultsShowMore = this.dicResults.querySelector(
-            "div.show-more"
-        );
+        this.dicResultsRelWords = this.dicResults.querySelector(".relword ul");
+        this.dicResultsVC = this.dicResults.querySelector(".vocabcoding a");
+        this.dicResultsSynonyms = this.dicResults.querySelector(".synonym table");
+        this.dicResultsAntonyms = this.dicResults.querySelector(".antonym table");
+        this.dicResultsRelExps = this.dicResults.querySelector(".relexp ul");
+        this.dicResultsExamples = this.dicResults.querySelector(".examples ul");
+        this.dicResultsShowMore = this.dicResults.querySelector("div.show-more");
 
         this.usageReportDiv = document.querySelector(
             "div#content div.src div.usage-report"
@@ -118,6 +118,10 @@ class TargomanWebUiApp {
                 now.setTime(now.getTime() + 1000 * 60 * 60 * 24 * 3);
                 document.cookie = `hideMobileOverlay=true;expires=${now.toGMTString()}`;
             });
+        if (urlQueries2Json().txt)
+            setTimeout(() => {
+                BindHandler.setItemValue('srcText', urlQueries2Json().txt);
+            }, 500)
     }
 
     clearSource() {
@@ -427,7 +431,8 @@ class TargomanWebUiApp {
         clearTimeout(this.automaticTranslationTimeout);
         this.automaticTranslationTimeout = setTimeout(() => {
             BindHandler.act("translate");
-        }, 500);
+        }, 1000);
+        this.minifyBoxes(false);
     }
 
     informBusyState(busy) {
@@ -491,78 +496,82 @@ class TargomanWebUiApp {
         this.makeSourceAndTargetSameHeight();
     }
 
-    updateAbadisResults(text, abadisResult) {
-        let lang = Translation.detectLanguage(text);
+    updateDicResults(text, dicResult) {
+        const lang = Translation.detectLanguage(text);
         let mainDirection = lang.direction,
             revDirection = mainDirection === "ltr" ? "rtl" : "ltr";
-        let fillUlItems = (e, items) => {
-            e.innerHTML = "";
-            for (let item of items) {
-                if (e.childElementCount) {
-                    let li = document.createElement("LI");
-                    e.appendChild(li);
-                }
-                let index = 0;
-                for (let key in item) {
-                    let li = document.createElement("LI");
-                    li.textContent = item[key];
-                    li.style.direction =
-                        index == 0 ? mainDirection : revDirection;
-                    e.appendChild(li);
-                    ++index;
-                }
-            }
-        };
-        let fillTableItems = (e, items) => {
+        const createEl = (type, klass, content ='') => {
+            const el = document.createElement(type);
+            if(klass) el.classList.add(klass)
+            el.innerHTML = content;
+            return el;
+        }
+        const createLi = (klass, content) =>createEl('li', klass, content)
+        const createTd = (klass, content) => createEl('td', klass, content)
+        
+        const fillTableItems = (e, items, dir) => {
             [].forEach.call(e.querySelectorAll("tr:not(:first-child)"), e =>
                 e.parentElement.removeChild(e)
             );
-            for (let item of items) {
-                let tr = document.createElement("TR");
-                e.appendChild(tr);
-                for (let key in item) {
-                    let td = document.createElement("TD");
-                    td.textContent = Array.isArray(item[key])
-                        ? ", ".join(item[key])
-                        : item[key];
-                    tr.appendChild(td);
+            let i = 1;
+            for (const word in items) {
+                for (var pos in items[word]) {
+                    ++i
+                    const tr = document.createElement("TR");
+                    tr.classList.add(i % 2 ? 'even' : 'odd');
+                    tr.appendChild(createTd(dir === 'rtl' ? 'ltr' : 'rtl', word))
+                    tr.appendChild(createTd('', pos))
+                    tr.appendChild(createTd(dir, items[word][pos].join(dir === 'rtl' ? '، ' : ', ')))
+                    e.appendChild(tr)
                 }
             }
-            let updateDirectionAndAlignment = (e, dir) => {
-                e.style.direction = dir;
-                e.style.textAlign = dir === "rtl" ? "right" : "left";
-            };
-            [].forEach.call(e.querySelectorAll("td:first-child"), e =>
-                updateDirectionAndAlignment(e, revDirection)
-            );
-            [].forEach.call(e.querySelectorAll("td:last-child"), e =>
-                updateDirectionAndAlignment(e, mainDirection)
-            );
-        };
-        let fillPartItems = (e, items, filler) => {
-            [].forEach.call(
-                this.dicResults.querySelectorAll(`.${e.classList[0]}`),
-                e => (e.style.display = items ? "" : "none")
-            );
-            if (items) filler(e, items);
+        }
+        const fillPartItems = (e, items, dir, filler) => {
+            e.parentElement.style.display = items ? "" : "none"
+            if (items) filler(e, items, dir);
         };
         [].forEach.call(
             this.dicResults.querySelectorAll(".src"),
             e => (e.textContent = text)
         );
-        this.dicResultsMeaning.textContent = abadisResult.mean;
-        this.dicResultsMeaning.style.direction = revDirection;
-        fillPartItems(
-            this.dicResultsRelWords,
-            abadisResult.relword,
-            fillUlItems
-        );
-        fillPartItems(
-            this.dicResultsSynonyms,
-            abadisResult.syn,
-            fillTableItems
-        );
-        fillPartItems(this.dicResultsRelExps, abadisResult.relexp, fillUlItems);
+        dicResult.dir = dicResult.lang == 'en' ? 'ltr' : 'rtl'
+        this.dicResultsMeaning.textContent = dicResult.mean;
+        this.dicResultsMeaning.classList.remove(mainDirection);
+        this.dicResultsMeaning.classList.add(revDirection);
+        fillPartItems(this.dicResultsSynonyms,dicResult.syn,dicResult.dir, fillTableItems);
+        fillPartItems(this.dicResultsAntonyms,dicResult.ant,dicResult.dir,fillTableItems);
+        fillPartItems(this.dicResultsExamples, dicResult.examples,dicResult.dir, (e, items) => {
+            e.innerHTML = "";
+            for (var i = 0; i < dicResult.examples.length; i++){
+                e.appendChild(createLi('source', dicResult.examples[i][0]))
+                e.appendChild(createLi('translation', dicResult.examples[i][1]))
+                e.appendChild(createLi('separator'))
+            }
+        });
+        fillPartItems(this.dicResultsVC, dicResult.vc,dicResult.dir, (e, image) => {
+            e.querySelector('img').src='https://targoman.ir/vc/' + image
+        });
+        fillPartItems(this.dicResultsRelWords,dicResult.relWord, dicResult.dir, (e, items) => {
+            e.innerHTML = "";
+            for(var word in dicResult.relWord) {
+                e.appendChild(createLi('source', word))
+                const ul = document.createElement('ul')
+                ul.appendChild(createLi('translation', dicResult.relWord[word].join(dicResult.dir === 'rtl' ? ', ' : '، ')))
+                e.appendChild(ul)
+                e.appendChild(createLi('separator'))
+            }
+        });
+        fillPartItems(this.dicResultsRelExps, dicResult.relExp,dicResult.dir, (e, items) => {
+            e.innerHTML = "";
+            for(var word in dicResult.relExp) {
+                e.appendChild(createLi('source', word))
+                const ul = document.createElement('ul')
+                for (let i = 0; i < dicResult.relExp[word].length; ++i)
+                    ul.appendChild(createLi('translation', dicResult.relExp[word][i]))
+                e.appendChild(ul)
+                e.appendChild(createLi('separator'))
+            }
+        });
         this.dicResults.style.display = "block";
         soon(() => {
             this.dicResultsShowMore.style.display =
@@ -600,6 +609,15 @@ class TargomanWebUiApp {
         this.metadataDiv.style.display = "block";
     }
 
+    minifyBoxes(state) {
+        [].forEach.call(document.querySelectorAll("div.content"), el => {
+            if(state)
+                el.classList.add('one-line')
+            else
+                el.classList.remove('one-line')
+        })
+    }
+
     translate() {
         this.informBusyState(true);
         document.querySelector(
@@ -634,13 +652,14 @@ class TargomanWebUiApp {
         );
         if (BindHandler.srcText.split(/\s+/).length <= 3)
             allPromises.push(
-                Translation.abadisLookup(BindHandler.srcText).then(r => {
+                Translation.dicLookup(BindHandler.srcText).then(r => {
                     if (r === false || BindHandler.srcText != sourceText)
                         return;
-                    this.updateAbadisResults(BindHandler.srcText, r);
+                    this.updateDicResults(BindHandler.srcText, r);
                     document.querySelector(
                         "div#content div.ads div.graphical"
                     ).style.display = "none";
+                    this.minifyBoxes(true)
                 })
             );
         Promise.all(allPromises).finally(() => this.informBusyState(false));

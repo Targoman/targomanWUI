@@ -1,0 +1,3 @@
+User-Agent: *
+Disallow: /private 
+Sitemap: https://targoman.ir/sitemap.xml

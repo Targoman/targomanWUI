@@ -1,3 +1,13 @@
 .env.sh
 node_modules
 dist
+yarn.lock
+src/public/d
+src/public/p
+extra/composer.lock
+extra/d
+extra/dic.json
+extra/vc
+extra/vendor/
+extra/www.instagram.com.har
+yarn-error.log

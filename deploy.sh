@@ -36,6 +36,9 @@ git commit -am "Ready to be deployed to server"
 git tag "$TAG" -fm "Tag: $TAG"
 
 cd dist/
+ln -snf /srv/www/vhosts/targoman.ir/htdocs/vc 
+ln -snf /srv/www/vhosts/targoman.ir/htdocs/d  
+ln -snf /srv/www/vhosts/targoman.ir/htdocs/p  
 tar czf $TAG.tgz * && \
     scp $TAG.tgz deployer@targoman.ir:/tmp && \
     ssh deployer@targoman.ir deploy $TAG

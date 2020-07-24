@@ -70,12 +70,14 @@
     opacity: .4;
 }
 
-.ltr {
-    direction: ltr !important;
+.rtl{
+    direction: rtl !important;
+    text-align: right !important;
 }
 
-.rtl {
+.ltr{
     direction: ltr !important;
+    text-align: left !important;
 }
 
 body,
@@ -355,18 +357,21 @@ div#content div.ads {
     padding-top: 1em;
 }
 
-div#content div.ads div.text {
+div#content div.ads div.text a{
     box-sizing: border-box;
     border: 1px dashed transparent;
 }
 
-div#content div.ads div.text:hover {
+div#content div.ads div.text a:hover {
     border: 1px dashed #337ab7;
 }
 
 div#content div.ads div.text a {
     text-decoration: none;
     color: inherit;
+    padding-top: 1em;
+    display: block;
+    padding: .5em;
 }
 
 div#content div.src, div#content div.tgt, div#content div.text, div#content div.graphical, div#content div.dic-part-1, div#content div.dic-part-2 {
@@ -457,6 +462,10 @@ div#content div.content {
     min-height: 13em;
     box-sizing: border-box;
     border: 1px solid #d9eff7;
+    transition: all .5s;
+}
+div#content div.content.one-line {
+    min-height: 4em;
 }
 
 div#content div.tgt div.content {
@@ -585,7 +594,7 @@ div#content div.content span.phrase-token.hi {
 div#content div.dic-result {
     color: #337ab7;
     display: none;
-    max-height: 15em;
+    max-height: 1500em;
     overflow: hidden;
     position: relative;
 }
@@ -595,7 +604,7 @@ div#content div.dic-result.full {
 }
 
 div#content div.dic-result div.show-more {
-    display: block;
+    display: none;
     height: 3em;
     width: 100%;
     margin: auto;
@@ -610,10 +619,14 @@ div.arrow {
     box-sizing: border-box;
     position: absolute;
     left: 50%;
-    top: 50%;
+    bottom: 0;
     border-top: 0.25em solid;
     border-right: 0.25em solid;
     transform: translateY(.5em) rotate(-45deg);
+}
+
+div.arrow:hover{
+    filter: sepia(1) drop-shadow(0px 0px 2px black);
 }
 
 div.arrow.down {
@@ -651,40 +664,106 @@ div#content div.dic-result ul {
     margin-right: 2em;
 }
 
-div#content div.dic-result ul li:nth-child(3n + 1) {
+.dic-result ul li.source {
     color: #062b4b;
 }
 
-div#content div.dic-result ul li:nth-child(3n) {
-    height: 1.5em;
+.dic-result ul li.separator {
+    height: 1em;
 }
 
-p.mean, table.synonym {
+.dic-result ul ul, .dic-result ul ul li{
+    list-style: circle;
+}
+
+p.mean, .dic-result table {
     margin-bottom: 1em;
 }
 
-table.synonym {
+.dic-result table {
     border-collapse: collapse;
     width: 100%;
 }
 
-table.synonym td, table.synonym th {
+.dic-result table td, .dic-result table th {
     min-width: 5em;
     border-right: 1px solid #ddd;
     padding: 0 0.5em;
     text-align: center;
 }
 
-table.synonym td:first-child, table.synonym th:first-child {
+.dic-result table td:first-child, .dic-result table th:first-child {
     border-right: none;
 }
 
-table.synonym tr:first-child {
+.dic-result table tr:first-child {
     border-bottom: 1px solid #ddd;
+}
+.dic-result table tr.odd{
+    background-color: #f0ffff;
 }
 
 div#mobile_overlay {
     display: none;
+}
+section{
+    margin-top: 2em;
+}
+.vocabcoding {
+    text-align: center;
+    padding: 1em 0;
+}
+.vocabcoding a{
+    display: block;
+}
+.vocabcoding a:hover {
+    filter: drop-shadow(0px 0px 6px gray);
+}
+.vocabcoding a.copyright{
+    filter: none;
+    color: #337ab7;
+    text-decoration: none;
+}
+.vocabcoding a.copyright img{
+    width: 100px;
+    vertical-align: middle;
+}
+
+.dic-result .part hr{
+    border-top: 1px dotted #a0c4e4;
+    margin: .5em 0;
+}
+.dic-result .part hr:after{
+    content: "";
+    display: none;
+    width: 28px;
+    margin: 10px auto;
+    border-bottom: 5px dotted #a0c4e4;
+}
+
+.means{
+    position: relative;
+}
+
+.pron{
+    position: absolute;
+    top:0;
+    left:0;
+    color:green;
+    direction: ltr;
+    font-size: 90%;
+}
+
+.pron img{ width: 1.5em; display: inline-block; vertical-align: middle; margin-right: .5em;}
+
+.ads .text h2 {
+    font-size: 1em;
+    color: #337ab7;
+    margin: 0;
+    font-weight: 500;
+}
+.ads .text hr {
+    border-top: 1px solid #337ab7;
 }
 
 @media only screen and (max-width: 560px) {
@@ -716,6 +795,10 @@ div#mobile_overlay {
     }
     div#content div.content {
         min-height: 8em;
+        transition: all .5s;
+    }
+    div#content div.content.one-line {
+        min-height: 4em;
     }
     div#content div.ads div.text {
         margin-top: 2em;
