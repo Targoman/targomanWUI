@@ -552,7 +552,7 @@ class TargomanWebUiApp {
             e => (e.textContent = dicResult.dicWord)
         );
 
-        history.pushState({ 'page_id': dicResult.dicWord }, "معنی " + dicResult.dicWord, `/${dicResult.lang}/${dicResult.dicWord}`);
+        history.pushState({ 'page_id': dicResult.dicWord }, "معنی " + dicResult.dicWord, `/${dicResult.lang}/${dicResult.word}`);
 
         dicResult.dir = dicResult.lang == 'en' ? 'ltr' : 'rtl'
         const meanings = []
@@ -688,7 +688,7 @@ class TargomanWebUiApp {
                             "div#content div.ads div.graphical"
                         ).style.display = "";
 
-                        history.pushState({ 'page_id': dicResult.dicWord },
+                        history.pushState({ },
                             "ترگمان - ترجمه آنلاین و رایگان فارسی به انگلیسی و انگلیسی به فارسی",
                             `/`);
 
