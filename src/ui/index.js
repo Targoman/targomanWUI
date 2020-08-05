@@ -564,7 +564,8 @@ class TargomanWebUiApp {
 
         const url = `/d/${dicResult.lang}/${dicResult.word}/`
         history.pushState({ 'page_id': dicResult.dicWord }, "ترگمان - معنی " + dicResult.word, url);
-        document.title = `ترگمان - معنی ${dicResult.word} به ${dicResult.lang == 'en' ? 'فارسی' : 'انگلیسی'}`;
+        const title = `${dicResult.word} به ${dicResult.lang == 'en' ? 'فارسی' : 'انگلیسی'}`
+        document.title = `ترگمان - معنی ${title} | ترجمه ${title}`;
         ga('set', 'page', url + 'index.html');
         ga('send', 'pageview');
 
