@@ -30,6 +30,10 @@ BindHandler.addItem("srcText", "");
 
 BindHandler.addItem("proposingNewTranslationMode", false);
 
+window.onpopstate = function(event) {
+    console.log("location: " + document.location + ", state: " + JSON.stringify(event.state));
+};
+  
 // Component setup
 const SELECTOR_TO_COMPONENT_MAP = {
     "div#content div.header div.dropdown": DropDown,
@@ -562,7 +566,6 @@ class TargomanWebUiApp {
 
         history.pushState({ 'page_id': dicResult.dicWord }, "ترگمان - معنی " + dicResult.word, `/d/${dicResult.lang}/${dicResult.word}/`);
         document.title = `ترگمان - معنی ${dicResult.word} به ${dicResult.lang == 'en' ? 'فارسی' : 'انگلیسی'}`;
-
 
         dicResult.dir = dicResult.lang == 'en' ? 'ltr' : 'rtl'
         const meanings = []
