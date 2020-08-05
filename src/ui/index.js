@@ -549,8 +549,11 @@ class TargomanWebUiApp {
         };
         [].forEach.call(
             this.dicResults.querySelectorAll(".src"),
-            e => (e.textContent = text)
+            e => (e.textContent = dicResult.dicWord)
         );
+
+        history.pushState({ 'page_id': dicResult.dicWord }, "معنی " + dicResult.dicWord, `/${dicResult.lang}/${dicResult.dicWord}`);
+
         dicResult.dir = dicResult.lang == 'en' ? 'ltr' : 'rtl'
         const meanings = []
         if (dicResult.mean) {
@@ -684,7 +687,11 @@ class TargomanWebUiApp {
                         document.querySelector(
                             "div#content div.ads div.graphical"
                         ).style.display = "";
- 
+
+                        history.pushState({ 'page_id': dicResult.dicWord },
+                            "ترگمان - ترجمه آنلاین و رایگان فارسی به انگلیسی و انگلیسی به فارسی",
+                            `/`);
+
                         return;
                     }
                     this.updateDicResults(BindHandler.srcText, r);
