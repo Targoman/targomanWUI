@@ -552,7 +552,7 @@ class TargomanWebUiApp {
             e => (e.textContent = dicResult.dicWord)
         );
 
-        history.pushState({ 'page_id': dicResult.dicWord }, "معنی " + dicResult.dicWord, `/${dicResult.lang}/${dicResult.word}/`);
+        history.pushState({ 'page_id': dicResult.dicWord }, "معنی " + dicResult.dicWord, `/d/${dicResult.lang}/${dicResult.word}/`);
 
         dicResult.dir = dicResult.lang == 'en' ? 'ltr' : 'rtl'
         const meanings = []
