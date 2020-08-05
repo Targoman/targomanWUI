@@ -524,7 +524,7 @@ class TargomanWebUiApp {
         const createLi = (klass, content) =>createEl('li', klass, content)
         const createTd = (klass, content) => createEl('td', klass, content)
         
-        const wordLink = (word) => `<a href="#${word}">${word}</a>`
+        const wordLink = (word) => `<a href="./#${word}">${word}</a>`
         const wordsLink = (words) => words.map(wordLink)
         const fillTableItems = (e, items, dir) => {
             [].forEach.call(e.querySelectorAll("tr:not(:first-child)"), e =>
@@ -552,7 +552,7 @@ class TargomanWebUiApp {
             e => (e.textContent = dicResult.dicWord)
         );
 
-        history.pushState({ 'page_id': dicResult.dicWord }, "معنی " + dicResult.dicWord, `/${dicResult.lang}/${dicResult.word}`);
+        history.pushState({ 'page_id': dicResult.dicWord }, "معنی " + dicResult.dicWord, `/${dicResult.lang}/${dicResult.word}/`);
 
         dicResult.dir = dicResult.lang == 'en' ? 'ltr' : 'rtl'
         const meanings = []
@@ -688,9 +688,9 @@ class TargomanWebUiApp {
                             "div#content div.ads div.graphical"
                         ).style.display = "";
 
-                        history.pushState({ },
+                        /*history.pushState({ },
                             "ترگمان - ترجمه آنلاین و رایگان فارسی به انگلیسی و انگلیسی به فارسی",
-                            `/`);
+                            `/`);*/
 
                         return;
                     }
