@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 	<loc>https://targoman.ir/</loc>
-	<lastmod>2020-07-18T18:06:19+01:00</lastmod>
+	<lastmod>2020-08-5T18:06:19+01:00</lastmod>
 	<priority>1.0</priority>
   <changefreq>monthly</changefreq>
 </url>
@@ -13,7 +13,13 @@
 </url>
 <url>
   <loc>https://blog.targoman.ir</loc>
-  <lastmod>2020-07-18T18:06:20+01:00</lastmod>
+  <lastmod>2020-08-1T18:06:20+01:00</lastmod>
+  <priority>1.0</priority>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>https://targoman.ir/blog</loc>
+  <lastmod>2020-08-1T18:06:20+01:00</lastmod>
   <priority>1.0</priority>
   <changefreq>weekly</changefreq>
 </url>
