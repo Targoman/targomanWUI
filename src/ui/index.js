@@ -457,8 +457,8 @@ class TargomanWebUiApp {
         history.pushState({},
             "ترگمان - ترجمه آنلاین و رایگان فارسی به انگلیسی و انگلیسی به فارسی",
             `/`);
-        ga('set', 'page', '/');
-        ga('send', 'pageview');
+        //ga('set', 'page', '/');
+        //ga('send', 'pageview');
     }
     informBusyState(busy) {
         this.busyDiv.style.display = busy ? "block" : "";
@@ -566,8 +566,8 @@ class TargomanWebUiApp {
         history.pushState({ 'page_id': dicResult.dicWord }, "ترگمان - معنی " + dicResult.word, url);
         const title = `${dicResult.word} به ${dicResult.lang == 'en' ? 'فارسی' : 'انگلیسی'}`
         document.title = `ترگمان - معنی ${title} | ترجمه ${title}`;
-        ga('set', 'page', url + 'index.html');
-        ga('send', 'pageview');
+//        ga('set', 'page', url + 'index.html');
+//        ga('send', 'pageview');
 
 
         dicResult.dir = dicResult.lang == 'en' ? 'ltr' : 'rtl'
