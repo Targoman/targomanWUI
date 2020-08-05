@@ -448,6 +448,12 @@ class TargomanWebUiApp {
             BindHandler.act("translate");
         }, 1000);
         this.minifyBoxes(false);
+        if (BindHandler.srcText === '') {
+            document.querySelector(
+                "div#content div.ads div.graphical"
+            ).style.display = "";
+            document.title = "ترگمان - ترجمه آنلاین و رایگان فارسی به انگلیسی و انگلیسی به فارسی";
+        }
     }
 
     informBusyState(busy) {
@@ -553,7 +559,7 @@ class TargomanWebUiApp {
         );
 
         history.pushState({ 'page_id': dicResult.dicWord }, "ترگمان - معنی " + dicResult.word, `/d/${dicResult.lang}/${dicResult.word}/`);
-        document.title = "معنی " + dicResult.word;
+        document.title = "ترگمان - معنی " + dicResult.word;
 
 
         dicResult.dir = dicResult.lang == 'en' ? 'ltr' : 'rtl'
@@ -686,14 +692,9 @@ class TargomanWebUiApp {
             allPromises.push(
                 Translation.dicLookup(BindHandler.srcText).then(r => {
                     if (r === false || BindHandler.srcText != sourceText) {
-                        document.querySelector(
-                            "div#content div.ads div.graphical"
-                        ).style.display = "";
-
                         /*history.pushState({ },
                             "ترگمان - ترجمه آنلاین و رایگان فارسی به انگلیسی و انگلیسی به فارسی",
                             `/`);*/
-                            document.title = "ترگمان - ترجمه آنلاین و رایگان فارسی به انگلیسی و انگلیسی به فارسی";
 
                         return;
                     }
