@@ -552,8 +552,8 @@ class TargomanWebUiApp {
             e => (e.textContent = dicResult.dicWord)
         );
 
-        history.pushState({ 'page_id': dicResult.dicWord }, "ترگمان - معنی " + dicResult.dicWord, `/d/${dicResult.lang}/${dicResult.word}/`);
-        document.title = "معنی " + dicResult.dicWord;
+        history.pushState({ 'page_id': dicResult.dicWord }, "ترگمان - معنی " + dicResult.word, `/d/${dicResult.lang}/${dicResult.word}/`);
+        document.title = "معنی " + dicResult.word;
 
 
         dicResult.dir = dicResult.lang == 'en' ? 'ltr' : 'rtl'
