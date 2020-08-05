@@ -452,8 +452,8 @@ class TargomanWebUiApp {
             document.querySelector(
                 "div#content div.ads div.graphical"
             ).style.display = "";
-            document.title = "ترگمان - ترجمه آنلاین و رایگان فارسی به انگلیسی و انگلیسی به فارسی";
         }
+        document.title = "ترگمان - ترجمه آنلاین و رایگان فارسی به انگلیسی و انگلیسی به فارسی";
     }
 
     informBusyState(busy) {
