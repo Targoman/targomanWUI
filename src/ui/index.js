@@ -454,8 +454,10 @@ class TargomanWebUiApp {
             ).style.display = "";
         }
         document.title = "ترگمان - ترجمه آنلاین و رایگان فارسی به انگلیسی و انگلیسی به فارسی";
+        history.pushState({},
+            "ترگمان - ترجمه آنلاین و رایگان فارسی به انگلیسی و انگلیسی به فارسی",
+            `/`);
     }
-
     informBusyState(busy) {
         this.busyDiv.style.display = busy ? "block" : "";
     }
@@ -691,13 +693,8 @@ class TargomanWebUiApp {
         if (BindHandler.srcText.split(/\s+/).length <= 3)
             allPromises.push(
                 Translation.dicLookup(BindHandler.srcText).then(r => {
-                    if (r === false || BindHandler.srcText != sourceText) {
-                        /*history.pushState({ },
-                            "ترگمان - ترجمه آنلاین و رایگان فارسی به انگلیسی و انگلیسی به فارسی",
-                            `/`);*/
-
+                    if (r === false || BindHandler.srcText != sourceText) 
                         return;
-                    }
                     this.updateDicResults(BindHandler.srcText, r);
                     document.querySelector(
                         "div#content div.ads div.graphical"
