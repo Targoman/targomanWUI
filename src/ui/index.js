@@ -30,10 +30,6 @@ BindHandler.addItem("srcText", "");
 
 BindHandler.addItem("proposingNewTranslationMode", false);
 
-window.onpopstate = function(event) {
-    console.log("location: " + document.location + ", state: " + JSON.stringify(event.state));
-};
-  
 // Component setup
 const SELECTOR_TO_COMPONENT_MAP = {
     "div#content div.header div.dropdown": DropDown,
@@ -461,6 +457,8 @@ class TargomanWebUiApp {
         history.pushState({},
             "ترگمان - ترجمه آنلاین و رایگان فارسی به انگلیسی و انگلیسی به فارسی",
             `/`);
+        ga('set', 'page', '/');
+        ga('send', 'pageview');
     }
     informBusyState(busy) {
         this.busyDiv.style.display = busy ? "block" : "";
@@ -564,8 +562,12 @@ class TargomanWebUiApp {
             e => (e.textContent = dicResult.dicWord)
         );
 
-        history.pushState({ 'page_id': dicResult.dicWord }, "ترگمان - معنی " + dicResult.word, `/d/${dicResult.lang}/${dicResult.word}/`);
+        const url = `/d/${dicResult.lang}/${dicResult.word}/`
+        history.pushState({ 'page_id': dicResult.dicWord }, "ترگمان - معنی " + dicResult.word, url);
         document.title = `ترگمان - معنی ${dicResult.word} به ${dicResult.lang == 'en' ? 'فارسی' : 'انگلیسی'}`;
+        ga('set', 'page', url);
+        ga('send', 'pageview');
+
 
         dicResult.dir = dicResult.lang == 'en' ? 'ltr' : 'rtl'
         const meanings = []
