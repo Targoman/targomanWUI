@@ -552,7 +552,9 @@ class TargomanWebUiApp {
             e => (e.textContent = dicResult.dicWord)
         );
 
-        history.pushState({ 'page_id': dicResult.dicWord }, "معنی " + dicResult.dicWord, `/d/${dicResult.lang}/${dicResult.word}/`);
+        history.pushState({ 'page_id': dicResult.dicWord }, "ترگمان - معنی " + dicResult.dicWord, `/d/${dicResult.lang}/${dicResult.word}/`);
+        document.title = "معنی " + dicResult.dicWord;
+
 
         dicResult.dir = dicResult.lang == 'en' ? 'ltr' : 'rtl'
         const meanings = []
@@ -691,6 +693,7 @@ class TargomanWebUiApp {
                         /*history.pushState({ },
                             "ترگمان - ترجمه آنلاین و رایگان فارسی به انگلیسی و انگلیسی به فارسی",
                             `/`);*/
+                            document.title = "ترگمان - ترجمه آنلاین و رایگان فارسی به انگلیسی و انگلیسی به فارسی";
 
                         return;
                     }
