@@ -559,7 +559,7 @@ class TargomanWebUiApp {
         };
         [].forEach.call(
             this.dicResults.querySelectorAll(".src"),
-            e => (e.textContent = dicResult.dicWord)
+            e => (e.textContent = dicResult.word)
         );
 
         const url = `/d/${dicResult.lang}/${dicResult.word}/`
