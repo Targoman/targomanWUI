@@ -133,8 +133,8 @@ class TargomanWebUiApp {
                     window.location.hash.substr(1)
                 ))
         }
-                    
-        
+
+
         window.onhashchange =
             () => BindHandler.setItemValue('srcText', decodeURIComponent(window.location.hash.substr(1)))
     }
@@ -455,10 +455,8 @@ class TargomanWebUiApp {
         }
         document.title = "ترگمان - ترجمه آنلاین و رایگان فارسی به انگلیسی و انگلیسی به فارسی";
         history.pushState({},
-            "ترگمان - ترجمه آنلاین و رایگان فارسی به انگلیسی و انگلیسی به فارسی",
+            "ترگمان - ترجمه آنلاین و رایگان فارسی به انگلیسی و ترجمه انگلیسی به فارسی",
             `/`);
-        //ga('set', 'page', '/');
-        //ga('send', 'pageview');
     }
     informBusyState(busy) {
         this.busyDiv.style.display = busy ? "block" : "";
@@ -533,7 +531,7 @@ class TargomanWebUiApp {
         }
         const createLi = (klass, content) =>createEl('li', klass, content)
         const createTd = (klass, content) => createEl('td', klass, content)
-        
+
         const wordLink = (word) => `<a href="${window.location.href}#${word}">${word}</a>`
         const wordsLink = (words) => words.map(wordLink)
         const fillTableItems = (e, items, dir) => {
@@ -559,15 +557,13 @@ class TargomanWebUiApp {
         };
         [].forEach.call(
             this.dicResults.querySelectorAll(".src"),
-            e => (e.textContent = dicResult.dicWord)
+            e => (e.textContent = dicResult.word)
         );
 
         const url = `/d/${dicResult.lang}/${dicResult.word}/`
         history.pushState({ 'page_id': dicResult.dicWord }, "ترگمان - معنی " + dicResult.word, url);
         const title = `${dicResult.word} به ${dicResult.lang == 'en' ? 'فارسی' : 'انگلیسی'}`
         document.title = `ترگمان - معنی ${title} | ترجمه ${title}`;
-//        ga('set', 'page', url + 'index.html');
-//        ga('send', 'pageview');
 
 
         dicResult.dir = dicResult.lang == 'en' ? 'ltr' : 'rtl'
@@ -586,7 +582,7 @@ class TargomanWebUiApp {
             this.dicPronounce.querySelector('.us span').innerHTML = dicResult.phonetics.us
             this.dicPronounce.style.display=""
         } else this.dicPronounce.style.display = "none"
-        
+
         fillPartItems(this.dicResultsSynonyms,dicResult.syn,dicResult.dir, fillTableItems);
         fillPartItems(this.dicResultsAntonyms,dicResult.ant,dicResult.dir,fillTableItems);
         fillPartItems(this.dicResultsExamples, dicResult.examples,dicResult.dir, (e, items) => {
@@ -699,7 +695,7 @@ class TargomanWebUiApp {
         if (BindHandler.srcText.split(/\s+/).length <= 3)
             allPromises.push(
                 Translation.dicLookup(BindHandler.srcText).then(r => {
-                    if (r === false || BindHandler.srcText != sourceText) 
+                    if (r === false || BindHandler.srcText != sourceText)
                         return;
                     this.updateDicResults(BindHandler.srcText, r);
                     document.querySelector(

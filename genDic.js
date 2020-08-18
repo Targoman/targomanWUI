@@ -42,7 +42,7 @@ function updateDictrItems() {
     for (c of chars.split('')) {
       fs.mkdirSync(`${dicPath}${lang}/`, { recursive: true });
       fs.writeFileSync(`${dicPath}${lang}/${c}.xml`, '<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n')
-      fs.writeFileSync(`${dicPath}${lang}/${c}.html`, `<html><body><h1>لیست کلمات موجود در دیکشنری با آغاز از «${c}»</h1><ol>`)
+      fs.writeFileSync(`${dicPath}${lang}/${c}.html`, `<html><body dir="rtl"><h1>لیست کلمات موجود در دیکشنری با آغاز از «${c}»</h1><ol>`)
       SitemapIndices.push(`<sitemap><loc>https://targoman.ir/d/${lang}/${c}.xml.gz</loc></sitemap>`)
       SitemapHTMLIndices.push(`<li><a href="https://targoman.ir/d/${lang}/${c}.html"> ${c}</a><br/><li>`)
     }
@@ -68,7 +68,7 @@ function updateDictrItems() {
   ${SitemapIndices.join("\n")}
   </sitemapindex>`, { encoding: 'utf8' })
 
-  fs.writeFileSync(`${dicPath}/all.html`, `<html><body><h1>لیست مداخل دیکشنری با آغاز از:</h1><ol>
+  fs.writeFileSync(`${dicPath}/all.html`, `<html><body dir="rtl"><h1>لیست مداخل دیکشنری با آغاز از:</h1><ol>
   ${SitemapHTMLIndices.join("\n")}
   </ol></body></html>`, { encoding: 'utf8' })
 
