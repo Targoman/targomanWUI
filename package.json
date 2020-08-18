@@ -7,7 +7,7 @@
     "build": "mkdir -p dist && cp -v src/public/* dist ; NODE_ENV=production ./node_modules/.bin/rollup -c",
     "deploy": "rm -rf dist &&  yarn build && ./deploy.sh",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "genDic": "rm -rvf src/public/d; npx ./genDic.js"
+    "genDic": "rm -rvf extra/d/*; npx ./genDic.js"
   },
   "author": "Behrooz Vedadian<vedadian@gmail.com>, S.Mehran M.ziabary<ziabary@targoman.com>",
   "license": "ISC",

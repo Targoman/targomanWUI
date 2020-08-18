@@ -36,19 +36,23 @@ function updateDictrItems() {
   const dicPath = 'extra/d/'
   const dateString = (new Date).toISOString()
   const SitemapIndices = []
+  const SitemapHTMLIndices = []
 
   const createBase = (lang, chars) => {
     for (c of chars.split('')) {
       fs.mkdirSync(`${dicPath}${lang}/`, { recursive: true });
       fs.writeFileSync(`${dicPath}${lang}/${c}.xml`, '<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n')
+      fs.writeFileSync(`${dicPath}${lang}/${c}.html`, `<html><body><h1>لیست کلمات موجود در دیکشنری با آغاز از «${c}»</h1><ol>`)
       SitemapIndices.push(`<sitemap><loc>https://targoman.ir/d/${lang}/${c}.xml.gz</loc></sitemap>`)
+      SitemapHTMLIndices.push(`<li><a href="https://targoman.ir/d/${lang}/${c}.html"> ${c}</a><br/><li>`)
     }
   }
 
   const closeSiteMap = (lang, chars) =>{
     for (c of chars.split('')) {
     	fs.appendFileSync(`${dicPath}${lang}/${c}.xml`, `</urlset>`)
-	gzipme(`${dicPath}${lang}/${c}.xml`)
+      gzipme(`${dicPath}${lang}/${c}.xml`)
+      fs.appendFileSync(`${dicPath}${lang}/${c}.html`, `</ol></body></html>`)
     }
   }
 
@@ -63,6 +67,10 @@ function updateDictrItems() {
   fs.writeFileSync(`${dicPath}/mapindex.xml`, `<?xml version="1.0" encoding="UTF-8"?><sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   ${SitemapIndices.join("\n")}
   </sitemapindex>`, { encoding: 'utf8' })
+
+  fs.writeFileSync(`${dicPath}/all.html`, `<html><body><h1>لیست مداخل دیکشنری با آغاز از:</h1><ol>
+  ${SitemapHTMLIndices.join("\n")}
+  </ol></body></html>`, { encoding: 'utf8' })
 
   const readInterface = readline.createInterface({
     input: fs.createReadStream('extra/dic.json'),
@@ -106,7 +114,7 @@ function updateDictrItems() {
   ]
 
   readInterface.on('line', function (line) {
-    if(++counter < 0) return 
+    if(++counter < 0) return
     const entry = JSON.parse(line.substr(0, line.length - 1));
     entry.key = entry.key.toLowerCase().trim()
     if (entry.lang == 'en' && /^[^a-z].*/.test(entry.key)) return;
@@ -118,10 +126,11 @@ function updateDictrItems() {
     let url = `${entry.lang}/${entry.key.replace(' ', '_')}/`
     if(fs.existsSync(dicPath+url)) return
 	  fs.mkdirSync(dicPath+url)
-    fs.appendFileSync(`${dicPath}${entry.lang}/${entry.key.substr(0, 1)}.xml`, 
+    fs.appendFileSync(`${dicPath}${entry.lang}/${entry.key.substr(0, 1)}.xml`,
       `\t<url><loc>https://targoman.ir/d/${url}</loc><lastmod>${dateString}</lastmod><priority>0.8</priority><changefreq>monthly</changefreq></url>\n`
       , { encoding: 'utf8' })
-    
+
+
     entry.prevEntry = prevEntry;
     prevEntry = url
     const toLang = entry.lang === 'fa' ? 'انگلیسی' : 'فارسی'
@@ -137,23 +146,29 @@ function updateDictrItems() {
     description += trItems.length == 1 ? '' : (' و ' + trItems.slice(trItems.length - 1))
     description += ` «${entry.key}» در `
     description += descriptions[Math.floor(Math.random() * descriptions.length)]
+    const title = `معنی ${entry.key} به ${toLang}`;
+
+    fs.appendFileSync(`${dicPath}${entry.lang}/${entry.key.substr(0, 1)}.html`,
+                      `\t<li><a href="https://targoman.ir/d/${url}">${title}</a></li>\n`
+                      , { encoding: 'utf8' })
+
 
     render(dicPath + url + 'index.html',
       'src/ui/index.ejs',
       {
-      "title": `ترگمان - ترجمه ${entry.key} به ${toLang} | معنی ${entry.key} به ${toLang}`,
+      title: `ترگمان - ${title}`,
       description,
-      "author": "پردازش هوشمند ترگمان - سهامی خاص",
-      "keywords": `${entry.key},${entry.mean.join(',')}, ترگمان, ترجمه, ترجمه هوشمند, مترجم`,
-      "stylesheets": ["src/css/style.css"],
-      "image_alt": `ترگمان - ترجمه ${entry.key} به ${toLang} | معنی ${entry.key} به ${toLang}`,
-      "url": `https://targoman.ir/d/${url}`,
-      "imageURL": entry.vc ? 'https://targoman.ir/vc/' + entry.vc : null,
-      "twitterDesc": description,
-      "needsScripting": false,
-      "srcText": entry.key,
-      "tgtText": entry.mean.slice(0,5).join(entry.dir == 'rtl' ? ', ' : '، '),
-      "dic": entry,
+      author: "پردازش هوشمند ترگمان - سهامی خاص",
+      keywords: `${entry.key},${entry.mean.join(',')}, ترگمان, ترجمه, ترجمه هوشمند, مترجم`,
+      stylesheets: ["src/css/style.css"],
+      image_alt: `ترگمان - معنی ${entry.key} به ${toLang} | ترجمه ${entry.key} به ${toLang}`,
+      url: `https://targoman.ir/d/${url}`,
+      imageURL: entry.vc ? 'https://targoman.ir/vc/' + entry.vc : null,
+      twitterDesc: description,
+      needsScripting: false,
+      srcText: entry.key,
+      tgtText: entry.mean.slice(0,5).join(entry.dir == 'rtl' ? ', ' : '، '),
+      dic: entry,
       })
   });
 
