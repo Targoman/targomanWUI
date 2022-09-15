@@ -10,7 +10,7 @@ define('ALLOWED_ORIGINS', [
     'dev.targoman.com',
     'new.targoman.com'
 ]);
-define('PROXIED_API_PATH', 'api.targoman.com/v9.1')
+define('PROXIED_API_PATH', 'api.targoman.com/v9.5')
 
 function proxyPassAPICall($_json) {
     if(isset($_SERVER['HTTP_ORIGIN'])) {

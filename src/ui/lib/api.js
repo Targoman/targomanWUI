@@ -1,6 +1,6 @@
 import { eval_literal } from './common';
 
-const URL = 'http://api.targoman.com/v9.1/';
+const URL = 'https://targoman.test/TestAPI/';
 
 const AdvertMethods = [
     "getTranslationProvidersList(ssid,type,order)",
@@ -17,7 +17,7 @@ const AdvertMethods = [
 ];
 
 const TargomanMethods = [
-    "translate(ssid,text,dir,clientIP='127.0.0.10',engine='SMT',detailed=false,dic=false,dicFull=false,tuid=null)",
+    "translate(ssid,text,dir,clientIP='127.0.0.10',engine='SMT',detailed=false,dic=false,dicFull=false,tuid=null,class=null)",
     "uploadFileAndConvert2HTML(ssid,clientIP,encoding,data)",
     "getConvertedFile(ssid,tuid)",
     "tts(ssid,base64Text,type='ogg')",
@@ -162,7 +162,7 @@ class Api {
         for (let rawMethodDef of rawMethodDefs) {
             let methodDef = Api.interpretRawMethodDef(rawMethodDef)
             this[methodDef.name] = Api.createApiMethod(
-                this.api, 
+                this.api,
                 methodDef
             );
         }

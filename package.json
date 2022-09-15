@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Targoman translation service Web UI",
   "scripts": {
-    "devel": "mkdir -p dist && cp -v src/public/* dist ; NODE_ENV=development ./node_modules/.bin/rollup -c --watch",
+    "dev": "mkdir -p dist && cp -v src/public/* dist ; NODE_ENV=development ./node_modules/.bin/rollup -c --watch",
     "build": "mkdir -p dist && cp -v src/public/* dist ; NODE_ENV=production ./node_modules/.bin/rollup -c",
     "deploy": "rm -rf dist &&  yarn build && ./deploy.sh",
     "test": "echo \"Error: no test specified\" && exit 1",

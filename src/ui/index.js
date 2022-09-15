@@ -25,6 +25,7 @@ let ENGINE_CLASS_TITLE = {
 
 // Global application values
 BindHandler.addItem("srcLang", BindHandler.availableSrcLangs[0]);
+BindHandler.addItem("srcType", BindHandler.availableSrcTypes[0]);
 BindHandler.addItem("tgtLang", BindHandler.availableTgtLangs[0]);
 BindHandler.addItem("srcText", "");
 
@@ -32,7 +33,7 @@ BindHandler.addItem("proposingNewTranslationMode", false);
 
 // Component setup
 const SELECTOR_TO_COMPONENT_MAP = {
-    "div#content div.header div.dropdown": DropDown,
+    "div#content div.header div.dropdown": DropDown, //TODO
     "div#content div.header div.button": Button,
     'div#content div.src div.content[contenteditable="true"]': TransSrc,
     "div#content div.ads div.slider": Slider,
@@ -53,6 +54,7 @@ class TargomanWebUiApp {
 
         this.handleSourceTextChange = this.handleSourceTextChange.bind(this);
         this.handleSourceLangChange = this.handleSourceLangChange.bind(this);
+        this.handleSourceTypeChange = this.handleSourceTypeChange.bind(this);
         this.handleTargetLangChange = this.handleTargetLangChange.bind(this);
         this.handleHoverOverPhrases = this.handleHoverOverPhrases.bind(this);
         this.translate = this.translate.bind(this);
@@ -66,6 +68,9 @@ class TargomanWebUiApp {
 
         this.srcDropdownDiv = document.querySelector(
             'div.dropdown[data-bind-to="srcLang"]'
+        );
+        this.srcTypeDropdownDiv = document.querySelector(
+            'div.dropdown[data-bind-to="srcType"]'
         );
         this.tgtDropdownDiv = document.querySelector(
             'div.dropdown[data-bind-to="tgtLang"]'
@@ -370,6 +375,26 @@ class TargomanWebUiApp {
         this.tgtDropdownDiv.handler.enableItems(lang =>
             value.translatesTo(lang)
         );
+
+        let allowedClasses = value.allowedClasses(value);
+        if (allowedClasses && !Array.isArray(allowedClasses))
+            allowedClasses = allowedClasses(value)
+        this.srcTypeDropdownDiv.handler.enableItems(type => allowedClasses && allowedClasses.includes(type.code))
+        this.translate();
+    }
+
+    handleSourceTypeChange(value) {
+        /*        this.srcContentDiv.style.direction = value.direction;
+                if (!value.translatesTo(BindHandler.tgtLang)) {
+                    for (var lang of BindHandler.availableTgtLangs)
+                        if (value.translatesTo(lang)) {
+                            BindHandler.setItemValue("tgtLang", lang);
+                            break;
+                        }
+                }
+                this.tgtDropdownDiv.handler.enableItems(lang =>
+                    value.translatesTo(lang)
+                );*/
         this.translate();
     }
 
@@ -423,6 +448,10 @@ class TargomanWebUiApp {
         BindHandler.registerChangeHandler(
             "srcLang",
             this.handleSourceLangChange
+        );
+        BindHandler.registerChangeHandler(
+            "srcType",
+            this.handleSourceTypeChange
         );
         BindHandler.registerChangeHandler(
             "tgtLang",
@@ -523,13 +552,13 @@ class TargomanWebUiApp {
         const lang = Translation.detectLanguage(text);
         let mainDirection = lang.direction,
             revDirection = mainDirection === "ltr" ? "rtl" : "ltr";
-        const createEl = (type, klass, content ='') => {
+        const createEl = (type, klass, content = '') => {
             const el = document.createElement(type);
-            if(klass) el.classList.add(klass)
+            if (klass) el.classList.add(klass)
             el.innerHTML = content;
             return el;
         }
-        const createLi = (klass, content) =>createEl('li', klass, content)
+        const createLi = (klass, content) => createEl('li', klass, content)
         const createTd = (klass, content) => createEl('td', klass, content)
 
         const wordLink = (word) => `<a href="${window.location.href}#${word}">${word}</a>`
@@ -580,25 +609,25 @@ class TargomanWebUiApp {
         if (dicResult.phonetics) {
             this.dicPronounce.querySelector('.uk span').innerHTML = dicResult.phonetics.uk
             this.dicPronounce.querySelector('.us span').innerHTML = dicResult.phonetics.us
-            this.dicPronounce.style.display=""
+            this.dicPronounce.style.display = ""
         } else this.dicPronounce.style.display = "none"
 
-        fillPartItems(this.dicResultsSynonyms,dicResult.syn,dicResult.dir, fillTableItems);
-        fillPartItems(this.dicResultsAntonyms,dicResult.ant,dicResult.dir,fillTableItems);
-        fillPartItems(this.dicResultsExamples, dicResult.examples,dicResult.dir, (e, items) => {
+        fillPartItems(this.dicResultsSynonyms, dicResult.syn, dicResult.dir, fillTableItems);
+        fillPartItems(this.dicResultsAntonyms, dicResult.ant, dicResult.dir, fillTableItems);
+        fillPartItems(this.dicResultsExamples, dicResult.examples, dicResult.dir, (e, items) => {
             e.innerHTML = "";
-            for (var i = 0; i < dicResult.examples.length; i++){
+            for (var i = 0; i < dicResult.examples.length; i++) {
                 e.appendChild(createLi('source', wordLink(dicResult.examples[i][0])))
                 e.appendChild(createLi('translation', wordLink(dicResult.examples[i][1])))
                 e.appendChild(createLi('separator'))
             }
         });
-        fillPartItems(this.dicResultsVC, dicResult.vc,dicResult.dir, (e, image) => {
-            e.querySelector('img').src='https://targoman.ir/vc/' + image
+        fillPartItems(this.dicResultsVC, dicResult.vc, dicResult.dir, (e, image) => {
+            e.querySelector('img').src = 'https://targoman.ir/vc/' + image
         });
-        fillPartItems(this.dicResultsRelWords,dicResult.relWord, dicResult.dir, (e, items) => {
+        fillPartItems(this.dicResultsRelWords, dicResult.relWord, dicResult.dir, (e, items) => {
             e.innerHTML = "";
-            for(var word in dicResult.relWord) {
+            for (var word in dicResult.relWord) {
                 e.appendChild(createLi('source', wordLink(word)))
                 const ul = document.createElement('ul')
                 ul.appendChild(createLi('translation', wordsLink(dicResult.relWord[word]).join(dicResult.dir === 'rtl' ? ', ' : '، ')))
@@ -606,9 +635,9 @@ class TargomanWebUiApp {
                 e.appendChild(createLi('separator'))
             }
         });
-        fillPartItems(this.dicResultsRelExps, dicResult.relExp,dicResult.dir, (e, items) => {
+        fillPartItems(this.dicResultsRelExps, dicResult.relExp, dicResult.dir, (e, items) => {
             e.innerHTML = "";
-            for(var word in dicResult.relExp) {
+            for (var word in dicResult.relExp) {
                 e.appendChild(createLi('source', wordLink(word)))
                 const ul = document.createElement('ul')
                 for (let i = 0; i < dicResult.relExp[word].length; ++i)
@@ -630,8 +659,13 @@ class TargomanWebUiApp {
         return `${BindHandler.srcLang.code}2${BindHandler.tgtLang.code}`;
     }
 
+    get translationClass() {
+        return `${BindHandler.srcType.code}`;
+    }
+
     updateEngineInfo(class_, time, timePerWord) {
         let span;
+        //TODO
         span = this.metadataDiv.querySelector("span.engine");
         span.textContent =
             class_ in ENGINE_CLASS_TITLE ? ENGINE_CLASS_TITLE[class_] : "رسمی";
@@ -656,7 +690,7 @@ class TargomanWebUiApp {
 
     minifyBoxes(state) {
         [].forEach.call(document.querySelectorAll("div.content"), el => {
-            if(state)
+            if (state)
                 el.classList.add('one-line')
             else
                 el.classList.remove('one-line')
@@ -676,7 +710,7 @@ class TargomanWebUiApp {
             return;
         }
         allPromises.push(
-            Translation.translate(sourceText, this.translationDirection)
+            Translation.translate(sourceText, this.translationDirection, this.translationClass)
                 .then(r => {
                     if (r === false || BindHandler.srcText != sourceText)
                         return;
