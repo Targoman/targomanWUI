@@ -95,6 +95,8 @@ html {
 body {
   min-height: 100%;
   direction: rtl;
+  background-color: var(--bg-color);
+  color: var(--text-color)
 }
 
 div.noscript {
@@ -107,6 +109,55 @@ div.noscript img {
   height: 1em;
 }
 
+/***********************************************/
+body {
+  --bg-color: white;
+  --filter-contrast: none;
+  --link-color: blue;
+  --line-light: #80accb;
+  --line-dark: #337ab7;
+  --box-header: #d9eff7;
+  --tgt-box: #eaf2f5;
+  --src-border: #000;
+  --text-color: black;
+  --dark-img-filter: none;
+  --controls-img-filter: none;
+  --dilaog-bg: lightyellow;
+  --dialog-shadow: black;
+  --notif-bg: yellow;
+  --div-editable-bg: white;
+  --div-editable-border: #050;
+}
+body.dark{
+  --bg-color: #121212;
+  --filter-contrast: contrast(0.5);
+  --link-color: #bb86fc;
+  --line-light: #694daa;
+  --line-dark: #3700B3;
+  --box-header: #7f6fa5;
+  --tgt-box: #150d0a;
+  --src-border: wheat;
+  --text-color: white;
+  --dark-img-filter: hue-rotate(45deg);
+  --controls-img-filter: invert(1);
+  --dialog-bg: #373737;
+  --dialog-shadow: #575757;
+  --notif-bg: yellow;
+  --div-editable-bg: transparent;
+  --div-editable-border: #050;
+}
+
+.ngtBadge img, .slider img {
+  filter: var(--dark-img-filter)
+}
+
+.controls img {
+  filter: invert(1);
+}
+
+a {
+  color: var(--link-color)
+}
 .engine-desc,
 .engine-info {
   position: fixed;
@@ -114,10 +165,10 @@ div.noscript img {
   transform: translateX(-50%);
   left: 50%;
   border: 1px solid;
-  box-shadow: 2px 2px 2px black;
+  box-shadow: 2px 2px 2px var(--dialog-shadow);
   padding: 1em;
   width: 50%;
-  background: lightyellow;
+  background: var(--dialog-bg);
   display: none;
   transition: opacity 0.5s;
   opacity: 0;
@@ -131,7 +182,7 @@ div.noscript img {
   top: -7px;
   opacity: 0;
   border-radius: 7px;
-  background-color: yellow;
+  background-color: var(--notif-bg);
   border: solid 1px;
   padding: 0.5em;
   transition: all 0.5s;
@@ -258,6 +309,7 @@ div#header a {
 
 div#header img {
   height: 2.25em;
+  filter: var(--filter-contrast)
 }
 
 div#header hr {
@@ -281,17 +333,17 @@ div#footer {
 }
 
 div#footer a {
-  color: blue;
+  color: var(--link-color);
 }
 
 div#footer img {
   height: 1.5em;
-  filter: grayscale(1);
+  filter: grayscale(1) var(--filter-contrast);
   transition: filter 0.5s;
 }
 
 div#footer img:hover {
-  filter: grayscale(0);
+  filter: grayscale(0) var(--filter-contrast);
 }
 
 div#footer ul.glinks {
@@ -308,7 +360,7 @@ div#footer ul.links li {
 }
 
 div#footer ul.links {
-  background-color: #fff;
+  background-color: var(--bg-color);
   padding-right: 1em;
 }
 
@@ -320,7 +372,7 @@ div#footer hr {
 
 div#footer hr,
 div#header hr {
-  border-bottom: 3px solid #80accb;
+  border-bottom: 3px solid var(--line-light);
 }
 
 div#content {
@@ -357,7 +409,7 @@ div#content div.ads div.text a {
 }
 
 div#content div.ads div.text a:hover {
-  border: 1px dashed #337ab7;
+  border: 1px dashed var(--line-dark);
 }
 
 div#content div.ads div.text a {
@@ -458,18 +510,18 @@ div#content div.src div.controls li img {
 }
 
 div#content div.src div.content:focus {
-  border: 1px solid #000;
+  border: 1px solid var(--src-border);
 }
 
 div#content div.header {
   position: relative;
   height: 2em;
-  background-color: #d9eff7;
+  background-color: var(--box-header);
 }
 div#content div.content {
   min-height: 13em;
   box-sizing: border-box;
-  border: 1px solid #d9eff7;
+  border: 1px solid var(--box-header);
   transition: all 0.5s;
 }
 div#content div.content.one-line {
@@ -477,15 +529,15 @@ div#content div.content.one-line {
 }
 
 div#content div.tgt div.content {
-  background-color: #eaf2f5;
+  background-color: var(--tgt-box);
 }
 
 div#content div.tgt div.content[contenteditable="true"] {
-  background-color: #fff;
+  background-color: var(--div-editable-bg);
 }
 
 div#content div.src div.content[contenteditable="true"]:focus {
-  border: 1px solid #050;
+  border: 1px solid var(--div-editable-border);
   outline: none;
 }
 
@@ -498,7 +550,7 @@ div#content div.header div.dropdown,
 div#content div.header div.button {
   height: 100%;
   line-height: 2em;
-  background-color: #337ab7;
+  background-color: var(--line-dark);
   color: #fff;
   box-sizing: border-box;
   display: inline-block;
@@ -600,14 +652,14 @@ div#content div.content span.phrase-token.hi {
 }
 
 div#content div.dic-result {
-  color: #337ab7;
+  color: var(--line-dark);
   display: none;
   max-height: 1500em;
   overflow: hidden;
   position: relative;
 }
 div#content div.dic-result a {
-  color: #337ab7;
+  color: var(--line-dark);
   text-decoration: none;
 }
 div#content div.dic-result a:hover {
@@ -741,7 +793,7 @@ section {
 }
 .vocabcoding a.copyright {
   filter: none;
-  color: #337ab7;
+  color: var(--line-dark);
   text-decoration: none;
 }
 .vocabcoding a.copyright img {
@@ -783,14 +835,17 @@ section {
 
 .ads .text h2 {
   font-size: 1em;
-  color: #337ab7;
+  color: var(--line-dark);
   margin: 0;
   font-weight: 500;
 }
 .ads .text hr {
-  border-top: 1px solid #337ab7;
+  border-top: 1px solid var(--line-dark);
 }
 
+
+
+/***********************************************/
 @media only screen and (max-width: 560px) {
   div#header img {
     height: 2em;
