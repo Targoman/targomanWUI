@@ -127,6 +127,10 @@ body {
   --notif-bg: yellow;
   --div-editable-bg: white;
   --div-editable-border: #050;
+  --menu-bg: #fff;
+  --menu-border: #bbb;
+  --menu-item: var(--link-color);
+  --menu-hover-bg: #eee;
 }
 body.dark{
   --bg-color: #121212;
@@ -145,6 +149,10 @@ body.dark{
   --notif-bg: yellow;
   --div-editable-bg: transparent;
   --div-editable-border: #050;
+  --menu-bg: var(--dialog-bg);
+  --menu-border: var(--dialog-shadow);
+  --menu-item: var(--link-color);
+  --menu-hover-bg: #555;
 }
 
 .ngtBadge img, .slider img {
@@ -565,8 +573,8 @@ div#content div.header div.dropdown:hover {
 }
 
 div#content div.header div.dropdown div.options {
-  background-color: #fff;
-  border: 1px solid #bbb;
+  background-color: var(--menu-bg);
+  border: 1px solid var(--menu-border);
   display: none;
   min-width: 9em;
   opacity: 0;
@@ -574,19 +582,25 @@ div#content div.header div.dropdown div.options {
   transition: opacity 0.5s;
   text-align: right;
   z-index: 1;
+  overflow-y: auto;
+  max-height: 70vh;
 }
 
 div#content div.header div.dropdown div.options ul {
   list-style: none;
+  column-count: 2;
 }
-
+div#content div.header div.dropdown div.options.single-col ul {
+  column-count: auto;
+}
 div#content div.header div.dropdown div.options ul li {
   padding: 0.5em;
-  color: #0b4b83;
+  color: var(--menu-item);
 }
 
 div#content div.header div.dropdown div.options ul li:hover {
-  background: #999;
+  background: var(--menu-hover-bg);
+  color: var(--menu-hover-fg)
 }
 
 div#content div.header div.dropdown div.options ul li.selected {
