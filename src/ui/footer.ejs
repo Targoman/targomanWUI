@@ -41,10 +41,16 @@
     const nightMode = getCookie("nightMode");
     const hours = new Date().getHours()
     const isDayTime = hours > 6 && hours < 20;
-    if (nightMode==='day' || (nightMode==='' && isDayTime === true)) {
+    const button = document.querySelector('.end.daynight img')
+
+    if (nightMode === 'day' || (nightMode === '' && isDayTime === true)) {
         document.body.classList.remove('dark')
-    } else if (nightMode==='dark' || (nightMode==='' && isDayTime === false)){
+        if (button) button.src = button.src.replace('day', 'night')
+
+    } else if (nightMode === 'dark' || (nightMode === '' && isDayTime === false)) {
         document.body.classList.add('dark')
+
+        if (button) button.src = button.src.replace('night', 'day')
     }
 </script>
 <!--

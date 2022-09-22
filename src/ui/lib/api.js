@@ -1,6 +1,6 @@
 import { eval_literal } from './common';
 
-const URL = location.hostname + (location.hostname.endsWith('.ir')? '/API' : 'TestAPI')
+const URL = (location.hostname.endsWith('.ir')? 'https://targoman.ir/API' : 'https://targoman.test/TestAPI');
 
 const AdvertMethods = [
     "getTranslationProvidersList(ssid,type,order)",
