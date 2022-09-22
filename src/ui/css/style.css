@@ -131,6 +131,10 @@ body {
   --menu-border: #bbb;
   --menu-item: var(--link-color);
   --menu-hover-bg: #eee;
+  --ad-title:#0b4b83;
+  --overall-dark-color: var(--line-dark);
+  --dic-heading: #062b4b;
+  --token-hi: yellow;
 }
 body.dark{
   --bg-color: #121212;
@@ -153,6 +157,10 @@ body.dark{
   --menu-border: var(--dialog-shadow);
   --menu-item: var(--link-color);
   --menu-hover-bg: #555;
+  --ad-title: #4fadff;
+  --overall-dark-color: var(--ad-title);
+  --dic-headings: #5fbf59;
+  --token-hi: #415416;
 }
 
 .ngtBadge img, .slider img {
@@ -160,7 +168,7 @@ body.dark{
 }
 
 .controls img {
-  filter: invert(1);
+  filter: var(--controls-img-filter)
 }
 
 a {
@@ -509,7 +517,7 @@ div#content div.src div.controls li {
 div#content div.tgt div.controls li:hover,
 div#content div.src div.controls li:hover {
   opacity: 0.75;
-  filter: drop-shadow(0 0 1px #000);
+  filter: drop-shadow(0 0 1px var(--text-color)) 
 }
 
 div#content div.tgt div.controls li img,
@@ -531,6 +539,7 @@ div#content div.content {
   box-sizing: border-box;
   border: 1px solid var(--box-header);
   transition: all 0.5s;
+  border-top: none;
 }
 div#content div.content.one-line {
   min-height: 4em;
@@ -552,6 +561,10 @@ div#content div.src div.content[contenteditable="true"]:focus {
 div#content div.header div.separator {
   display: inline-block;
   width: 0.25em;
+}
+
+a{
+  cursor: pointer;
 }
 
 div#content div.header div.dropdown,
@@ -612,6 +625,21 @@ div#content div.header div.dropdown div.options ul li.disabled {
   text-decoration: line-through;
 }
 
+.end.daynight{
+  position: absolute;
+  top:0;
+  left: 0.5em;
+  height: 2em;
+}
+.end.daynight img {
+  height: 80%;
+  transform: translateY(-50%);
+  top: 50%;
+  position: absolute;
+  left: 0;
+  cursor: pointer;
+}
+
 div#content div.header div.button {
   background-color: #24667d;
   color: white;
@@ -627,7 +655,7 @@ div#content div.header div.button:hover:not(.disabled) {
 }
 
 div#content div.ads h2.ad-title {
-  color: #0b4b83;
+  color: var(--ad-title);
   font-weight: bold;
   font-size: 1.2em;
   margin-bottom: 0.25em;
@@ -662,18 +690,18 @@ div#content div.content span.phrase-token {
 }
 
 div#content div.content span.phrase-token.hi {
-  background-color: yellow;
+  background-color: var(--token-hi);
 }
 
 div#content div.dic-result {
-  color: var(--line-dark);
+  color: var(--overall-dark-color);
   display: none;
   max-height: 1500em;
   overflow: hidden;
   position: relative;
 }
 div#content div.dic-result a {
-  color: var(--line-dark);
+  color: var(--overall-dark-color);;
   text-decoration: none;
 }
 div#content div.dic-result a:hover {
@@ -747,7 +775,7 @@ div#content div.dic-result ul {
 }
 
 div#content .dic-result ul li.source a {
-  color: #062b4b;
+  color: var(--dic-headings);
 }
 
 .dic-result ul li.separator {
@@ -849,7 +877,7 @@ section {
 
 .ads .text h2 {
   font-size: 1em;
-  color: var(--line-dark);
+  color: var(--overall-dark-color);
   margin: 0;
   font-weight: 500;
 }

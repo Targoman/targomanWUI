@@ -107,7 +107,11 @@ class TargomanWebUiApp {
 
   copyTranslationResult() {
     if (getTextContent(this.tgtContentDiv).trim() === "") notify("هشدار", "متنی برای نسخه‌برداری وجود ندارد!", "warn");
-    else copyToClipboard(getTextContent(this.tgtContentDiv));
+    else {
+      copyToClipboard(getTextContent(this.tgtContentDiv))
+      notify("موفق", "متن ترجمه کپی شد", "success");
+    }
+    ;
   }
 
   voteTranslation(up) {

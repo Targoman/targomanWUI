@@ -1,0 +1,13 @@
+{
+  "description": "تاریخچه و خواستگاه ترگمان به عنوان موتور ترجمه نورونی متن‌باز ایرانی",
+  "author": "پردازش هوشمند ترگمان - سهامی خاص",
+  "keywords": "ترگمان, ترجمه, ترجمه آنلاین, مترجم, ترجمه نورونی, ترجمه با یادگیری عمیق, translator, machine translation, SMT, NMT, neural translation",
+  "title": "درباره ترگمان - مترجم آنلاین و رایگان | انگلیسی فارسی | فارسی انگلیسی",
+  "stylesheets": ["./css/static.css"],
+  "image_alt": "ترگمان - ترجمه آنلاین و رایگان متن از انگلیسی و ۷ زبان دیگر به فارسی",
+  "url": "https://targoman.ir/about.html",
+  "twitterDesc": "تاریخچه و خواستگاه ترگمان به عنوان موتور ترجمه نورونی متن‌باز ایرانی",
+  "imageURL": "https://targoman.ir/img/card-image.jpg",
+  "needsScripting": false,
+  "nightMode": true
+}

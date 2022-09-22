@@ -18,6 +18,9 @@
                         <span>&nbsp;&nbsp;▾</span>
                         <div class="options single-col"></div>
                     </div>
+                    <div class="end daynight">
+                        <img src="./img/icon/<%= nightMode ? 'day' : 'night' %>.svg" alt="">
+                    </div>
                 </div>
                 <div 
                     class="content <%= dic.show && 'one-line' %> <%= dic.show && (dic.dir === "rtl" ? 'rtl' : 'ltr')%>"
@@ -27,7 +30,7 @@
                 <div class="usage-report">۰/۵۰۰۰</div>
                 <div class="controls">
                     <ul>
-                        <li><a data-action="clearSource" class="toolbar-button" href="#"><img src="./img/icon/clear.png" alt="clear"/></a></li>
+                        <li><a data-action="clearSource" class="toolbar-button" mehran><img src="./img/icon/clear.png" alt="clear"/></a></li>
                     </ul>
                 </div>
             </div><!--
@@ -52,12 +55,12 @@
                 <div class="content <%= dic.show && 'one-line' %>  <%= dic.show && (dic.dir === "rtl" ? 'ltr' : 'rtl')%>"><%= tgtText %></div>
                 <div class="controls">
                     <ul>
-                        <li><a data-action="copyTranslationResult" class="toolbar-button" href="#"><img src="./img/icon/copy.png" alt="کپی متن ترجمه‌شده"/></a></li>
-                        <li><a data-action="voteUpTranslation" data-visible-if-not="proposingNewTranslationMode" class="toolbar-button" href="#"><img src="./img/icon/thumb-up.png" alt="تایید ترجمه"/></a></li>
-                        <li><a data-action="voteDownTranslation" data-visible-if-not="proposingNewTranslationMode" class="toolbar-button" href="#"><img src="./img/icon/thumb-down.png" alt="رد ترجمه"/></a></li>
-                        <li><a data-action="proposeNewTranslation" data-visible-if-not="proposingNewTranslationMode" class="toolbar-button" href="#"><img src="./img/icon/pencil.png" alt="پیشنهاد ترجمه"/></a></li>
-                        <li><a data-action="acceptNewTranslation" data-visible-if="proposingNewTranslationMode" class="toolbar-button" href="#"><img src="./img/icon/tick.png" alt="قبول ترجمه پیشنهادی"/></a></li>
-                        <li><a data-action="cancelNewTranslation" data-visible-if="proposingNewTranslationMode"class="toolbar-button" href="#"><img src="./img/icon/clear.png" alt="رد ترجمه پیشنهادی"/></a></li>
+                        <li><a data-action="copyTranslationResult" class="toolbar-button" mehran><img src="./img/icon/copy.png" alt="کپی متن ترجمه‌شده"/></a></li>
+                        <li><a data-action="voteUpTranslation" data-visible-if-not="proposingNewTranslationMode" class="toolbar-button" mehran><img src="./img/icon/thumb-up.png" alt="تایید ترجمه"/></a></li>
+                        <li><a data-action="voteDownTranslation" data-visible-if-not="proposingNewTranslationMode" class="toolbar-button" mehran><img src="./img/icon/thumb-down.png" alt="رد ترجمه"/></a></li>
+                        <li><a data-action="proposeNewTranslation" data-visible-if-not="proposingNewTranslationMode" class="toolbar-button" mehran><img src="./img/icon/pencil.png" alt="پیشنهاد ترجمه"/></a></li>
+                        <li><a data-action="acceptNewTranslation" data-visible-if="proposingNewTranslationMode" class="toolbar-button" mehran><img src="./img/icon/tick.png" alt="قبول ترجمه پیشنهادی"/></a></li>
+                        <li><a data-action="cancelNewTranslation" data-visible-if="proposingNewTranslationMode"class="toolbar-button" mehran><img src="./img/icon/clear.png" alt="رد ترجمه پیشنهادی"/></a></li>
                     </ul>
                 </div>
                 <div class="metadata">
@@ -164,7 +167,7 @@
             <div class="text">
             <h2>تبلیغات</h2>
             <hr/>
-                <a href="#">
+                <a mehran>
                     <h2 class="ad-title">خودت هر مقاله‌ای رو ترجمه کن!</h2>
                     <p class="ad-desc">
                         مهم نیست زبانت چقدر خوبه، هر مقاله‌ی تخصصی رو میتونی با <span style="color:blue">#ترجمیار</span> ترجمه کنی. آزمایشش تا ۲۰۰۰ کلمه رایگانه!
@@ -218,7 +221,7 @@
             <p>برای سهولت بیشتر در استفاده از ترگمان، می‌توانید از برنامک آن استفاده کنید.</p>
             <br/>
             <ul>
-                <li><a href="#" class="hide-on-click">نخیر! از وبسایت استفاده می‌کنم.</a></li>
+                <li><a mehran class="hide-on-click">نخیر! از وبسایت استفاده می‌کنم.</a></li>
                 <li><br/></li>
                 <!--<li><a href="https://play.google.com/store/apps/details?id=com.anonycoders.targoman"><img src="./img/logo/play-store.png" alt="Google Play" /></a></li>-->
                 <li><a href="https://cafebazaar.ir/app/com.anonycoders.targoman/?l=fa"><img src="./img/logo/cafe-bazaar.png" alt="Cafe Bazaar" /></a></li>

@@ -113,7 +113,9 @@ export function copy(options = {}) {
                         if(from.endsWith('.ejs')) {
                             console.log(`Rendering template ${from} -> ${to}`);
                             fs.mkdirpSync(path.dirname(to));
-                            let context = JSON.parse(fs.readFileSync(`${from}.json`, { encoding: 'utf8'}));
+                            let globalConfigs = JSON.parse(fs.readFileSync('src/config.json', {encoding: 'utf8'}))
+                            let specificConfigs = JSON.parse(fs.readFileSync(`${from}.json`, { encoding: 'utf8'}))
+                            let context = {...globalConfigs, ...specificConfigs};
                             let template = fs.readFileSync(from, { encoding: 'utf8'});
                             fs.writeFileSync(to, ejs.render(template, context, { filename: from}), { encoding: 'utf8'});
                         } else
@@ -134,6 +136,7 @@ export function copy(options = {}) {
 
                             if (warnOnNonExist) this.warn(e);
                         } else this.error(e);
+                        throw e
                     }
                 }
             }

@@ -1,29 +1,59 @@
 {
   "description": "ترگمان، سرویس ترجمه متن آنلاین و رایگان چندزبانه. با مترجم هوشمند ترگمان می‌توانید هر متنی را با کیفیتی بهتر از مترجم گوگل ترجمه کنید.",
-  "author": "پردازش هوشمند ترگمان - سهامی خاص",
-  "keywords": "ترگمان, ترجمه رایگان, ترجمه, ترجمه آنلاین, مترجم, ترجمه نورونی, ترجمه با یادگیری عمیق, translator, machine translation, SMT, NMT, neural translation",
   "title": "ترگمان - ترجمه آنلاین و رایگان فارسی به انگلیسی و ترجمه انگلیسی به فارسی",
   "stylesheets": ["./css/style.css"],
-  "image_alt": "ترگمان - ترجمه آنلاین و رایگان متن از انگلیسی و ۷ زبان دیگر به فارسی",
   "needsScripting": true,
   "url": "https://targoman.ir",
   "twitterDesc": "ترجمه هوشمند مبتنی بر شبکه‌های عصبی عمیق را با ترگمان تجربه کنید. ترجمه انگلیسی و ۷ زبان دیگر به فارسی",
-  "imageURL": "https://targoman.ir/img/card-image.jpg",
   "srcText": null,
   "tgtText": null,
+  "nightMode": true,
   "dic": {
     "prevEntry": "fa/بذر/",
     "show": false,
     "dir": "ltr",
     "key": "translation",
-    "mean": ["ترجمه", "ترجمان (ترگمان)", "یچواک", "یچوه", "ویچار", "حرکت انتقالی", "برگردان"],
+    "mean": [
+      "ترجمه",
+      "ترجمان (ترگمان)",
+      "یچواک",
+      "یچوه",
+      "ویچار",
+      "حرکت انتقالی",
+      "برگردان"
+    ],
     "synonyms": {
       "تفسیر": {
-        "اسم": ["explanation", "exposition", "gloss", "comment", "annotation", "interpretation", "commentary", "exegesis", "translation", "paraphrase", "version", "rendition", "rendering"]
+        "اسم": [
+          "explanation",
+          "exposition",
+          "gloss",
+          "comment",
+          "annotation",
+          "interpretation",
+          "commentary",
+          "exegesis",
+          "translation",
+          "paraphrase",
+          "version",
+          "rendition",
+          "rendering"
+        ]
       },
-      "برگردان": { "اسم": ["chorus", "translation", "lapel", "refrain", "repetend", "revers"] },
+      "برگردان": {
+        "اسم": [
+          "chorus",
+          "translation",
+          "lapel",
+          "refrain",
+          "repetend",
+          "revers"
+        ]
+      },
       "انقال": { "اسم": ["translation", "conveyancing", "transduction"] },
-      "ترجمه": { "اسم": ["interpretation", "translation", "version", "rendition"] },
+      "ترجمه": {
+        "اسم": ["interpretation", "translation", "version", "rendition"]
+      },
       "پچواک": { "اسم": ["translation"] },
       "حرکت انتقالی": { "اسم": ["translation"] }
     },
@@ -46,7 +76,10 @@
     "relwords": { "mistranslation": ["ترجمه نادرست"] },
     "pronounce": { "uk": "/trænsˈleɪʃn̩/", "us": "/trænzˈleɪʃn̩/" },
     "examples": [
-      ["the english translation of the boostan", "ترجمه‌ی انگلیسی بوستان (سعدی)"],
+      [
+        "the english translation of the boostan",
+        "ترجمه‌ی انگلیسی بوستان (سعدی)"
+      ],
       ["a verse translation of shahnameh", "ترجمه‌ی منظوم شاهنامه"]
     ],
     "extra": null,

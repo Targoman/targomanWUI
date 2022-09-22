@@ -152,6 +152,20 @@ BindHandler.addItem(
   LANGUAGE_SPECS.filter((e) => e.tgt)
 );
 
+const btnNightMode = document.querySelector('.end.daynight img')
+btnNightMode.onclick = ev => {
+  const el = ev.target
+  if (document.body.classList.contains("dark")) {
+    el.src= el.src.replace('day', 'night')
+    document.body.classList.remove('dark')
+    setCookie('nightMode', 'day', 7)
+  } else {
+    el.src = el.src.replace('night', 'day')
+    document.body.classList.add('dark')
+    setCookie('nightMode', 'dark', 7)
+  }
+}
+
 function getCharacterCorrespondence(_str1, _str2) {
   const DELETION = 0;
   const INSERTION = 1;
@@ -345,49 +359,49 @@ class Translation {
     data.phonetic = data.phonetic ? data.phonetic.split(";") : [];
     data.syn = data.syn
       ? data.syn
-          .split("^^")
-          .filter(Boolean)
-          .map((e) => {
-            let parts = e.split("::");
-            if (parts.length == 3)
-              return {
-                part: parts[0],
-                mean: parts[1],
-                syns: parts[2].trim(),
-              };
-            return false;
-          })
-          .filter(Boolean)
+        .split("^^")
+        .filter(Boolean)
+        .map((e) => {
+          let parts = e.split("::");
+          if (parts.length == 3)
+            return {
+              part: parts[0],
+              mean: parts[1],
+              syns: parts[2].trim(),
+            };
+          return false;
+        })
+        .filter(Boolean)
       : null;
     data.relexp = data.relexp
       ? data.relexp
-          .split("^^")
-          .filter(Boolean)
-          .map((e) => {
-            let parts = e.split("::");
-            if (parts.length == 2)
-              return {
-                exp: parts[0],
-                mean: parts[1],
-              };
-            return false;
-          })
-          .filter(Boolean)
+        .split("^^")
+        .filter(Boolean)
+        .map((e) => {
+          let parts = e.split("::");
+          if (parts.length == 2)
+            return {
+              exp: parts[0],
+              mean: parts[1],
+            };
+          return false;
+        })
+        .filter(Boolean)
       : null;
     data.relword = data.relword
       ? data.relword
-          .split("^^")
-          .filter(Boolean)
-          .map((e) => {
-            let parts = e.split("::");
-            if (parts.length == 2)
-              return {
-                word: parts[0],
-                mean: parts[1],
-              };
-            return false;
-          })
-          .filter(Boolean)
+        .split("^^")
+        .filter(Boolean)
+        .map((e) => {
+          let parts = e.split("::");
+          if (parts.length == 2)
+            return {
+              word: parts[0],
+              mean: parts[1],
+            };
+          return false;
+        })
+        .filter(Boolean)
       : null;
     return data;
   }
