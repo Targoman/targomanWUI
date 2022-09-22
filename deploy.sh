@@ -39,7 +39,6 @@ cd dist/
 ln -snf /srv/www/vhosts/targoman.ir/htdocs/vc 
 ln -snf /srv/www/vhosts/targoman.ir/htdocs/d  
 ln -snf /srv/www/vhosts/targoman.ir/htdocs/p  
-sed -i "s~targoman.test/TestAPI~targoman.ir/API~g"
 
 tar czf $TAG.tgz * && \
     scp $TAG.tgz deployer@targoman.ir:/tmp && \

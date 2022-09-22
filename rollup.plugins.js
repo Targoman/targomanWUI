@@ -163,10 +163,6 @@ export function finalize() {
                             url: `${key}.map`
                         }
                     }));
-                    bundle[key].code = code.replace(
-                        /targoman.test\/TestAPI/g,
-                        "targoman.ir/API"
-                    );
                     bundle[key].map = map;
                 }
         }
