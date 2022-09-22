@@ -164,8 +164,8 @@ export function finalize() {
                         }
                     }));
                     bundle[key].code = code.replace(
-                        /http:\/\/targoman.test\/TestAPI/g,
-                        "https://targoman.ir/API"
+                        /targoman.test\/TestAPI/g,
+                        "targoman.ir/API"
                     );
                     bundle[key].map = map;
                 }
