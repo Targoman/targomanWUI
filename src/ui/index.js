@@ -250,7 +250,7 @@ class TargomanWebUiApp {
 
     let allowedClasses = value.allowedClasses(value);
     if (allowedClasses && !Array.isArray(allowedClasses)) allowedClasses = allowedClasses(value);
-    if (["fa", "en"].includes(BindHandler.tgtLang.code)) this.srcTypeDropdownDiv.handler.enableItems(["formal", "informal"]);
+    if (["fa", "en"].includes(BindHandler.tgtLang.code)) this.srcTypeDropdownDiv.handler.enableItems(() => true);
     else this.srcTypeDropdownDiv.handler.enableItems((type) => allowedClasses && allowedClasses.includes(type.code));
     this.translate();
   }
